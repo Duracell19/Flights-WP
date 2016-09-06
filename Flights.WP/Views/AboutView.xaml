@@ -1,0 +1,27 @@
+﻿<views:MvxWindowsPage
+    x:Class="Flights.WP.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MvvmCross.WindowsCommon.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Button Content="Back" Margin="23,566,0,8" Style="{StaticResource Button}" Width="350" Command="{Binding BackCommand}"/>
+        <TextBlock Style="{StaticResource TextBlockEntry}" Margin="24,20,0,91">
+                        <Run Text="The application is designed"/>
+                        <LineBreak/>
+                        <Run Text="for viewing the list of flights."/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run Text="Data provided by the service"/>
+                        <LineBreak/>
+                        <Run Text="Yandex.Schedules."/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run Text="Url: http://rasp.yandex.ru/"/>
+        </TextBlock>
+    </Grid>
+
+</views:MvxWindowsPage>
