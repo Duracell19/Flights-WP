@@ -1,0 +1,158 @@
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\App.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Views\AboutView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Views\FlightsInfoView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Views\FlightsListView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Views\HelpView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Views\MainPageView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.WP.xr.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.WP.exe
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.WP.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\resources.pri
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\AppxManifest.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.WP.build.appxrecipe
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Microsoft.Xaml.Interactions.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Microsoft.Xaml.Interactivity.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Core.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Binding.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Core.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Localization.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.WindowsCommon.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.WindowsCommon.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Core.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.WindowsCommon.pri
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\MvvmCross.WindowsCommon.pri
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Flights.WP.csprojResolveAssemblyReference.cache
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\App.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\App.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\AboutView.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\AboutView.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsListView.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsListView.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\HelpView.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\HelpView.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\MainPageView.g.i.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\MainPageView.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\XamlTypeInfo.g.cs
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\AboutView.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsListView.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\HelpView.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\AboutView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\FlightsListView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\HelpView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\XamlSaveStateFile.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\App.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\MainPageView.xaml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\App.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Views\MainPageView.xbf
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Flights.WP.exe
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Flights.WP.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\Flights.WP.csproj.GenerateResource.Cache
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\priconfig.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\priconfig.xml.intermediate
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\layout.resfiles
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\layout.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\resources.resfiles
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\resources.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\pri.resfiles
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\pri.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\qualifiers.txt
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\qualifiers.txt.intermediate
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\MvvmCross.Platform.WindowsCommon.pri.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\MvvmCross.WindowsCommon.pri.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\obj\ARM\Debug\ProjectArchitectures.txt
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Infrastructure.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Newtonsoft.Json.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Infrastructure.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Newtonsoft.Json.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Models.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Windows.winmd
+D:\MyProject\WP\Flights\Flights.Core\Flights.WP\bin\ARM\Debug\Flights.Models.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\App.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Views\AboutView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Views\FlightsInfoView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Views\FlightsListView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Views\HelpView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Views\MainPageView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.WP.xr.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.WP.exe
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.WP.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\resources.pri
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\AppxManifest.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.WP.build.appxrecipe
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Microsoft.Xaml.Interactions.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Microsoft.Xaml.Interactivity.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Core.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Binding.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Core.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Localization.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.WindowsCommon.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.WindowsCommon.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Core.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Platform.WindowsCommon.pri
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.WindowsCommon.pri
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Flights.WP.csprojResolveAssemblyReference.cache
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\App.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\App.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\AboutView.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\AboutView.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsListView.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsListView.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\HelpView.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\HelpView.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\MainPageView.g.i.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\MainPageView.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\XamlTypeInfo.g.cs
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\App.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\AboutView.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\HelpView.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\MainPageView.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\App.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\AboutView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsInfoView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\HelpView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\MainPageView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\XamlSaveStateFile.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsListView.xaml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Views\FlightsListView.xbf
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Flights.WP.exe
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Flights.WP.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\Flights.WP.csproj.GenerateResource.Cache
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\priconfig.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\priconfig.xml.intermediate
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\layout.resfiles
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\layout.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\resources.resfiles
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\resources.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\pri.resfiles
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\pri.resfiles.intermediate
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\qualifiers.txt
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\qualifiers.txt.intermediate
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MvvmCross.Platform.WindowsCommon.pri.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MvvmCross.WindowsCommon.pri.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\ProjectArchitectures.txt
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Plugins.File.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Plugins.File.WindowsCommon.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\MvvmCross.Plugins.File.WindowsCommon.pri
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MvvmCross.Plugins.File.WindowsCommon.pri.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Models.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Infrastructure.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Windows.winmd
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Newtonsoft.Json.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Models.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Infrastructure.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Newtonsoft.Json.xml

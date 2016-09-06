@@ -1,0 +1,22 @@
+﻿<views:MvxWindowsPage
+    x:Class="Flights.WP.Views.HelpView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MvvmCross.WindowsCommon.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Button Content="Back" Margin="23,566,0,8" Style="{StaticResource Button}" Width="350" Command="{Binding BackCommand}"/>
+        <AppBarButton Label="clear" Icon="clear" Margin="19,29,0,0"/>
+        <AppBarButton Label="change" Icon="Sort" Margin="19,146,0,0"/>
+        <AppBarButton Label="favorite" Icon="Favorite" Margin="19,264,0,0"/>
+        <TextBlock Text="{Binding ClearText}" HorizontalAlignment="Left" Margin="100,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="107" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
+        <TextBlock Text="{Binding ChangeText}" HorizontalAlignment="Left" Margin="100,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
+        <TextBlock Text="{Binding FavoriteText}" HorizontalAlignment="Left" Margin="100,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="146" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
+        <Image Margin="50,392,42,66" Source="ms-appx:///Assets/plane.png"/>
+    </Grid>
+
+</views:MvxWindowsPage>
+

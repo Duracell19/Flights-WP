@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Files>
+  <file>\Flights.Core.dll</file>
+  <file>\Flights.WP.exe</file>
+  <file>\Microsoft.Xaml.Interactions.dll</file>
+  <file>\Microsoft.Xaml.Interactivity.dll</file>
+  <file>\MvvmCross.Binding.dll</file>
+  <file>\MvvmCross.Core.dll</file>
+  <file>\MvvmCross.Localization.dll</file>
+  <file>\MvvmCross.Platform.dll</file>
+  <file>\MvvmCross.Platform.WindowsCommon.dll</file>
+  <file>\MvvmCross.WindowsCommon.dll</file>
+  <file>\MvvmCross.Plugins.File.dll</file>
+  <file>\MvvmCross.Plugins.File.WindowsCommon.dll</file>
+  <file>\Flights.Infrastructure.dll</file>
+  <file>\Flights.Models.dll</file>
+  <file>\Flights.Services.dll</file>
+  <file>\Newtonsoft.Json.dll</file>
+  <file>\Windows.winmd</file>
+</Files>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots xmlns="clr-namespace:Microsoft.Xaml.Tools.XamlCompiler.RootLog;assembly=Microsoft.Windows.UI.Xaml.81.Build.Tasks">
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="BackCommand" />
+    <RootPropertyPathName Name="TextFrom" />
+    <RootPropertyPathName Name="TextTo" />
+    <RootPropertyPathName Name="TextDeparture" />
+    <RootPropertyPathName Name="TextArrival" />
+    <RootPropertyPathName Name="TextDuration" />
+    <RootPropertyPathName Name="TextNumber" />
+    <RootPropertyPathName Name="TextVehicle" />
+    <RootPropertyPathName Name="TextCarrierTitle" />
+    <RootPropertyPathName Name="TextArrivalTerminal" />
+    <RootPropertyPathName Name="FlightsList" />
+    <RootPropertyPathName Name="ItemClickCommand" />
+    <RootPropertyPathName Name="this" />
+    <RootPropertyPathName Name="Arrival" />
+    <RootPropertyPathName Name="Image2" />
+    <RootPropertyPathName Name="Departure" />
+    <RootPropertyPathName Name="ToTitle" />
+    <RootPropertyPathName Name="FromTitle" />
+    <RootPropertyPathName Name="Image1" />
+    <RootPropertyPathName Name="TextLoad" />
+    <RootPropertyPathName Name="IsActiveProcess" />
+    <RootPropertyPathName Name="IsEnabledFavorite" />
+    <RootPropertyPathName Name="FavoriteCommand" />
+    <RootPropertyPathName Name="HelpCommand" />
+    <RootPropertyPathName Name="AboutCommand" />
+    <RootPropertyPathName Name="FavoriteText" />
+    <RootPropertyPathName Name="ChangeText" />
+    <RootPropertyPathName Name="ClearText" />
+    <RootPropertyPathName Name="PivotNumber" />
+    <RootPropertyPathName Name="PivotSelectionChanged" />
+    <RootPropertyPathName Name="FavoriteList" />
+    <RootPropertyPathName Name="FavoritesItemClick" />
+    <RootPropertyPathName Name="CityTo" />
+    <RootPropertyPathName Name="CityFrom" />
+    <RootPropertyPathName Name="CountryTo" />
+    <RootPropertyPathName Name="CountryFrom" />
+    <RootPropertyPathName Name="IsEnabledButtonFind" />
+    <RootPropertyPathName Name="FindCommand" />
+    <RootPropertyPathName Name="TextCityTo" />
+    <RootPropertyPathName Name="CitiesTo" />
+    <RootPropertyPathName Name="PlaceholderTextCityTo" />
+    <RootPropertyPathName Name="IsEnabledCityTo" />
+    <RootPropertyPathName Name="ChosenItemCityTo" />
+    <RootPropertyPathName Name="TextChangedCityTo" />
+    <RootPropertyPathName Name="TextCountryTo" />
+    <RootPropertyPathName Name="CountriesTo" />
+    <RootPropertyPathName Name="ChosenItemCountryTo" />
+    <RootPropertyPathName Name="TextChangedCountryTo" />
+    <RootPropertyPathName Name="TextCityFrom" />
+    <RootPropertyPathName Name="CitiesFrom" />
+    <RootPropertyPathName Name="PlaceholderTextCityFrom" />
+    <RootPropertyPathName Name="IsEnabledCityFrom" />
+    <RootPropertyPathName Name="ChosenItemCityFrom" />
+    <RootPropertyPathName Name="TextChangedCityFrom" />
+    <RootPropertyPathName Name="TextCountryFrom" />
+    <RootPropertyPathName Name="CountriesFrom" />
+    <RootPropertyPathName Name="ChosenItemCountryFrom" />
+    <RootPropertyPathName Name="TextChangedCountryFrom" />
+    <RootPropertyPathName Name="IsCheckedReturn" />
+    <RootPropertyPathName Name="ReturnCommand" />
+    <RootPropertyPathName Name="IsCheckedOneWay" />
+    <RootPropertyPathName Name="OneWayCommand" />
+    <RootPropertyPathName Name="DateReturn" />
+    <RootPropertyPathName Name="IsEnabledDateReturn" />
+    <RootPropertyPathName Name="DateOneWay" />
+    <RootPropertyPathName Name="IsEnabledChange" />
+    <RootPropertyPathName Name="ChangeCommand" />
+    <RootPropertyPathName Name="IsEnabledClear" />
+    <RootPropertyPathName Name="ClearCommand" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Windows.UI.Xaml.Application">
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="IsEnabled" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Inlines" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Padding" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
+      <RootProperty Name="Text" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="IsEnabled" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="MvvmCross.WindowsCommon.Views.MvxWindowsPage">
+      <RootProperty Name="Content" />
+      <RootProperty Name="BottomAppBar" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Children" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Documents.Run">
+      <RootProperty Name="Text" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+    </RootType>
+    <RootType FullName="Flights.WP.Views.AboutView" />
+    <RootType FullName="Flights.WP.Views.FlightsInfoView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="IsActive" />
+      <RootProperty Name="BorderBrush" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="IsItemClickEnabled" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="Foreground" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
+      <RootMethod Name="GetBehaviors" />
+      <RootMethod Name="SetBehaviors" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.EventTriggerBehavior">
+      <RootProperty Name="EventName" />
+      <RootProperty Name="Actions" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.InvokeCommandAction">
+      <RootProperty Name="Command" />
+      <RootProperty Name="CommandParameter" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Children" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
+      <RootProperty Name="PrimaryCommands" />
+      <RootProperty Name="SecondaryCommands" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
+      <RootProperty Name="Label" />
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Flights.WP.Views.FlightsListView" />
+    <RootType FullName="Flights.WP.Views.HelpView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
+      <RootProperty Name="SelectedIndex" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PivotItem">
+      <RootProperty Name="Header" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
+      <RootProperty Name="Date" />
+      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Foreground" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton">
+      <RootProperty Name="IsChecked" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Command" />
+    </RootType>
+    <RootType FullName="Flights.WP.Views.MainPageView" />
+  </Roots.RootTypes>
+</Roots>

@@ -1,0 +1,21 @@
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Flights.Infrastructure.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Newtonsoft.Json.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Flights.Infrastructure.pdb
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\bin\Debug\Newtonsoft.Json.xml
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\obj\Debug\Flights.Services.csprojResolveAssemblyReference.cache
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\obj\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights.Core\Flights.Services\obj\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Infrastructure.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Models.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Newtonsoft.Json.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Infrastructure.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Flights.Models.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Newtonsoft.Json.xml
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Services.csprojResolveAssemblyReference.cache
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Services.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Services.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Windows.winmd
