@@ -12,8 +12,8 @@
     <RootPropertyPathName Name="TextCarrierTitle" />
     <RootPropertyPathName Name="TextArrivalTerminal" />
     <RootPropertyPathName Name="FlightsList" />
-    <RootPropertyPathName Name="ItemClickCommand" />
-    <RootPropertyPathName Name="this" />
+    <RootPropertyPathName Name="SelectionChangedCommand" />
+    <RootPropertyPathName Name="SelectedItem" />
     <RootPropertyPathName Name="Arrival" />
     <RootPropertyPathName Name="Image2" />
     <RootPropertyPathName Name="Departure" />
@@ -44,6 +44,7 @@
     <RootPropertyPathName Name="PlaceholderTextCityTo" />
     <RootPropertyPathName Name="IsEnabledCityTo" />
     <RootPropertyPathName Name="ChosenItemCityTo" />
+    <RootPropertyPathName Name="Text" />
     <RootPropertyPathName Name="TextChangedCityTo" />
     <RootPropertyPathName Name="TextCountryTo" />
     <RootPropertyPathName Name="CountriesTo" />
@@ -112,6 +113,7 @@
       <RootProperty Name="Padding" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
+      <RootProperty Name="Name" />
       <RootProperty Name="Text" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="Style" />
@@ -146,6 +148,8 @@
     <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Mode" />
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="Path" />
     </RootType>
     <RootType FullName="Flights.WP.Views.AboutView" />
     <RootType FullName="Flights.WP.Views.FlightsInfoView" />
@@ -159,9 +163,9 @@
       <RootProperty Name="BorderBrush" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Name" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="Foreground" />
     </RootType>

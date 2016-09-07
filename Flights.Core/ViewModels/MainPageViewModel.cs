@@ -11,7 +11,6 @@ using System.IO;
 using System.Windows.Input;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Windows.UI.Xaml.Controls;
 
 namespace Flights.Core.ViewModels
 {
@@ -482,22 +481,14 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private RelayCommand chosenItemCountryFrom;
+        private MvxCommand<string> chosenItemCountryFrom;
         public ICommand ChosenItemCountryFrom
         {
-            get
-            {
-                if (chosenItemCountryFrom == null)
-                {
-                    chosenItemCountryFrom = new RelayCommand(param => this.ChooseCountryFrom(param));
-                }
-                return chosenItemCountryFrom;
-            }
+            get { return chosenItemCountryFrom ?? (chosenItemCountryFrom = new MvxCommand<string>(arg => this.ChooseCountryFrom(arg))); }
         }
-        public async void ChooseCountryFrom(object arg)
+        public async void ChooseCountryFrom(string arg)
         {
-            AutoSuggestBoxSuggestionChosenEventArgs a = (AutoSuggestBoxSuggestionChosenEventArgs)arg;
-            mainPageModel.CountryFrom = (string)a.SelectedItem;
+            mainPageModel.CountryFrom = arg;
             TextCityFrom = "";
             IsEnabledCityFrom = false;
             IsEnabledButtonFind = false;
@@ -526,22 +517,14 @@ namespace Flights.Core.ViewModels
                 IsEnabledButtonFind = false;
             }
         }
-        private RelayCommand chosenItemCountryTo;
+        private MvxCommand<string> chosenItemCountryTo;
         public ICommand ChosenItemCountryTo
         {
-            get
-            {
-                if (chosenItemCountryTo == null)
-                {
-                    chosenItemCountryTo = new RelayCommand(param => this.ChooseCountryTo(param));
-                }
-                return chosenItemCountryTo;
-            }
+            get { return chosenItemCountryTo ?? (chosenItemCountryTo = new MvxCommand<string>(arg => this.ChooseCountryTo(arg))); }
         }
-        public async void ChooseCountryTo(object arg)
+        public async void ChooseCountryTo(string arg)
         {
-            AutoSuggestBoxSuggestionChosenEventArgs a = (AutoSuggestBoxSuggestionChosenEventArgs)arg;
-            mainPageModel.CountryTo = (string)a.SelectedItem;
+            mainPageModel.CountryTo = arg;
             TextCityTo = "";
             IsEnabledCityTo = false;
             IsEnabledButtonFind = false;
@@ -570,22 +553,14 @@ namespace Flights.Core.ViewModels
                 IsEnabledButtonFind = false;
             }
         }
-        private RelayCommand chosenItemCityFrom;
+        private MvxCommand<string> chosenItemCityFrom;
         public ICommand ChosenItemCityFrom
         {
-            get
-            {
-                if (chosenItemCityFrom == null)
-                {
-                    chosenItemCityFrom = new RelayCommand(param => this.ChooseCityFrom(param));
-                }
-                return chosenItemCityFrom;
-            }
+            get { return chosenItemCityFrom ?? (chosenItemCityFrom = new MvxCommand<string>(arg => this.ChooseCityFrom(arg))); }
         }
-        public async void ChooseCityFrom(object arg)
+        public async void ChooseCityFrom(string arg)
         {
-            AutoSuggestBoxSuggestionChosenEventArgs a = (AutoSuggestBoxSuggestionChosenEventArgs)arg;
-            mainPageModel.CityFrom = (string)a.SelectedItem;
+            mainPageModel.CityFrom = arg;
             IataService iataService = new IataService(_httpService);
             mainPageModel.IataFrom = await iataService.GetIata(mainPageModel.CityFrom);
             if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataFrom != null)
@@ -593,22 +568,14 @@ namespace Flights.Core.ViewModels
             else
                 IsEnabledButtonFind = false;
         }
-        private RelayCommand chosenItemCityTo;
+        private MvxCommand<string> chosenItemCityTo;
         public ICommand ChosenItemCityTo
         {
-            get
-            {
-                if (chosenItemCityTo == null)
-                {
-                    chosenItemCityTo = new RelayCommand(param => this.ChooseCityTo(param));
-                }
-                return chosenItemCityTo;
-            }
+            get { return chosenItemCityTo ?? (chosenItemCityTo = new MvxCommand<string>(arg => this.ChooseCityTo(arg))); }
         }
-        public async void ChooseCityTo(object arg)
+        public async void ChooseCityTo(string arg)
         {
-            AutoSuggestBoxSuggestionChosenEventArgs a = (AutoSuggestBoxSuggestionChosenEventArgs)arg;
-            mainPageModel.CityTo = (string)a.SelectedItem;
+            mainPageModel.CityTo = arg;
             IataService iataService = new IataService(_httpService);
             mainPageModel.IataTo = await iataService.GetIata(mainPageModel.CityTo);
             if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataTo != null)
@@ -674,6 +641,10 @@ namespace Flights.Core.ViewModels
                 return clearCommand
                     ?? (clearCommand = new ActionCommand(() =>
                     {
+                        mainPageModel.CountryFrom = "";
+                        mainPageModel.CountryTo = "";
+                        mainPageModel.CityFrom = "";
+                        mainPageModel.CityTo = "";
                         TextCountryFrom = "";
                         TextCountryTo = "";
                         TextCityFrom = "";
@@ -763,8 +734,7 @@ namespace Flights.Core.ViewModels
         }
         public void ItemClick(object arg)
         {
-            ItemClickEventArgs e = (ItemClickEventArgs)arg;
-            FavoriteModel item = ((FavoriteModel)e.ClickedItem);
+            FavoriteModel item = (FavoriteModel)arg;
             TextCountryFrom = item.CountryFrom;
             TextCountryTo = item.CountryTo;
             TextCityFrom = item.CityFrom;

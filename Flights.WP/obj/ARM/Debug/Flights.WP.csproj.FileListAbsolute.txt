@@ -150,7 +150,6 @@ D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MvvmCross.Plugi
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Models.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Services.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Infrastructure.dll
-D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Windows.winmd
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Newtonsoft.Json.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Models.pdb
 D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.Services.pdb

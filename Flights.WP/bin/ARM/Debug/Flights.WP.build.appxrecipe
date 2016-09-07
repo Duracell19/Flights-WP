@@ -70,9 +70,6 @@
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Windows.winmd">
-      <PackagePath>Windows.winmd</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.WP\Assets\BadgeLogo.scale-240.png">
       <PackagePath>Assets\BadgeLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>

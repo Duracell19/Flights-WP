@@ -10,7 +10,6 @@ using System.IO;
 using System.Windows.Input;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Windows.UI.Xaml.Controls;
 
 namespace Flights.Core.ViewModels
 {
@@ -93,24 +92,14 @@ namespace Flights.Core.ViewModels
                 return new MvxCommand(() => ShowViewModel<MainPageViewModel>(mainPageModel));
             }
         }
-        private RelayCommand itemClickCommand;
-        public ICommand ItemClickCommand
+        private MvxCommand<FlyInfoShowModel> selectionChangedCommand;
+        public ICommand SelectionChangedCommand
         {
-            get
-            {
-                if (itemClickCommand == null)
-                {
-                    itemClickCommand = new RelayCommand(param => this.ItemClick(param));
-                }
-                return itemClickCommand;
-            }
+            get { return selectionChangedCommand ?? (selectionChangedCommand = new MvxCommand<FlyInfoShowModel>(c => this.ShowFlyInfo(c))); }
         }
-        public void ItemClick(object arg)
+        public void ShowFlyInfo(FlyInfoShowModel c)
         {
-            ItemClickEventArgs e = (ItemClickEventArgs)arg;
-            var itemId = ((FlyInfoShowModel)e.ClickedItem).id;
-            int id = (int)itemId;
-            ShowViewModel<FlightsInfoViewModel>(FlightsList[id]);
+            ShowViewModel<FlightsInfoViewModel>(FlightsList[c.id]);
         }
         private ICommand helpCommand;
         public ICommand HelpCommand

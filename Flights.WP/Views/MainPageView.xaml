@@ -27,43 +27,43 @@
                     <DatePicker Date="{Binding DateReturn, Mode=TwoWay}" IsEnabled="{Binding IsEnabledDateReturn, Mode=TwoWay}" Margin="201,393,94,128" Background="#FF2F393A" Foreground="#FF8D9797"/>
                     <RadioButton IsChecked="{Binding IsCheckedOneWay, Mode=TwoWay}" HorizontalAlignment="Left" Margin="28,329,0,0" BorderBrush="#FF8D9797" Command="{Binding OneWayCommand}"/>
                     <RadioButton IsChecked="{Binding IsCheckedReturn, Mode=TwoWay}" HorizontalAlignment="Left" Margin="28,391,0,0" BorderBrush="#FF8D9797" Command="{Binding ReturnCommand}"/>
-                    <AutoSuggestBox Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,33,0,0" PlaceholderText="Choose country">
+                    <AutoSuggestBox Name="countryFrom" Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,33,0,0" PlaceholderText="Choose country">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="TextChanged">
                                 <core:InvokeCommandAction Command ="{Binding TextChangedCountryFrom}"/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command ="{Binding ChosenItemCountryFrom}" CommandParameter="{Binding this}"/>
+                                <core:InvokeCommandAction Command="{Binding ChosenItemCountryFrom}" CommandParameter="{Binding ElementName=countryFrom, Path=Text}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </AutoSuggestBox>
-                    <AutoSuggestBox Text="{Binding TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding CitiesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,94,0,0" PlaceholderText="{Binding PlaceholderTextCityFrom, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityFrom, Mode=TwoWay}">
+                    <AutoSuggestBox Name="cityFrom" Text="{Binding TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding CitiesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,94,0,0" PlaceholderText="{Binding PlaceholderTextCityFrom, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityFrom, Mode=TwoWay}">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="TextChanged">
                                 <core:InvokeCommandAction Command ="{Binding TextChangedCityFrom}"/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command ="{Binding ChosenItemCityFrom}" CommandParameter="{Binding this}"/>
+                                <core:InvokeCommandAction Command="{Binding ChosenItemCityFrom}" CommandParameter="{Binding ElementName=cityFrom, Path=Text}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </AutoSuggestBox>
-                    <AutoSuggestBox Text="{Binding TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding CountriesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,172,0,0" PlaceholderText="Choose country">
+                    <AutoSuggestBox Name="countryTo"  Text="{Binding TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding CountriesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,172,0,0" PlaceholderText="Choose country">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="TextChanged">
                                 <core:InvokeCommandAction Command ="{Binding TextChangedCountryTo}"/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command ="{Binding ChosenItemCountryTo}" CommandParameter="{Binding this}"/>
+                                <core:InvokeCommandAction Command="{Binding ChosenItemCountryTo}" CommandParameter="{Binding ElementName=countryTo, Path=Text}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </AutoSuggestBox>
-                    <AutoSuggestBox Text="{Binding TextCityTo, Mode=TwoWay}" ItemsSource="{Binding CitiesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,233,0,0" PlaceholderText="{Binding PlaceholderTextCityTo, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityTo, Mode=TwoWay}">
+                    <AutoSuggestBox Name="cityTo" Text="{Binding TextCityTo, Mode=TwoWay}" ItemsSource="{Binding CitiesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,233,0,0" PlaceholderText="{Binding PlaceholderTextCityTo, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityTo, Mode=TwoWay}">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="TextChanged">
                                 <core:InvokeCommandAction Command ="{Binding TextChangedCityTo}"/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command ="{Binding ChosenItemCityTo}" CommandParameter="{Binding this}"/>
+                                <core:InvokeCommandAction Command="{Binding ChosenItemCityTo}" CommandParameter="{Binding ElementName=cityTo, Path=Text}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </AutoSuggestBox>
@@ -73,10 +73,10 @@
 
             <PivotItem Header="Favorites">
                 <Grid>
-                    <ListView ItemsSource="{Binding FavoriteList, Mode=TwoWay}" Foreground="#FFE6D52E" Margin="0,-15,0,10" IsItemClickEnabled="True">
+                    <ListView Name="favoriteList" ItemsSource="{Binding FavoriteList, Mode=TwoWay}" Foreground="#FFE6D52E" Margin="0,-15,0,10">
                         <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command ="{Binding FavoritesItemClick}" CommandParameter="{Binding this}"/>
+                            <core:EventTriggerBehavior EventName="SelectionChanged">
+                                <core:InvokeCommandAction Command="{Binding FavoritesItemClick}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                         <ListView.ItemTemplate>

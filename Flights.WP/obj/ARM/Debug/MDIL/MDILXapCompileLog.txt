@@ -47,5 +47,3 @@ Processing file: D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debu
 File D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MSIL\MvvmCross.WindowsCommon.dll is not in the compile filter. Skipping.
 Processing file: D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MSIL\Newtonsoft.Json.dll
 File D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MSIL\Newtonsoft.Json.dll is not in the compile filter. Skipping.
-Processing file: D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MSIL\Windows.winmd
-File D:\MyProject\WP\Flights\Flights Project\Flights.WP\obj\ARM\Debug\MSIL\Windows.winmd is not in the compile filter. Skipping.

@@ -13,10 +13,10 @@
         <ProgressRing HorizontalAlignment="Left" Margin="118,232,0,0" VerticalAlignment="Top" Height="141" Width="153" IsActive="{Binding IsActiveProcess, Mode=TwoWay}" BorderBrush="#FF5B2D3C"/>
         <Button Content="Enter other data" Margin="23,507,0,7"  Style="{StaticResource Button}" Command="{Binding BackCommand}" Width="349"/>
         <TextBlock Margin="137,416,0,95" Text="{Binding TextLoad, Mode=TwoWay}" FontFamily="Comic Sans MS" FontSize="25" Foreground="#FF959595"/>
-        <ListView ItemsSource="{Binding FlightsList, Mode=TwoWay}" Margin="23,27,28,95" IsItemClickEnabled="True">
+        <ListView Name="flyInfoList" ItemsSource="{Binding FlightsList, Mode=TwoWay}" Margin="23,27,28,95">
             <i:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="ItemClick">
-                    <core:InvokeCommandAction Command="{Binding ItemClickCommand}" CommandParameter="{Binding this}"/>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=flyInfoList, Path=SelectedItem}"/>
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
             <ListView.ItemTemplate>

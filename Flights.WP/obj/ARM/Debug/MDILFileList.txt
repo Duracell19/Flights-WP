@@ -16,5 +16,4 @@
   <file>\Flights.Models.dll</file>
   <file>\Flights.Services.dll</file>
   <file>\Newtonsoft.Json.dll</file>
-  <file>\Windows.winmd</file>
 </Files>
