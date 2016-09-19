@@ -23,7 +23,8 @@ namespace Flights.Core
             Mvx.RegisterType<IFlightsService, FlightsService>();
             Mvx.RegisterType<ISerializService, SerializService>();
             Mvx.RegisterType<IDeserializService, DeserializService>();
-            
+            Mvx.RegisterType<IWPHardwareButtonEvents, WPHardwareButtonEvents>();
+
             RegisterAppStart<ViewModels.MainPageViewModel>();
         }
     }

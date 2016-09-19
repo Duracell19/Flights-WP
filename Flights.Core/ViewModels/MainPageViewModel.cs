@@ -383,7 +383,7 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        private ICommand textChangedCountryFrom;
+        ICommand textChangedCountryFrom;
         public ICommand TextChangedCountryFrom
         {
             get
@@ -405,7 +405,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand textChangedCountryTo;
+        ICommand textChangedCountryTo;
         public ICommand TextChangedCountryTo
         {
             get
@@ -427,7 +427,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand textChangedCityFrom;
+        ICommand textChangedCityFrom;
         public ICommand TextChangedCityFrom
         {
             get
@@ -454,7 +454,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand textChangedCityTo;
+        ICommand textChangedCityTo;
         public ICommand TextChangedCityTo
         {
             get
@@ -481,7 +481,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private MvxCommand<string> chosenItemCountryFrom;
+        MvxCommand<string> chosenItemCountryFrom;
         public ICommand ChosenItemCountryFrom
         {
             get { return chosenItemCountryFrom ?? (chosenItemCountryFrom = new MvxCommand<string>(arg => this.ChooseCountryFrom(arg))); }
@@ -517,7 +517,7 @@ namespace Flights.Core.ViewModels
                 IsEnabledButtonFind = false;
             }
         }
-        private MvxCommand<string> chosenItemCountryTo;
+        MvxCommand<string> chosenItemCountryTo;
         public ICommand ChosenItemCountryTo
         {
             get { return chosenItemCountryTo ?? (chosenItemCountryTo = new MvxCommand<string>(arg => this.ChooseCountryTo(arg))); }
@@ -553,7 +553,7 @@ namespace Flights.Core.ViewModels
                 IsEnabledButtonFind = false;
             }
         }
-        private MvxCommand<string> chosenItemCityFrom;
+        MvxCommand<string> chosenItemCityFrom;
         public ICommand ChosenItemCityFrom
         {
             get { return chosenItemCityFrom ?? (chosenItemCityFrom = new MvxCommand<string>(arg => this.ChooseCityFrom(arg))); }
@@ -568,7 +568,7 @@ namespace Flights.Core.ViewModels
             else
                 IsEnabledButtonFind = false;
         }
-        private MvxCommand<string> chosenItemCityTo;
+        MvxCommand<string> chosenItemCityTo;
         public ICommand ChosenItemCityTo
         {
             get { return chosenItemCityTo ?? (chosenItemCityTo = new MvxCommand<string>(arg => this.ChooseCityTo(arg))); }
@@ -583,7 +583,7 @@ namespace Flights.Core.ViewModels
             else
                 IsEnabledButtonFind = false;
         }
-        private ICommand oneWayCommand;
+        ICommand oneWayCommand;
         public ICommand OneWayCommand
         {
             get
@@ -598,7 +598,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand returnCommand;
+        ICommand returnCommand;
         public ICommand ReturnCommand
         {
             get
@@ -613,7 +613,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand findCommand;
+        ICommand findCommand;
         public ICommand FindCommand
         {
             get
@@ -633,7 +633,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand clearCommand;
+        ICommand clearCommand;
         public ICommand ClearCommand
         {
             get
@@ -659,7 +659,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand changeCommand;
+        ICommand changeCommand;
         public ICommand ChangeCommand
         {
             get
@@ -686,7 +686,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand helpCommand;
+        ICommand helpCommand;
         public ICommand HelpCommand
         {
             get
@@ -698,7 +698,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand pivotSelectionChanged;
+        ICommand pivotSelectionChanged;
         public ICommand PivotSelectionChanged
         {
             get
@@ -720,7 +720,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private RelayCommand favoritesItemClick;
+        RelayCommand favoritesItemClick;
         public ICommand FavoritesItemClick
         {
             get
@@ -755,7 +755,7 @@ namespace Flights.Core.ViewModels
             PivotNumber = 0;
         }
 
-        private bool LoadFrom(Stream inputStream)
+        bool LoadFrom(Stream inputStream)
         {
             try
             {

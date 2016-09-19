@@ -135,7 +135,7 @@
         <PivotItem Header="About">
             <Grid>
                 <TextBlock Style="{StaticResource TextBlockAboutStyle}">
-                <LineBreak/>
+                    <LineBreak/>
                 <Run Text="The application is designed"/>
                         <LineBreak/>
                         <Run Text="for viewing the list of flights."/>

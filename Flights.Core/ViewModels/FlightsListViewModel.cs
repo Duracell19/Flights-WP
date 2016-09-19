@@ -5,6 +5,7 @@ using Flights.Services.DataModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
@@ -23,12 +24,15 @@ namespace Flights.Core.ViewModels
         FlightsService flightsService;
         readonly IHttpService _httpService;
         readonly IDeserializService _deserializService;
+        readonly IWPHardwareButtonEvents _platformEvents;
 
-        public FlightsListViewModel(IHttpService httpService, IDeserializService deserializService)
+        public FlightsListViewModel(IHttpService httpService, IDeserializService deserializService, IWPHardwareButtonEvents platformEvents)
         {
             _httpService = httpService;
             flightsService = new FlightsService(_httpService);
             _deserializService = deserializService;
+            _platformEvents = platformEvents;
+            _platformEvents.BackButtonPressed += BackButtonPressed;
         }
         
         bool isActiveProcess = true;
@@ -92,7 +96,7 @@ namespace Flights.Core.ViewModels
                 return new MvxCommand(() => ShowViewModel<MainPageViewModel>(mainPageModel));
             }
         }
-        private MvxCommand<FlyInfoShowModel> selectionChangedCommand;
+        MvxCommand<FlyInfoShowModel> selectionChangedCommand;
         public ICommand SelectionChangedCommand
         {
             get { return selectionChangedCommand ?? (selectionChangedCommand = new MvxCommand<FlyInfoShowModel>(c => this.ShowFlyInfo(c))); }
@@ -101,7 +105,7 @@ namespace Flights.Core.ViewModels
         {
             ShowViewModel<FlightsInfoViewModel>(FlightsList[c.id]);
         }
-        private ICommand helpCommand;
+        ICommand helpCommand;
         public ICommand HelpCommand
         {
             get
@@ -113,7 +117,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand aboutCommand;
+        ICommand aboutCommand;
         public ICommand AboutCommand
         {
             get
@@ -125,7 +129,7 @@ namespace Flights.Core.ViewModels
                     }));
             }
         }
-        private ICommand favoriteCommand;
+        ICommand favoriteCommand;
         public ICommand FavoriteCommand
         {
             get
@@ -163,7 +167,7 @@ namespace Flights.Core.ViewModels
             GenerateFlightsList();
         }
 
-        private async void GenerateFlightsList()
+        async void GenerateFlightsList()
         {
             int count = mainPageModel.IataFrom.Length * mainPageModel.IataTo.Length;
             flyInfoOneWayModel = new FlyInfoModel[count];
@@ -197,7 +201,7 @@ namespace Flights.Core.ViewModels
             }
             ShowFlights(valueOneWay, valueReturn);
         }
-        private void ShowFlights(int valueOneWay, int valueReturn)
+        void ShowFlights(int valueOneWay, int valueReturn)
         {
             int count = 0;
             if (valueOneWay != -1)
@@ -272,7 +276,7 @@ namespace Flights.Core.ViewModels
             TextLoad = "";
             IsEnabledFavorite = IsTheSame();
         }
-        private void AddFavorite()
+        void AddFavorite()
         {
             addFavorite = favoriteList;
             addFavorite.Add(new FavoriteModel
@@ -289,7 +293,7 @@ namespace Flights.Core.ViewModels
                 Image2 = "ms-appx:///Assets/direction.png"
             });
         }
-        private bool IsTheSame()
+        bool IsTheSame()
         {
             int value = 0;
             foreach (FavoriteModel f in favoriteList)
@@ -307,7 +311,7 @@ namespace Flights.Core.ViewModels
             else
                 return true;
         }
-        private bool LoadFrom(Stream inputStream)
+        bool LoadFrom(Stream inputStream)
         {
             try
             {
@@ -326,6 +330,11 @@ namespace Flights.Core.ViewModels
             {
                 return false;
             }
+        }
+        void BackButtonPressed(object sender, EventArgs e)
+        {
+            Close(this);
+            _platformEvents.BackButtonPressed -= BackButtonPressed;
         }
     }
 }

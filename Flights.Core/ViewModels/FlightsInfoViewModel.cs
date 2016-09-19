@@ -1,5 +1,7 @@
-﻿using Flights.Models;
+﻿using Flights.Infrastructure;
+using Flights.Models;
 using MvvmCross.Core.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -7,10 +9,17 @@ namespace Flights.Core.ViewModels
 {
     public class FlightsInfoViewModel : MvxViewModel
     {
+        readonly IWPHardwareButtonEvents _platformEvents;
         string[] namesOfFields = {"Arrival terminal", "Carrier title", "Vehicle", "Number", "Duration",
             "Departure", "Arrival", "To", "From" };
         ObservableCollection<InfoAboutFlyModel> infoFlyList = new ObservableCollection<InfoAboutFlyModel>();
 
+        public FlightsInfoViewModel(IWPHardwareButtonEvents platformEvents)
+        {
+            _platformEvents = platformEvents;
+            _platformEvents.BackButtonPressed += BackButtonPressed;
+        }
+    
         public ObservableCollection<InfoAboutFlyModel> InfoFlyList
         {
             get
@@ -44,6 +53,12 @@ namespace Flights.Core.ViewModels
                     Information = info[i]
                 });
             }
+        }
+
+        void BackButtonPressed(object sender, EventArgs e)
+        {
+            Close(this);
+            _platformEvents.BackButtonPressed -= BackButtonPressed;
         }
 
         public ICommand BackCommand

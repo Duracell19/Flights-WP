@@ -42,6 +42,7 @@
     <Compile Include="DataModels\HttpService.cs" />
     <Compile Include="DataModels\IataService.cs" />
     <Compile Include="DataModels\SerializService.cs" />
+    <Compile Include="DataModels\WPHardwareButtonEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

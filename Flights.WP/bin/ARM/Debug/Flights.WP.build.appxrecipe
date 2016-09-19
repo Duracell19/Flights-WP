@@ -58,14 +58,14 @@
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\packages\MvvmCross.Core.4.2.3\lib\wpa81\MvvmCross.WindowsCommon.dll">
       <PackagePath>MvvmCross.WindowsCommon.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Flights.Infrastructure.dll">
+      <PackagePath>Flights.Infrastructure.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Flights.Models.dll">
       <PackagePath>Flights.Models.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Flights.Services.dll">
       <PackagePath>Flights.Services.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Flights.Infrastructure.dll">
-      <PackagePath>Flights.Infrastructure.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.Core\bin\Debug\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>

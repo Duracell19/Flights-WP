@@ -1,9 +1,19 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Flights.Infrastructure;
+using MvvmCross.Core.ViewModels;
+using System;
 using System.Windows.Input;
 namespace Flights.Core.ViewModels
 {
     public class HelpViewModel : MvxViewModel
-    { 
+    {
+        readonly IWPHardwareButtonEvents _platformEvents;
+
+        public HelpViewModel(IWPHardwareButtonEvents platformEvents)
+        {
+            _platformEvents = platformEvents;
+            _platformEvents.BackButtonPressed += BackButtonPressed;
+        }
+
         public string ClearHelpFlyInformation
         {
             get
@@ -26,6 +36,12 @@ namespace Flights.Core.ViewModels
             {
                 return "Add to favorites";
             }
+        }
+
+        void BackButtonPressed(object sender, EventArgs e)
+        {
+            Close(this);
+            _platformEvents.BackButtonPressed -= BackButtonPressed;
         }
 
         public ICommand BackCommand
