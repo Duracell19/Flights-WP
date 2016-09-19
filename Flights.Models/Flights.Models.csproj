@@ -37,6 +37,7 @@
     <Compile Include="FavoriteModel.cs" />
     <Compile Include="FlyInfoModel.cs" />
     <Compile Include="FlyInfoShowModel.cs" />
+    <Compile Include="InfoAboutFlyModel.cs" />
     <Compile Include="MainPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

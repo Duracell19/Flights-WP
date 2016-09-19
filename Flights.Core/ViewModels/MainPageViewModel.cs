@@ -739,8 +739,6 @@ namespace Flights.Core.ViewModels
             TextCountryTo = item.CountryTo;
             TextCityFrom = item.CityFrom;
             TextCityTo = item.CityTo;
-            DateOneWay = new DateTimeOffset(DateTime.Today);
-            DateReturn = new DateTimeOffset(DateTime.Today);
             mainPageModel.IataFrom = item.IataFrom;
             mainPageModel.IataTo = item.IataTo;
             mainPageModel.CitiesFrom = item.CitiesFrom;
@@ -750,13 +748,11 @@ namespace Flights.Core.ViewModels
             mainPageModel.CityFrom = TextCityFrom;
             mainPageModel.CityTo = TextCityTo;
             mainPageModel.ReturnWay = false;
-            IsCheckedOneWay = true;
-            IsCheckedReturn = false;
-            IsEnabledDateReturn = false;
             IsEnabledCityFrom = true;
             IsEnabledCityTo = true;
             IsEnabledButtonFind = true;
             status = true;
+            PivotNumber = 0;
         }
 
         private bool LoadFrom(Stream inputStream)

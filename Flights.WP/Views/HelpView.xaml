@@ -8,14 +8,37 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Button Content="Back" Margin="23,566,0,8" Style="{StaticResource Button}" Width="350" Command="{Binding BackCommand}"/>
-        <AppBarButton Label="clear" Icon="clear" Margin="19,29,0,0"/>
-        <AppBarButton Label="change" Icon="Sort" Margin="19,146,0,0"/>
-        <AppBarButton Label="favorite" Icon="Favorite" Margin="19,264,0,0"/>
-        <TextBlock Text="{Binding ClearText}" HorizontalAlignment="Left" Margin="100,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="107" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
-        <TextBlock Text="{Binding ChangeText}" HorizontalAlignment="Left" Margin="100,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
-        <TextBlock Text="{Binding FavoriteText}" HorizontalAlignment="Left" Margin="100,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="146" Width="272" Foreground="#FF926DB8" FontFamily="Comic Sans MS" FontSize="24"/>
-        <Image Margin="50,392,42,66" Source="ms-appx:///Assets/plane.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text=""/>
+                <TextBlock Text=""/>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Label="clear" Icon="clear"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding ClearHelpFlyInformation}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Label="change" Icon="Sort"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding ChangeHelpFlyInformation}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Label="favorite" Icon="Favorite"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding FavoriteHelpFlyInformation}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StackPanel Orientation="Vertical" Grid.Column="1"  Grid.Row="1">
+            <Image  Source="ms-appx:///Assets/plane.png" Width="350" Height="140"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Back" Command="{Binding BackCommand}"/>
+        </StackPanel>
     </Grid>
 
 </views:MvxWindowsPage>

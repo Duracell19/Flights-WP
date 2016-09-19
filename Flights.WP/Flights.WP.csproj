@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <PRIResource Include="Resources\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AboutView.xaml">

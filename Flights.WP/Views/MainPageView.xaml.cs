@@ -1,5 +1,4 @@
 ﻿using MvvmCross.WindowsCommon.Views;
-using Windows.UI.Xaml.Navigation;
 
 namespace Flights.WP.Views
 {
@@ -9,16 +8,5 @@ namespace Flights.WP.Views
         {
             this.InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-        }
-        
     }
 }

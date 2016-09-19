@@ -9,105 +9,134 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core">
 
-    <Grid>
-        <Pivot SelectedIndex="{Binding PivotNumber, Mode=TwoWay}">
-            <i:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command ="{Binding PivotSelectionChanged}"/>
-                </core:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-            <PivotItem Header="Entry" Margin="-76,-111,-98,-74.5">
-                <Grid Margin="71,85,20.833,51.167" Height="571">
-                    <TextBlock Text="From" Style="{StaticResource TextBlockEntry}" Margin="18,66,0,473"/>
-                    <TextBlock Text="To" Style="{StaticResource TextBlockEntry}" Margin="18,204,0,335"/>
-                    <TextBlock Text="Choose data" Style="{StaticResource TextBlockEntry}" Margin="224,293,0,244"/>
-                    <TextBlock Text="One way" Style="{StaticResource TextBlockEntry}" Margin="62,341,0,191"/>
-                    <TextBlock Text="Return" Style="{StaticResource TextBlockEntry}" Margin="62,403,0,129"/>
-                    <DatePicker Date="{Binding DateOneWay, Mode=TwoWay}" IsEnabled="true" Margin="201,331,94,193" Background="#FF2F393A" Foreground="#FF8D9797"/>
-                    <DatePicker Date="{Binding DateReturn, Mode=TwoWay}" IsEnabled="{Binding IsEnabledDateReturn, Mode=TwoWay}" Margin="201,393,94,128" Background="#FF2F393A" Foreground="#FF8D9797"/>
-                    <RadioButton IsChecked="{Binding IsCheckedOneWay, Mode=TwoWay}" HorizontalAlignment="Left" Margin="28,329,0,0" BorderBrush="#FF8D9797" Command="{Binding OneWayCommand}"/>
-                    <RadioButton IsChecked="{Binding IsCheckedReturn, Mode=TwoWay}" HorizontalAlignment="Left" Margin="28,391,0,0" BorderBrush="#FF8D9797" Command="{Binding ReturnCommand}"/>
-                    <AutoSuggestBox Name="countryFrom" Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,33,0,0" PlaceholderText="Choose country">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="TextChanged">
-                                <core:InvokeCommandAction Command ="{Binding TextChangedCountryFrom}"/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command="{Binding ChosenItemCountryFrom}" CommandParameter="{Binding ElementName=countryFrom, Path=Text}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </AutoSuggestBox>
-                    <AutoSuggestBox Name="cityFrom" Text="{Binding TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding CitiesFrom, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,94,0,0" PlaceholderText="{Binding PlaceholderTextCityFrom, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityFrom, Mode=TwoWay}">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="TextChanged">
-                                <core:InvokeCommandAction Command ="{Binding TextChangedCityFrom}"/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command="{Binding ChosenItemCityFrom}" CommandParameter="{Binding ElementName=cityFrom, Path=Text}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </AutoSuggestBox>
-                    <AutoSuggestBox Name="countryTo"  Text="{Binding TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding CountriesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,172,0,0" PlaceholderText="Choose country">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="TextChanged">
-                                <core:InvokeCommandAction Command ="{Binding TextChangedCountryTo}"/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command="{Binding ChosenItemCountryTo}" CommandParameter="{Binding ElementName=countryTo, Path=Text}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </AutoSuggestBox>
-                    <AutoSuggestBox Name="cityTo" Text="{Binding TextCityTo, Mode=TwoWay}" ItemsSource="{Binding CitiesTo, Mode=TwoWay}" Style="{StaticResource AutoSuggestBox}" Margin="117,233,0,0" PlaceholderText="{Binding PlaceholderTextCityTo, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityTo, Mode=TwoWay}">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="TextChanged">
-                                <core:InvokeCommandAction Command ="{Binding TextChangedCityTo}"/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                <core:InvokeCommandAction Command="{Binding ChosenItemCityTo}" CommandParameter="{Binding ElementName=cityTo, Path=Text}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </AutoSuggestBox>
-                    <Button IsEnabled="{Binding IsEnabledButtonFind, Mode=TwoWay}" Content="Find" Style="{StaticResource Button}" Margin="18,450,0,55" Command="{Binding FindCommand}"/>
-                </Grid>
-            </PivotItem>
+    <Pivot SelectedIndex="{Binding PivotNumber, Mode=TwoWay}">
+        <i:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="SelectionChanged">
+                <core:InvokeCommandAction Command ="{Binding PivotSelectionChanged}"/>
+            </core:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
 
-            <PivotItem Header="Favorites">
-                <Grid>
-                    <ListView Name="favoriteList" ItemsSource="{Binding FavoriteList, Mode=TwoWay}" Foreground="#FFE6D52E" Margin="0,-15,0,10">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="SelectionChanged">
-                                <core:InvokeCommandAction Command="{Binding FavoritesItemClick}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Image1}" Height="35" Width="35"/>
-                                        <StackPanel Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding CountryFrom}" FontSize="18" Padding="10" Foreground="#FF959595"/>
-                                                <Image Source="{Binding Image2}" Height="13" Width="13"/>
-                                                <TextBlock Text="{Binding CountryTo}" FontSize="18" Padding="10" Foreground="#FF959595"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding CityFrom}" FontSize="15" Padding="10" Foreground="#FF959595"/>
-                                                <Image Source="{Binding Image2}" Height="13" Width="13"/>
-                                                <TextBlock Text="{Binding CityTo}" FontSize="15" Padding="10" Foreground="#FF959595"/>
-                                            </StackPanel>
+        <PivotItem Header="Entry">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
+                            <AutoSuggestBox Name="countryFrom" Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom}" Style="{StaticResource AutoSuggestBoxStyle}"  PlaceholderText="Choose country">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="TextChanged">
+                                        <core:InvokeCommandAction Command ="{Binding TextChangedCountryFrom}" />
+                                    </core:EventTriggerBehavior>
+                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
+                                        <core:InvokeCommandAction Command="{Binding ChosenItemCountryFrom}" CommandParameter="{Binding ElementName=countryFrom, Path=Text}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </AutoSuggestBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
+                            <AutoSuggestBox Name="cityFrom" Text="{Binding TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding CitiesFrom}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="{Binding PlaceholderTextCityFrom, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityFrom, Mode=TwoWay}">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="TextChanged">
+                                        <core:InvokeCommandAction Command ="{Binding TextChangedCityFrom}"/>
+                                    </core:EventTriggerBehavior>
+                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
+                                        <core:InvokeCommandAction Command="{Binding ChosenItemCityFrom}" CommandParameter="{Binding ElementName=cityFrom, Path=Text}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </AutoSuggestBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="To" Style="{StaticResource TextBlockEntryStyle}"/>
+                            <AutoSuggestBox Name="countryTo"  Text="{Binding TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding CountriesTo}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="Choose country">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="TextChanged">
+                                        <core:InvokeCommandAction Command ="{Binding TextChangedCountryTo}"/>
+                                    </core:EventTriggerBehavior>
+                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
+                                        <core:InvokeCommandAction Command="{Binding ChosenItemCountryTo}" CommandParameter="{Binding ElementName=countryTo, Path=Text}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </AutoSuggestBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
+                            <AutoSuggestBox Name="cityTo" Text="{Binding TextCityTo, Mode=TwoWay}" ItemsSource="{Binding CitiesTo}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="{Binding PlaceholderTextCityTo, Mode=TwoWay}" IsEnabled="{Binding IsEnabledCityTo, Mode=TwoWay}">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="TextChanged">
+                                        <core:InvokeCommandAction Command ="{Binding TextChangedCityTo}"/>
+                                    </core:EventTriggerBehavior>
+                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
+                                        <core:InvokeCommandAction Command="{Binding ChosenItemCityTo}" CommandParameter="{Binding ElementName=cityTo, Path=Text}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </AutoSuggestBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}" Width="210"/>
+                            <TextBlock Text="Choose data" Style="{StaticResource TextBlockEntryStyle}" Width="148"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding IsCheckedOneWay, Mode=TwoWay}" Command="{Binding OneWayCommand}" Content="One way" Style="{StaticResource RadioButtonStyle}"/>
+                            <DatePicker Date="{Binding DateOneWay, Mode=TwoWay}" IsEnabled="true" Style="{StaticResource DatePickerStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding IsCheckedReturn, Mode=TwoWay}" Command="{Binding ReturnCommand}" Content="Return" Style="{StaticResource RadioButtonStyle}"/>
+                            <DatePicker Date="{Binding DateReturn, Mode=TwoWay}" IsEnabled="{Binding IsEnabledDateReturn, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Button Grid.Column="1" Grid.Row="1" IsEnabled="{Binding IsEnabledButtonFind, Mode=TwoWay}" Content="Find flights" Style="{StaticResource ButtonStyle}" Command="{Binding FindCommand}"/>
+            </Grid>
+        </PivotItem>
+
+        <PivotItem Header="Favorites">
+            <Grid>
+                <ListView Name="favoriteList" ItemsSource="{Binding FavoriteList}">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding FavoritesItemClick}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image1}" Height="35" Width="35"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding CountryFrom}" FontSize="18" Padding="10" Foreground="#FF959595"/>
+                                            <Image Source="{Binding Image2}"  Height="13" Width="13"/>
+                                            <TextBlock Text="{Binding CountryTo}" FontSize="18" Padding="10" Foreground="#FF959595"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding CityFrom}" FontSize="15" Padding="10" Foreground="#FF959595"/>
+                                            <Image Source="{Binding Image2}"  Height="13" Width="13"/>
+                                            <TextBlock Text="{Binding CityTo}" FontSize="15" Padding="10" Foreground="#FF959595"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </PivotItem>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </PivotItem>
 
-            <PivotItem Header="About">
-                <Grid>
-                    <TextBlock Style="{StaticResource TextBlockEntry}" Margin="-1,0,0,33">
-                        <Run Text="The application is designed"/>
+        <PivotItem Header="About">
+            <Grid>
+                <TextBlock Style="{StaticResource TextBlockAboutStyle}">
+                <LineBreak/>
+                <Run Text="The application is designed"/>
                         <LineBreak/>
                         <Run Text="for viewing the list of flights."/>
                         <LineBreak/>
@@ -118,11 +147,10 @@
                         <LineBreak/>
                         <LineBreak/>
                         <Run Text="Url: http://rasp.yandex.ru/"/>
-                    </TextBlock>
-                </Grid>
-            </PivotItem>
-        </Pivot>
-    </Grid>
+                </TextBlock>
+            </Grid>
+        </PivotItem>
+    </Pivot>
 
     <Page.BottomAppBar>
         <CommandBar>
@@ -131,7 +159,6 @@
             <AppBarButton Label="Help" Icon="Help" Command="{Binding HelpCommand}"/>
         </CommandBar>
     </Page.BottomAppBar>
-
 
 </views:MvxWindowsPage>
 

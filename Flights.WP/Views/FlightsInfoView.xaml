@@ -8,34 +8,33 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Button Content="Return to flight list" Margin="23,565,0,9"  Style="{StaticResource Button}" Command="{Binding BackCommand}" Width="349"/>
-        <TextBlock  Margin="23,31,0,0" Text="Arrival terminal" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,82,0,0" Text="Carrier title" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,139,0,0" Text="Vehicle" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,196,0,0" Text="Number" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,242,0,0" Text="Duration" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,519,0,0" Text="Arrival" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,454,0,0" Text="Departure" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,367,0,0" Text="To" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <TextBlock  Margin="23,290,0,0" Text="From" Style="{StaticResource TextBlockFlightsInfo}"/>
-        <Image Margin="175,37,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,91,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,145,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,202,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,251,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,523,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,462,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,371,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <Image Margin="175,297,0,0" Style="{StaticResource ImageFlightsInfo}"/>
-        <TextBlock Text="{Binding TextArrivalTerminal, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextCarrierTitle, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextVehicle, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="57" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextNumber, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="147" FontSize="20" Foreground="#FF959595" />
-        <TextBlock Text="{Binding TextDuration, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextArrival, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,503,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Margin="223,448,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="147" FontSize="20" Foreground="#FF959595" />
-        <TextBlock Text="{Binding TextTo, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="76" Width="147" FontSize="20" Foreground="#FF959595"/>
-        <TextBlock Text="{Binding TextFrom, Mode=TwoWay}" HorizontalAlignment="Left" Margin="225,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="71" Width="147" FontSize="20" Foreground="#FF959595"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+            <ListView ItemsSource="{Binding InfoFlyList}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text=""/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" Text="{Binding StaticInformation}"/>
+                                <Image Source="ms-appx:///Assets/direction.png" Width="30"/>
+                                <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" Text="{Binding Information}"/>
+                            </StackPanel>
+                            <TextBlock Text=""/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="1" Content="Return to flight list" Command="{Binding BackCommand}"/>
     </Grid>
 
 </views:MvxWindowsPage>

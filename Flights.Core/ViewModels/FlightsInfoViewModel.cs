@@ -1,126 +1,48 @@
 ﻿using Flights.Models;
 using MvvmCross.Core.ViewModels;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Flights.Core.ViewModels
 {
     public class FlightsInfoViewModel : MvxViewModel
     {
-        string textArrivalTerminal = "No info";
-        public string TextArrivalTerminal
+        string[] namesOfFields = {"Arrival terminal", "Carrier title", "Vehicle", "Number", "Duration",
+            "Departure", "Arrival", "To", "From" };
+        ObservableCollection<InfoAboutFlyModel> infoFlyList = new ObservableCollection<InfoAboutFlyModel>();
+
+        public ObservableCollection<InfoAboutFlyModel> InfoFlyList
         {
             get
             {
-                return textArrivalTerminal;
+                return infoFlyList;
             }
             set
             {
-                textArrivalTerminal = value;
-                RaisePropertyChanged(() => this.TextArrivalTerminal);
+                infoFlyList = value;
+                RaisePropertyChanged(() => this.InfoFlyList);
             }
         }
-        string textCarrierTitle = "No info";
-        public string TextCarrierTitle
+       
+        public void Init(FlyInfoShowModel flightsItem)
         {
-            get
+            string[] info = new string[namesOfFields.Length];
+            info[0] = (flightsItem.ArrivalTerminal != null) ? flightsItem.ArrivalTerminal : "No info";
+            info[1] = (flightsItem.ThreadCarrierTitle != null) ? flightsItem.ThreadCarrierTitle : "No info"; 
+            info[2] = (flightsItem.ThreadVehicle != null) ? flightsItem.ThreadVehicle : "No info"; 
+            info[3] = (flightsItem.ThreadNumber != null) ? flightsItem.ThreadNumber : "No info"; 
+            info[4] = (flightsItem.Duration != null) ? flightsItem.Duration : "No info"; 
+            info[5] = (flightsItem.Departure != null) ? flightsItem.Departure : "No info"; 
+            info[6] = (flightsItem.Arrival != null) ? flightsItem.Arrival : "No info"; 
+            info[7] = (flightsItem.To != null) ? flightsItem.To : "No info"; 
+            info[8] = (flightsItem.From != null) ? flightsItem.From : "No info"; 
+            for (int i = 0; i < namesOfFields.Length; i++)
             {
-                return textCarrierTitle;
-            }
-            set
-            {
-                textCarrierTitle = value;
-                RaisePropertyChanged(() => this.TextCarrierTitle);
-            }
-        }
-        string textVehicle = "No info";
-        public string TextVehicle
-        {
-            get
-            {
-                return textVehicle;
-            }
-            set
-            {
-                textVehicle = value;
-                RaisePropertyChanged(() => this.TextVehicle);
-            }
-        }
-        string textNumber= "No info";
-        public string TextNumber
-        {
-            get
-            {
-                return textNumber;
-            }
-            set
-            {
-                textNumber = value;
-                RaisePropertyChanged(() => this.TextNumber);
-            }
-        }
-        string textDuration = "No info";
-        public string TextDuration
-        {
-            get
-            {
-                return textDuration;
-            }
-            set
-            {
-                textDuration = value;
-                RaisePropertyChanged(() => this.TextDuration);
-            }
-        }
-        string textArrival = "No info";
-        public string TextArrival
-        {
-            get
-            {
-                return textArrival;
-            }
-            set
-            {
-                textArrival= value;
-                RaisePropertyChanged(() => this.TextArrival);
-            }
-        }
-        string textDeparture = "No info";
-        public string TextDeparture
-        {
-            get
-            {
-                return textDeparture;
-            }
-            set
-            {
-                textDeparture = value;
-                RaisePropertyChanged(() => this.TextDeparture);
-            }
-        }
-        string textTo = "No info";
-        public string TextTo
-        {
-            get
-            {
-                return textTo;
-            }
-            set
-            {
-                textTo = value;
-                RaisePropertyChanged(() => this.TextTo);
-            }
-        }
-        string textFrom = "No info";
-        public string TextFrom
-        {
-            get
-            {
-                return textFrom;
-            }
-            set
-            {
-                textFrom = value;
-                RaisePropertyChanged(() => this.TextFrom);
+                InfoFlyList.Add(new InfoAboutFlyModel
+                {
+                    StaticInformation = namesOfFields[i],
+                    Information = info[i]
+                });
             }
         }
 
@@ -130,23 +52,6 @@ namespace Flights.Core.ViewModels
             {
                 return new MvxCommand(() => Close(this));
             }
-        }
-
-        public void Init(FlyInfoShowModel flightsItem)
-        {
-            if (flightsItem.ArrivalTerminal != null)
-                TextArrivalTerminal = flightsItem.ArrivalTerminal;
-            if (flightsItem.ThreadCarrierTitle != null)
-                TextCarrierTitle = flightsItem.ThreadCarrierTitle;
-            if (flightsItem.ThreadVehicle != null)
-                TextVehicle = flightsItem.ThreadVehicle;
-            if (flightsItem.ThreadNumber != null)
-                TextNumber = flightsItem.ThreadNumber;
-            TextDuration = flightsItem.Duration;
-            TextArrival = flightsItem.Arrival;
-            TextDeparture = flightsItem.Departure;
-            TextTo = flightsItem.ToTitle;
-            TextFrom = flightsItem.FromTitle;
         }
     }
 }
