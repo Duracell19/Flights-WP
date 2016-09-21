@@ -2,7 +2,7 @@
 using System;
 using Windows.Phone.UI.Input;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class WPHardwareButtonEvents : IWPHardwareButtonEvents
     {

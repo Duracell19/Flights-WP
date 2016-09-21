@@ -113,9 +113,6 @@
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.WP\ToDo-MvvmCross\_ Windows Store UI.txt">
-      <PackagePath>ToDo-MvvmCross\_ Windows Store UI.txt</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\MyProject\WP\Flights\Flights Project\Flights.WP\bin\ARM\Debug\Flights.WP.xr.xml">
       <PackagePath>Flights.WP.xr.xml</PackagePath>
     </AppxPackagedFile>

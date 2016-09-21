@@ -2,7 +2,7 @@
 using Flights.Models;
 using System.Threading.Tasks;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class FlightsService: IFlightsService
     {

@@ -1,7 +1,7 @@
 ﻿using Flights.Core.Commands;
 using Flights.Infrastructure;
 using Flights.Models;
-using Flights.Services.DataModels;
+using Flights.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
@@ -300,7 +300,7 @@ namespace Flights.Core.ViewModels
             }
         }
         bool status;
-
+        
         ObservableCollection<string> countriesFrom = new ObservableCollection<string>();
         public ObservableCollection<string> CountriesFrom
         {
@@ -398,7 +398,9 @@ namespace Flights.Core.ViewModels
                             foreach (string st in s)
                             {
                                 if (st.Contains(TextCountryFrom))
+                                {
                                     result.Add(st);
+                                }
                             }
                             CountriesFrom = result;
                         }
@@ -420,7 +422,9 @@ namespace Flights.Core.ViewModels
                             foreach (string st in s)
                             {
                                 if (st.Contains(TextCountryTo))
+                                {
                                     result.Add(st);
+                                }
                             }
                             CountriesTo = result;
                         }
@@ -444,7 +448,9 @@ namespace Flights.Core.ViewModels
                                 foreach (string st in s)
                                 {
                                     if (st.Contains(TextCityFrom))
+                                    {
                                         result.Add(st);
+                                    }
                                 }
                                 CitiesFrom = result;
                             }
@@ -471,7 +477,9 @@ namespace Flights.Core.ViewModels
                                 foreach (string st in s)
                                 {
                                     if (st.Contains(TextCityTo))
+                                    {
                                         result.Add(st);
+                                    }
                                 }
                                 CitiesTo = result;
                             }
@@ -508,6 +516,7 @@ namespace Flights.Core.ViewModels
                 }
                 CitiesFrom = result;
                 IsEnabledCityFrom = true;
+                PlaceholderTextCityFrom = "Choose city";
             }
             else
             {
@@ -544,6 +553,7 @@ namespace Flights.Core.ViewModels
                 }
                 CitiesTo = result;
                 IsEnabledCityTo = true;
+                PlaceholderTextCityTo = "Choose city";
             }
             else
             {

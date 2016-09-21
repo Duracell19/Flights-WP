@@ -31,11 +31,11 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <AutoSuggestBox Name="countryFrom" Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom}" Style="{StaticResource AutoSuggestBoxStyle}"  PlaceholderText="Choose country">
+                            <AutoSuggestBox Name="countryFrom" Text="{Binding TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding CountriesFrom}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="Choose country">
                                 <i:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="TextChanged">
                                         <core:InvokeCommandAction Command ="{Binding TextChangedCountryFrom}" />
-                                    </core:EventTriggerBehavior>
+                                    </core:EventTriggerBehavior> 
                                     <core:EventTriggerBehavior EventName="SuggestionChosen">
                                         <core:InvokeCommandAction Command="{Binding ChosenItemCountryFrom}" CommandParameter="{Binding ElementName=countryFrom, Path=Text}"/>
                                     </core:EventTriggerBehavior>

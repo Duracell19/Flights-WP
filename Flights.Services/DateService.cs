@@ -1,7 +1,7 @@
 ﻿using Flights.Infrastructure;
 using System;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class DateService : IDateService
     {

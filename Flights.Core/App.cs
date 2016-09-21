@@ -1,5 +1,5 @@
 using Flights.Infrastructure;
-using Flights.Services.DataModels;
+using Flights.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;

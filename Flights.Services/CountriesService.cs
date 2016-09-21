@@ -1,6 +1,6 @@
 ﻿using Flights.Infrastructure;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class CountriesService : ICountriesService
     {

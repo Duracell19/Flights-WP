@@ -3,7 +3,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class HttpService : IHttpService
     {

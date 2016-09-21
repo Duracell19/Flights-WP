@@ -2,6 +2,7 @@
 using MvvmCross.Core.ViewModels;
 using System;
 using System.Windows.Input;
+
 namespace Flights.Core.ViewModels
 {
     public class HelpViewModel : MvxViewModel

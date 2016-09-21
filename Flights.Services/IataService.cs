@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class IataService : IIataService
     {

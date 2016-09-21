@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Flights.Services.DataModels
+namespace Flights.Services
 {
     public class DeserializService : IDeserializService
     {

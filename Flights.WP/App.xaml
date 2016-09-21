@@ -65,6 +65,7 @@
         <Style TargetType="RadioButton" x:Key="RadioButtonStyle"> <!---->
             <Setter Property="BorderBrush" Value="#FF8D9797"/>
             <Setter Property="Foreground" Value="#FF0E59DE"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="25"/>
         </Style>
         
