@@ -7,3 +7,4 @@ D:\MyProject\WP\Flights\Flights Project\Flights.Models\bin\Debug\Flights.Models.
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\bin\Debug\Flights.Models.pdb
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\obj\Debug\Flights.Models.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\obj\Debug\Flights.Models.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Models\obj\Debug\Flights.Models.csprojResolveAssemblyReference.cache

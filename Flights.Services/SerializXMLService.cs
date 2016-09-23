@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 
 namespace Flights.Services
 {
-    public class SerializService : ISerializService
+    public class SerializXMLService<T> : ISerializXMLService<T>
     {
-        public string Serializ(string[] value)
+        public string Serializ(T[] value)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(string[]));
+            XmlSerializer serializer = new XmlSerializer(typeof(T[]));
             StringWriter writer = new StringWriter();
             serializer.Serialize(writer, value);
             return writer.ToString();

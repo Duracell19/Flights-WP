@@ -1,5 +1,6 @@
 ﻿using Flights.Infrastructure;
 using Flights.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Flights.Services
@@ -27,23 +28,23 @@ namespace Flights.Services
                 flyInfoModel.Arrival = new string[flyInfoModel.Count];
                 flyInfoModel.Duration = new string[flyInfoModel.Count];
                 flyInfoModel.ArrivalTerminal = new string[flyInfoModel.Count];
-                flyInfoModel.FromTitle = new string[flyInfoModel.Count];
+                flyInfoModel.From = new string[flyInfoModel.Count];
                 flyInfoModel.ThreadCarrierTitle = new string[flyInfoModel.Count];
                 flyInfoModel.ThreadVehicle = new string[flyInfoModel.Count];
                 flyInfoModel.ThreadNumber = new string[flyInfoModel.Count];
                 flyInfoModel.Departure = new string[flyInfoModel.Count];
-                flyInfoModel.ToTitle = new string[flyInfoModel.Count];
+                flyInfoModel.To = new string[flyInfoModel.Count];
                 for (int i = 0; i < flyInfoModel.Count; i++)
                 {
                     flyInfoModel.Arrival[i] = answer.threads[i].arrival;
                     flyInfoModel.Duration[i] = answer.threads[i].duration;
                     flyInfoModel.ArrivalTerminal[i] = answer.threads[i].arrival_terminal;
-                    flyInfoModel.FromTitle[i] = answer.threads[i].from.title;
+                    flyInfoModel.From[i] = answer.threads[i].from.title;
                     flyInfoModel.ThreadCarrierTitle[i] = answer.threads[i].thread.carrier.title;
                     flyInfoModel.ThreadVehicle[i] = answer.threads[i].thread.vehicle;
                     flyInfoModel.ThreadNumber[i] = answer.threads[i].thread.number;
                     flyInfoModel.Departure[i] = answer.threads[i].departure;
-                    flyInfoModel.ToTitle[i] = answer.threads[i].to.title;
+                    flyInfoModel.To[i] = answer.threads[i].to.title;
                 }
                 return flyInfoModel;
             }

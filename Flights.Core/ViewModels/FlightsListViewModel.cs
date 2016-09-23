@@ -23,10 +23,10 @@ namespace Flights.Core.ViewModels
         FlyInfoModel[] flyInfoReturnModel;
         FlightsService flightsService;
         readonly IHttpService _httpService;
-        readonly IDeserializService _deserializService;
+        readonly IDeserializXMLService<string> _deserializService;
         readonly IWPHardwareButtonEvents _platformEvents;
 
-        public FlightsListViewModel(IHttpService httpService, IDeserializService deserializService, IWPHardwareButtonEvents platformEvents)
+        public FlightsListViewModel(IHttpService httpService, IDeserializXMLService<string> deserializService, IWPHardwareButtonEvents platformEvents)
         {
             _httpService = httpService;
             flightsService = new FlightsService(_httpService);
@@ -215,12 +215,12 @@ namespace Flights.Core.ViewModels
                             Arrival = flyInfoOneWayModel[i].Arrival[j],
                             Duration = flyInfoOneWayModel[i].Duration[j],
                             ArrivalTerminal = flyInfoOneWayModel[i].ArrivalTerminal[j],
-                            From = flyInfoOneWayModel[i].FromTitle[j],
+                            From = flyInfoOneWayModel[i].From[j],
                             ThreadCarrierTitle = flyInfoOneWayModel[i].ThreadCarrierTitle[j],
                             ThreadVehicle = flyInfoOneWayModel[i].ThreadVehicle[j],
                             ThreadNumber = flyInfoOneWayModel[i].ThreadNumber[j],
                             Departure = flyInfoOneWayModel[i].Departure[j],
-                            To = flyInfoOneWayModel[i].ToTitle[j],
+                            To = flyInfoOneWayModel[i].To[j],
                             Image1 = "ms-appx:///Assets/fly.png",
                             Image2 = "ms-appx:///Assets/direction.png",
                             id = count
@@ -239,12 +239,12 @@ namespace Flights.Core.ViewModels
                                 Arrival = flyInfoReturnModel[i].Arrival[j],
                                 Duration = flyInfoReturnModel[i].Duration[j],
                                 ArrivalTerminal = flyInfoReturnModel[i].ArrivalTerminal[j],
-                                From = flyInfoReturnModel[i].FromTitle[j],
+                                From = flyInfoReturnModel[i].From[j],
                                 ThreadCarrierTitle = flyInfoReturnModel[i].ThreadCarrierTitle[j],
                                 ThreadVehicle = flyInfoReturnModel[i].ThreadVehicle[j],
                                 ThreadNumber = flyInfoReturnModel[i].ThreadNumber[j],
                                 Departure = flyInfoReturnModel[i].Departure[j],
-                                To = flyInfoReturnModel[i].ToTitle[j],
+                                To = flyInfoReturnModel[i].To[j],
                                 Image1 = "ms-appx:///Assets/fly_return.png",
                                 Image2 = "ms-appx:///Assets/direction.png",
                                 id = count

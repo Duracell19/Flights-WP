@@ -44,12 +44,12 @@
     <Compile Include="ICitiesService.cs" />
     <Compile Include="ICountriesService.cs" />
     <Compile Include="IDateService.cs" />
-    <Compile Include="IDeserializService.cs" />
+    <Compile Include="IDeserializXMLService.cs" />
     <Compile Include="IFlightsService.cs" />
     <Compile Include="IHttpService.cs" />
     <Compile Include="IIataService.cs" />
     <Compile Include="IWPHardwareButtonEvents.cs" />
-    <Compile Include="ISerializService.cs" />
+    <Compile Include="ISerializXMLService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

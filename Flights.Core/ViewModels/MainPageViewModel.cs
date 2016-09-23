@@ -20,13 +20,13 @@ namespace Flights.Core.ViewModels
         readonly ICitiesService _citiesService;
         readonly IHttpService _httpService;
         readonly IDateService _dateService;
-        readonly ISerializService _serializService;
-        readonly IDeserializService _deserializService;
+        readonly ISerializXMLService<string> _serializService;
+        readonly IDeserializXMLService<string> _deserializService;
 
         MainPageModel mainPageModel = new MainPageModel();
 
         public MainPageViewModel(ICountriesService countriesService, ICitiesService citiesService, IHttpService httpService,
-            IDateService dateService, ISerializService serializService, IDeserializService deserializService)
+            IDateService dateService, ISerializXMLService<string> serializService, IDeserializXMLService<string> deserializService)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
@@ -503,9 +503,13 @@ namespace Flights.Core.ViewModels
             CitiesService citiesService = new CitiesService(_httpService);
             mainPageModel.CitiesFrom = await citiesService.GetCities(mainPageModel.CountryFrom);
             if (IsEnabledCityTo == true)
+            {
                 IsEnabledChange = true;
+            }
             else
+            {
                 IsEnabledChange = false;
+            }
             status = IsEnabledChange;
             if (mainPageModel.CitiesFrom != null && mainPageModel.CitiesFrom.Length != 0)
             {
@@ -540,9 +544,13 @@ namespace Flights.Core.ViewModels
             CitiesService citiesService = new CitiesService(_httpService);
             mainPageModel.CitiesTo = await citiesService.GetCities(mainPageModel.CountryTo);
             if (IsEnabledCityFrom == true)
+            {
                 IsEnabledChange = true;
+            }
             else
+            {
                 IsEnabledChange = false;
+            }
             status = IsEnabledChange;
             if (mainPageModel.CitiesTo != null && mainPageModel.CitiesTo.Length != 0)
             {
@@ -659,6 +667,8 @@ namespace Flights.Core.ViewModels
                         TextCountryTo = "";
                         TextCityFrom = "";
                         TextCityTo = "";
+                        PlaceholderTextCityFrom = "Choose city";
+                        PlaceholderTextCityTo = "Choose city";
                         IsCheckedOneWay = true;
                         IsCheckedReturn = false;
                         IsEnabledDateReturn = false;
