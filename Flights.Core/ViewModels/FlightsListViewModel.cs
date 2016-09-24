@@ -231,7 +231,7 @@ namespace Flights.Core.ViewModels
                     }
                 }
                 if (mainPageModel.ReturnWay && valueReturn != -1)
-                {
+                { 
                     foreach (var item in flyInfoReturnModel)
                     {
                         if (item == null)
