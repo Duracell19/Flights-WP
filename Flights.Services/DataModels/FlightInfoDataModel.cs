@@ -1,47 +1,57 @@
-﻿namespace Flights.Services.DataModels
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace Flights.Services.DataModels
 {
     public class FlightInfoDataModel
     {
-        public Pagination pagination { get; set; }
-        public object[] threads { get; set; }
-        public Search search { get; set; }
+        [JsonProperty(PropertyName = "threads")]
+        public List<ThreadsInfo> Threads { get; set; }
     }
 
-    public class Pagination
+    public class ThreadsInfo
     {
-        public bool has_next { get; set; }
-        public int per_page { get; set; }
-        public int page_count { get; set; }
-        public int total { get; set; }
-        public int page { get; set; }
+        [JsonProperty(PropertyName = "arrival")]
+        public string Arrival { get; set; }
+        [JsonProperty(PropertyName = "duration")]
+        public string Duration { get; set; }
+        [JsonProperty(PropertyName = "arrival_terminal")]
+        public string ArrivalTerminal { get; set; }
+        [JsonProperty(PropertyName = "from")]
+        public FromInfo From { get; set; }
+        [JsonProperty(PropertyName = "thread")]
+        public ThreadInfo Thread { get; set; }
+        [JsonProperty(PropertyName = "departure")]
+        public string Departure { get; set; }
+        [JsonProperty(PropertyName = "to")]
+        public ToInfo To { get; set; }
     }
 
-    public class Search
+    public class FromInfo
     {
-        public string date { get; set; }
-        public To to { get; set; }
-        public From from { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
     }
 
-    public class To
+    public class ThreadInfo
     {
-        public string code { get; set; }
-        public string station_type { get; set; }
-        public string title { get; set; }
-        public string popular_title { get; set; }
-        public string short_title { get; set; }
-        public string transport_type { get; set; }
-        public string type { get; set; }
+        [JsonProperty(PropertyName = "carrier")]
+        public CarrierInfo Carrier { get; set; }
+        [JsonProperty(PropertyName = "vehicle")]
+        public string Vehicle { get; set; }
+        [JsonProperty(PropertyName = "number")]
+        public string Number { get; set; }
     }
 
-    public class From
+    public class CarrierInfo
     {
-        public string code { get; set; }
-        public string station_type { get; set; }
-        public string title { get; set; }
-        public string popular_title { get; set; }
-        public string short_title { get; set; }
-        public string transport_type { get; set; }
-        public string type { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
+    }
+
+    public class ToInfo
+    {
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using MvvmCross.Plugins.File;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -205,53 +206,52 @@ namespace Flights.Core.ViewModels
         }
         void ShowFlights(int valueOneWay, int valueReturn)
         {
-            int count = 0;
             if (valueOneWay != -1)
             {
-                for (int i = 0; i < valueOneWay + 1; i++)
+                foreach (var item in flyInfoOneWayModel) 
                 {
-                    for (int j = 0; j < flyInfoOneWayModel[i].Count; j++)
+                    if (item == null)
+                        continue; 
+                    for (int j = 0; j < item.Arrival.Length; j++)
                     {
                         FlightsList.Add(new FlyInfoShowModel
                         {
-                            Arrival = flyInfoOneWayModel[i].Arrival[j],
-                            Duration = flyInfoOneWayModel[i].Duration[j],
-                            ArrivalTerminal = flyInfoOneWayModel[i].ArrivalTerminal[j],
-                            From = flyInfoOneWayModel[i].From[j],
-                            ThreadCarrierTitle = flyInfoOneWayModel[i].ThreadCarrierTitle[j],
-                            ThreadVehicle = flyInfoOneWayModel[i].ThreadVehicle[j],
-                            ThreadNumber = flyInfoOneWayModel[i].ThreadNumber[j],
-                            Departure = flyInfoOneWayModel[i].Departure[j],
-                            To = flyInfoOneWayModel[i].To[j],
+                            Arrival = item.Arrival.ElementAt(j),
+                            Duration = item.Duration.ElementAt(j),
+                            ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
+                            From = item.From.ElementAt(j),
+                            ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
+                            ThreadVehicle = item.ThreadVehicle.ElementAt(j),
+                            ThreadNumber = item.ThreadNumber.ElementAt(j),
+                            Departure = item.Departure.ElementAt(j),
+                            To = item.To.ElementAt(j),
                             Image1 = "ms-appx:///Assets/fly.png",
-                            Image2 = "ms-appx:///Assets/direction.png",
-                            id = count
+                            Image2 = "ms-appx:///Assets/direction.png"
                         });
-                        count++;
                     }
                 }
                 if (mainPageModel.ReturnWay && valueReturn != -1)
                 {
-                    for (int i = 0; i < valueReturn + 1; i++)
+                    foreach (var item in flyInfoReturnModel)
                     {
-                        for (int j = 0; j < flyInfoReturnModel[i].Count; j++)
+                        if (item == null)
+                            continue;
+                        for (int j = 0; j < item.Arrival.Length; j++)
                         {
                             FlightsList.Add(new FlyInfoShowModel
                             {
-                                Arrival = flyInfoReturnModel[i].Arrival[j],
-                                Duration = flyInfoReturnModel[i].Duration[j],
-                                ArrivalTerminal = flyInfoReturnModel[i].ArrivalTerminal[j],
-                                From = flyInfoReturnModel[i].From[j],
-                                ThreadCarrierTitle = flyInfoReturnModel[i].ThreadCarrierTitle[j],
-                                ThreadVehicle = flyInfoReturnModel[i].ThreadVehicle[j],
-                                ThreadNumber = flyInfoReturnModel[i].ThreadNumber[j],
-                                Departure = flyInfoReturnModel[i].Departure[j],
-                                To = flyInfoReturnModel[i].To[j],
-                                Image1 = "ms-appx:///Assets/fly_return.png",
-                                Image2 = "ms-appx:///Assets/direction.png",
-                                id = count
+                                Arrival = item.Arrival.ElementAt(j),
+                                Duration = item.Duration.ElementAt(j),
+                                ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
+                                From = item.From.ElementAt(j),
+                                ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
+                                ThreadVehicle = item.ThreadVehicle.ElementAt(j),
+                                ThreadNumber = item.ThreadNumber.ElementAt(j),
+                                Departure = item.Departure.ElementAt(j),
+                                To = item.To.ElementAt(j),
+                                Image1 = "ms-appx:///Assets/fly.png",
+                                Image2 = "ms-appx:///Assets/direction.png"
                             });
-                            count++;
                         }
                     }
                 }
@@ -270,8 +270,7 @@ namespace Flights.Core.ViewModels
                     Departure = "",
                     To = "",
                     Image1 = "",
-                    Image2 = "",
-                    id = count
+                    Image2 = ""
                 });
             }
             IsActiveProcess = false;
