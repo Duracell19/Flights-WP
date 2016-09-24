@@ -1,8 +1,11 @@
 ﻿using Flights.Infrastructure;
 using Flights.Models;
 using Flights.Services.DataModels;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Flights.Services
 {
@@ -25,23 +28,24 @@ namespace Flights.Services
             {
                 FlightInfoDataModel flightInfoModel = _jsonConverter.Deserialize<FlightInfoDataModel>(response);
                 FlyInfoModel flyInfoModel = new FlyInfoModel();
-                int i = 0;
-                foreach (var item in flightInfoModel.Threads)
-                {
-                    flyInfoModel.Arrival[i] = item.Arrival;
-                    flyInfoModel.Duration[i] = item.Duration;
-                    flyInfoModel.ArrivalTerminal[i] = item.ArrivalTerminal;
-                    flyInfoModel.From[i] = item.From.First().Title;
-                    flyInfoModel.ThreadCarrierTitle[i] = item.Thread.First().Carrier.First().Title;
-                    flyInfoModel.ThreadVehicle[i] = item.Thread.First().Vehicle;
-                    flyInfoModel.ThreadNumber[i] = item.Thread.First().Number;
-                    flyInfoModel.Departure[i] = item.Departure;
-                    flyInfoModel.To[i] = item.To.First().Title;
-                    i++;
-                }
+                //int i = 0;
+                //foreach (var item in flightInfoModel.Threads)
+                //{
+                //    flyInfoModel.Arrival[i] = item.Arrival;
+                //    flyInfoModel.Duration[i] = item.Duration;
+                //    flyInfoModel.ArrivalTerminal[i] = item.ArrivalTerminal;
+                //    flyInfoModel.From[i] = item.From.First().Title;
+                //    flyInfoModel.ThreadCarrierTitle[i] = item.Thread.First().Carrier.First().Title;
+                //    flyInfoModel.ThreadVehicle[i] = item.Thread.First().Vehicle;
+                //    flyInfoModel.ThreadNumber[i] = item.Thread.First().Number;
+                //    flyInfoModel.Departure[i] = item.Departure;
+                //    flyInfoModel.To[i] = item.To.First().Title;
+                //    i++;
+                //}
                 return flyInfoModel;
             }
             return null;
+
         }
     }
 }
