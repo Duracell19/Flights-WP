@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Flights.Models
+﻿namespace Flights.Models
 {
     public class FlyInfoModel
     {
@@ -16,3 +14,4 @@ namespace Flights.Models
         public string[] To { get; set; }
     }
 }
+

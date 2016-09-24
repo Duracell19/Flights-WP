@@ -1,7 +1,7 @@
 ﻿namespace Flights.Infrastructure
 {
-    public interface ISerializXMLService<T>
+    public interface ISerializXMLService
     {
-        string Serializ(T[] value);
+        string Serializ<T>(T[] value);
     }
 }

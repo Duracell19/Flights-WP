@@ -23,13 +23,15 @@ namespace Flights.Core.ViewModels
         FlyInfoModel[] flyInfoReturnModel;
         FlightsService flightsService;
         readonly IHttpService _httpService;
-        readonly IDeserializXMLService<string> _deserializService;
+        readonly IDeserializXMLService _deserializService;
         readonly IWPHardwareButtonEvents _platformEvents;
+        readonly IJsonConverter _jsonConverter;
 
-        public FlightsListViewModel(IHttpService httpService, IDeserializXMLService<string> deserializService, IWPHardwareButtonEvents platformEvents)
+        public FlightsListViewModel(IHttpService httpService, IDeserializXMLService deserializService, IWPHardwareButtonEvents platformEvents, IJsonConverter jsonConverter)
         {
             _httpService = httpService;
-            flightsService = new FlightsService(_httpService);
+            _jsonConverter = jsonConverter;
+            flightsService = new FlightsService(_httpService, _jsonConverter);
             _deserializService = deserializService;
             _platformEvents = platformEvents;
             _platformEvents.BackButtonPressed += BackButtonPressed;

@@ -20,13 +20,14 @@ namespace Flights.Core.ViewModels
         readonly ICitiesService _citiesService;
         readonly IHttpService _httpService;
         readonly IDateService _dateService;
-        readonly ISerializXMLService<string> _serializService;
-        readonly IDeserializXMLService<string> _deserializService;
+        readonly ISerializXMLService _serializService;
+        readonly IDeserializXMLService _deserializService;
+        readonly IJsonConverter _jsonConverter;
 
         MainPageModel mainPageModel = new MainPageModel();
 
         public MainPageViewModel(ICountriesService countriesService, ICitiesService citiesService, IHttpService httpService,
-            IDateService dateService, ISerializXMLService<string> serializService, IDeserializXMLService<string> deserializService)
+            IDateService dateService, ISerializXMLService serializService, IDeserializXMLService deserializService, IJsonConverter jsonConverter)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
@@ -34,6 +35,7 @@ namespace Flights.Core.ViewModels
             _dateService = dateService;
             _serializService = serializService;
             _deserializService = deserializService;
+            _jsonConverter = jsonConverter;
         }
 
         public override void Start()
@@ -500,7 +502,7 @@ namespace Flights.Core.ViewModels
             TextCityFrom = "";
             IsEnabledCityFrom = false;
             IsEnabledButtonFind = false;
-            CitiesService citiesService = new CitiesService(_httpService);
+            CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
             mainPageModel.CitiesFrom = await citiesService.GetCities(mainPageModel.CountryFrom);
             if (IsEnabledCityTo == true)
             {
@@ -541,7 +543,7 @@ namespace Flights.Core.ViewModels
             TextCityTo = "";
             IsEnabledCityTo = false;
             IsEnabledButtonFind = false;
-            CitiesService citiesService = new CitiesService(_httpService);
+            CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
             mainPageModel.CitiesTo = await citiesService.GetCities(mainPageModel.CountryTo);
             if (IsEnabledCityFrom == true)
             {
@@ -579,7 +581,7 @@ namespace Flights.Core.ViewModels
         public async void ChooseCityFrom(string arg)
         {
             mainPageModel.CityFrom = arg;
-            IataService iataService = new IataService(_httpService);
+            IataService iataService = new IataService(_httpService, _jsonConverter);
             mainPageModel.IataFrom = await iataService.GetIata(mainPageModel.CityFrom);
             if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataFrom != null)
                 IsEnabledButtonFind = true;
@@ -594,7 +596,7 @@ namespace Flights.Core.ViewModels
         public async void ChooseCityTo(string arg)
         {
             mainPageModel.CityTo = arg;
-            IataService iataService = new IataService(_httpService);
+            IataService iataService = new IataService(_httpService, _jsonConverter);
             mainPageModel.IataTo = await iataService.GetIata(mainPageModel.CityTo);
             if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataTo != null)
                 IsEnabledButtonFind = true;

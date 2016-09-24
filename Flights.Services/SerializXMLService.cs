@@ -4,9 +4,9 @@ using System.Xml.Serialization;
 
 namespace Flights.Services
 {
-    public class SerializXMLService<T> : ISerializXMLService<T>
+    public class SerializXMLService : ISerializXMLService
     {
-        public string Serializ(T[] value)
+        public string Serializ<T>(T[] value)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T[]));
             StringWriter writer = new StringWriter();

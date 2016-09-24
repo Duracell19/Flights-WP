@@ -5,9 +5,9 @@ using System.Xml.Serialization;
 
 namespace Flights.Services
 {
-    public class DeserializXMLService<T> : IDeserializXMLService<T>
+    public class DeserializXMLService : IDeserializXMLService
     {
-        public T[] Deserializ(T value)
+        public T[] Deserializ<T>(T value)
         {
             T[] result;
             XmlSerializer serializer = new XmlSerializer(typeof(T[]));

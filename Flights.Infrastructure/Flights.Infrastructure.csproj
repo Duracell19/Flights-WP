@@ -48,6 +48,7 @@
     <Compile Include="IFlightsService.cs" />
     <Compile Include="IHttpService.cs" />
     <Compile Include="IIataService.cs" />
+    <Compile Include="IJsonConverter.cs" />
     <Compile Include="IWPHardwareButtonEvents.cs" />
     <Compile Include="ISerializXMLService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
