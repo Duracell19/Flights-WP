@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 
 namespace Flights.Core.ViewModels
 {
-    public class FlightsListViewModel : MvxViewModel
+    public   class FlightsListViewModel : MvxViewModel
     {
         MainPageModel mainPageModel = new MainPageModel();
         ObservableCollection<FavoriteModel> addFavorite= new ObservableCollection<FavoriteModel>();
@@ -32,7 +32,7 @@ namespace Flights.Core.ViewModels
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter;
-            flightsService = new FlightsService(_httpService, _jsonConverter);
+            flightsService = new FlightsService(_httpService, _jsonConverter); 
             _deserializService = deserializService;
             _platformEvents = platformEvents;
             _platformEvents.BackButtonPressed += BackButtonPressed;

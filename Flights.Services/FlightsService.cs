@@ -10,7 +10,7 @@ namespace Flights.Services
         readonly IHttpService _httpService;
         readonly IJsonConverter _jsonConverter;
 
-        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter)
+        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter, IHttpService httpService, IJsonConverter jsonConverter) 
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter; 
