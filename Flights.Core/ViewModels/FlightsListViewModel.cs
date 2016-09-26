@@ -14,7 +14,6 @@ namespace Flights.Core.ViewModels
         private readonly IJsonConverterService _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private readonly IFlightsService _flightsService;
-
         private int count = 0;
         private MainPageModel _mainPageModel;
         private ObservableCollection<FavoriteModel> _addFavorite;
