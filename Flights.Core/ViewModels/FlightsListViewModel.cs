@@ -1,21 +1,17 @@
-﻿using Flights.Core.Commands;
-using Flights.Infrastructure;
+﻿using Flights.Infrastructure;
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Flights.Core.ViewModels
 {
     public class FlightsListViewModel : MvxViewModel
     {
-        private readonly IJsonConverter _jsonConverter;
+        private readonly IJsonConverterService _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private readonly IFlightsService _flightsService;
 
@@ -64,7 +60,7 @@ namespace Flights.Core.ViewModels
         }
 
         public FlightsListViewModel(
-            IJsonConverter jsonConverter, 
+            IJsonConverterService jsonConverter, 
             IMvxFileStore fileStore,
             IFlightsService flightsService)
         {
@@ -80,7 +76,7 @@ namespace Flights.Core.ViewModels
             ShowFlightDetailsCommand = new MvxCommand<FlyInfoShowModel>(ShowFlyDetails);
             ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
             ShowAboutInforamtionCommand = new MvxCommand(() => ShowViewModel<AboutViewModel>());
-            //AddToFavoritesCommand = new MvxCommand(AddToFavorites);
+            AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
         public void Init(MainPageModel mainPageModel)
@@ -90,42 +86,17 @@ namespace Flights.Core.ViewModels
             _mainPageModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesT);
             _mainPageModel.IataFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataF);
             _mainPageModel.IataTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataT);
-            _fileStore.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
-            {
-                return LoadFrom(inputStream);
-            });
+            _favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
         }
-        
-        //private void AddToFavorites()
-        //{
-        //    AddFavorite();
 
-        //    Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
-
-        //    IsFlightAddedToFavorite = false;
-        //}
-
-        //************ =>
-        private ICommand favoriteCommand;
-        public ICommand FavoriteCommand
+        private void AddToFavorites()
         {
-            get
-            {
-                return favoriteCommand
-                    ?? (favoriteCommand = new ActionCommand(() =>
-                    {
-                        AddFavorite();
-                        _fileStore.WriteFile("favoriteList.xml", (stream) =>
-                                                                 {
-                                                                     var serializer = new XmlSerializer(typeof(ObservableCollection<FavoriteModel>));
-                                                                     serializer.Serialize(stream, _addFavorite);
-                                                                 });
-                        IsFlightAddedToFavorite = false;
-                    }));
-            }
+            AddFavorite();
+            Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
+            IsFlightAddedToFavorite = false;
         }
-        //********** <=
+
         private void ShowFlyDetails(FlyInfoShowModel c)
         {
             ShowViewModel<FlightsInfoViewModel>(FlightsList.ElementAt(c.id));
@@ -141,7 +112,14 @@ namespace Flights.Core.ViewModels
                 await GenerateFlightsListAsync(_flyInfoReturnModel, true);
             }
             IsLoadProcess = false;
-            IsFlightAddedToFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
+            if (_favoriteList != null)
+            {
+                IsFlightAddedToFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
+            }
+            else
+            {
+                _favoriteList = new ObservableCollection<FavoriteModel>();
+            }
         }
 
         async Task GenerateFlightsListAsync(FlyInfoModel[] flyInfoModel, bool returnWay)
@@ -202,26 +180,21 @@ namespace Flights.Core.ViewModels
             return model.CountryFrom == _mainPageModel.CountryFrom && model.CityFrom == _mainPageModel.CityFrom
                    && model.CountryTo == _mainPageModel.CountryTo && model.CityTo == _mainPageModel.CityTo;
         }
-        
-        bool LoadFrom(Stream inputStream)
-        {
-            try
-            {
-                var loadedData = XDocument.Load(inputStream);
-                if (loadedData.Root == null)
-                    return false;
 
-                using (var reader = loadedData.Root.CreateReader())
-                {
-                    var list = (ObservableCollection<FavoriteModel>)new XmlSerializer(typeof(ObservableCollection<FavoriteModel>)).Deserialize(reader);
-                    _favoriteList = new ObservableCollection<FavoriteModel>(list);
-                    return true;
-                }
-            }
-            catch
+        public T Load<T>(string fileName)
+        {
+            string txt;
+            T result = default(T);
+            if(_fileStore.TryReadTextFile(fileName, out txt))
             {
-                return false;
+                return _jsonConverter.Deserialize<T>(txt);
             }
+            return result;
+        }
+
+        public void Save(string fileName, object obj)
+        {
+            _fileStore.WriteFile(fileName, _jsonConverter.Serialize(_favoriteList));
         }
     }
 }

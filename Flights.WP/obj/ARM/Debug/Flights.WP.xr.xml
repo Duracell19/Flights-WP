@@ -16,7 +16,7 @@
     <RootPropertyPathName Name="Image1" />
     <RootPropertyPathName Name="IsLoadProcess" />
     <RootPropertyPathName Name="IsFlightAddedToFavorite" />
-    <RootPropertyPathName Name="FavoriteCommand" />
+    <RootPropertyPathName Name="AddToFavoritesCommand" />
     <RootPropertyPathName Name="ShowHelpInformationCommand" />
     <RootPropertyPathName Name="ShowAboutInforamtionCommand" />
     <RootPropertyPathName Name="FavoriteHelpFlyInformation" />

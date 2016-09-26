@@ -7,9 +7,9 @@ namespace Flights.Services
     public class IataService : IIataService
     {
         readonly IHttpService _httpService;
-        readonly IJsonConverter _jsonConverter;
+        readonly IJsonConverterService _jsonConverter;
 
-        public IataService(IHttpService httpService, IJsonConverter jsonConverter)
+        public IataService(IHttpService httpService, IJsonConverterService jsonConverter)
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter;

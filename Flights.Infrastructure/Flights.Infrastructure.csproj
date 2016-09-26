@@ -45,13 +45,10 @@
     <Compile Include="ICitiesService.cs" />
     <Compile Include="ICountriesService.cs" />
     <Compile Include="IDateService.cs" />
-    <Compile Include="IDeserializXMLService.cs" />
     <Compile Include="IFlightsService.cs" />
     <Compile Include="IHttpService.cs" />
     <Compile Include="IIataService.cs" />
-    <Compile Include="IJsonConverter.cs" />
-    <Compile Include="IWPHardwareButtonEvents.cs" />
-    <Compile Include="ISerializXMLService.cs" />
+    <Compile Include="IJsonConverterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

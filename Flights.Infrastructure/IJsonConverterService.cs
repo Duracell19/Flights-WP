@@ -2,10 +2,9 @@
 
 namespace Flights.Infrastructure
 {
-    public interface IJsonConverter
+    public interface IJsonConverterService
     {
         T Deserialize<T>(string str);
-        T Deserialize<T>(Stream stream);
         string Serialize(object obj);
     }
 }

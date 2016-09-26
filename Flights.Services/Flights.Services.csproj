@@ -39,14 +39,11 @@
     <Compile Include="DataModels\AirportInfoDataModel.cs" />
     <Compile Include="DataModels\FlightInfoDataModel.cs" />
     <Compile Include="DateService.cs" />
-    <Compile Include="DeserializXMLService.cs" />
     <Compile Include="FlightsService.cs" />
     <Compile Include="HttpService.cs" />
     <Compile Include="IataService.cs" />
-    <Compile Include="JsonConverter.cs" />
+    <Compile Include="JsonConverterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerializXMLService.cs" />
-    <Compile Include="WPHardwareButtonEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

@@ -6,10 +6,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Windows.Input;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Flights.Core.ViewModels
 {
@@ -19,24 +16,22 @@ namespace Flights.Core.ViewModels
         readonly ICitiesService _citiesService;
         readonly IHttpService _httpService;
         readonly IDateService _dateService;
-        readonly ISerializXMLService _serializService;
-        readonly IDeserializXMLService _deserializService;
-        readonly IJsonConverter _jsonConverter;
+        readonly IJsonConverterService _jsonConverter;
         private readonly IMvxFileStore _fileStore;
 
         MainPageModel mainPageModel = new MainPageModel();
 
-        public MainPageViewModel(ICountriesService countriesService, ICitiesService citiesService, IHttpService httpService,
-            IDateService dateService, ISerializXMLService serializService, IDeserializXMLService deserializService, 
-            IJsonConverter jsonConverter,
+        public MainPageViewModel(ICountriesService countriesService,
+            ICitiesService citiesService, 
+            IHttpService httpService,
+            IDateService dateService,
+            IJsonConverterService jsonConverter,
             IMvxFileStore fileStore)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
             _httpService = httpService;
             _dateService = dateService;
-            _serializService = serializService;
-            _deserializService = deserializService;
             _jsonConverter = jsonConverter;
             _fileStore = fileStore;
         }
@@ -48,11 +43,11 @@ namespace Flights.Core.ViewModels
 
         public void Init(MainPageModel _mainPageModel)
         {
-            _fileStore.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
+            favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            if (favoriteList == null)
             {
-                return LoadFrom(inputStream);
-            });
-
+                favoriteList = new ObservableCollection<FavoriteModel>();
+            }
             if (_mainPageModel.CountryFrom != null)
             {
                 mainPageModel = _mainPageModel;
@@ -779,25 +774,15 @@ namespace Flights.Core.ViewModels
             PivotNumber = 0;
         }
 
-        bool LoadFrom(Stream inputStream)
+        public T Load<T>(string fileName)
         {
-            try
+            string txt;
+            T result = default(T);
+            if (_fileStore.TryReadTextFile(fileName, out txt))
             {
-                var loadedData = XDocument.Load(inputStream);
-                if (loadedData.Root == null)
-                    return false;
-
-                using (var reader = loadedData.Root.CreateReader())
-                {
-                    var list = (ObservableCollection<FavoriteModel>)new XmlSerializer(typeof(ObservableCollection<FavoriteModel>)).Deserialize(reader);
-                    favoriteList = new ObservableCollection<FavoriteModel>(list);
-                    return true;
-                }
+                return _jsonConverter.Deserialize<T>(txt);
             }
-            catch
-            {
-                return false;
-            }
+            return result;
         }
     }
 }

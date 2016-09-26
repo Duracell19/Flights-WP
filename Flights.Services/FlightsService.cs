@@ -8,9 +8,9 @@ namespace Flights.Services
     public class FlightsService: IFlightsService
     {
         readonly IHttpService _httpService;
-        readonly IJsonConverter _jsonConverter;
+        readonly IJsonConverterService _jsonConverter;
 
-        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter)
+        public FlightsService(IHttpService httpService, IJsonConverterService jsonConverter)
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter; 
