@@ -10,13 +10,13 @@ namespace Flights.Services
         readonly IHttpService _httpService;
         readonly IJsonConverter _jsonConverter;
 
-        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter, IHttpService httpService, IJsonConverter jsonConverter) 
+        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter)
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter; 
         }
 
-        public async Task<FlyInfoModel> GetFlight(string from, string to, string date)
+        public async Task<FlyInfoModel> GetFlightAsync(string from, string to, string date)
         {
             string uri = "https://api.rasp.yandex.net/v1.0/search/?apikey=e07ef310-dbe4-49cf-985f-1d5738c1ebc7&format=json&transport_types=plane&system=iata&from=" + from + "&to=" + to + "&lang=en&page=1&date=" + date;
             string response = await _httpService.GetRequest(uri);
@@ -45,43 +45,44 @@ namespace Flights.Services
                     flyInfoModel.ThreadNumber[i] = item.Thread.Number;
                     flyInfoModel.Departure[i] = item.Departure;
                     flyInfoModel.To[i] = item.To.Title;
+                    flyInfoModel.Count = i + 1;
                     i++;
                 }
                 return flyInfoModel;
             }
             return null;
+        }
 
-            //if (response == null)
-            //    return null;
-            //dynamic answer = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
-            //FlyInfoModel flyInfoModel = new FlyInfoModel();
-            //flyInfoModel.Count = answer.threads.Count;
-            //if (flyInfoModel.Count != 0)
-            //{
-            //    flyInfoModel.Arrival = new string[flyInfoModel.Count];
-            //    flyInfoModel.Duration = new string[flyInfoModel.Count];
-            //    flyInfoModel.ArrivalTerminal = new string[flyInfoModel.Count];
-            //    flyInfoModel.From = new string[flyInfoModel.Count];
-            //    flyInfoModel.ThreadCarrierTitle = new string[flyInfoModel.Count];
-            //    flyInfoModel.ThreadVehicle = new string[flyInfoModel.Count];
-            //    flyInfoModel.ThreadNumber = new string[flyInfoModel.Count];
-            //    flyInfoModel.Departure = new string[flyInfoModel.Count];
-            //    flyInfoModel.To = new string[flyInfoModel.Count];
-            //    for (int i = 0; i < flyInfoModel.Count; i++)
-            //    {
-            //        flyInfoModel.Arrival[i] = answer.threads[i].arrival;
-            //        flyInfoModel.Duration[i] = answer.threads[i].duration;
-            //        flyInfoModel.ArrivalTerminal[i] = answer.threads[i].arrival_terminal;
-            //        flyInfoModel.From[i] = answer.threads[i].from.title;
-            //        flyInfoModel.ThreadCarrierTitle[i] = answer.threads[i].thread.carrier.title;
-            //        flyInfoModel.ThreadVehicle[i] = answer.threads[i].thread.vehicle;
-            //        flyInfoModel.ThreadNumber[i] = answer.threads[i].thread.number;
-            //        flyInfoModel.Departure[i] = answer.threads[i].departure;
-            //        flyInfoModel.To[i] = answer.threads[i].to.title;
-            //    }
-            //    return flyInfoModel;
-            //}
-            //return null;
+        public async Task<FlyInfoModel[]> ConfigurationOfFlights(MainPageModel mainPageModel, string date, bool returnWay)
+        {
+            int value = -1;
+            int count = mainPageModel.IataFrom.Length * mainPageModel.IataTo.Length;
+            FlyInfoModel[] flyInfoModel = new FlyInfoModel[count];
+            string[] from;
+            string[] to;
+            if (returnWay != true)
+            {
+                from = mainPageModel.IataFrom;
+                to = mainPageModel.IataTo;
+            }
+            else
+            {
+                from = mainPageModel.IataTo;
+                to = mainPageModel.IataFrom;
+            }
+            for (int i = 0; i < from.Length; i++)
+            {
+                for (int j = 0; j < to.Length; j++)
+                {
+                    value++;
+                    flyInfoModel[value] = await GetFlightAsync(from[i], to[j], date);
+                    if (flyInfoModel[value] == null || flyInfoModel[value].Count == 0)
+                    {
+                        value--;
+                    }
+                }
+            }
+            return flyInfoModel;
         }
     }
 }

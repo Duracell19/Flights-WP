@@ -1,138 +1,113 @@
 ﻿using Flights.Core.Commands;
 using Flights.Infrastructure;
 using Flights.Models;
-using Flights.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Flights.Core.ViewModels
 {
-    public   class FlightsListViewModel : MvxViewModel
+    public class FlightsListViewModel : MvxViewModel
     {
-        MainPageModel mainPageModel = new MainPageModel();
-        ObservableCollection<FavoriteModel> addFavorite= new ObservableCollection<FavoriteModel>();
-        ObservableCollection<FavoriteModel> favoriteList = new ObservableCollection<FavoriteModel>();
-        FlyInfoModel[] flyInfoOneWayModel;
-        FlyInfoModel[] flyInfoReturnModel;
-        FlightsService flightsService;
-        readonly IHttpService _httpService;
-        readonly IDeserializXMLService _deserializService;
-        readonly IWPHardwareButtonEvents _platformEvents;
-        readonly IJsonConverter _jsonConverter;
+        private readonly IJsonConverter _jsonConverter;
+        private readonly IMvxFileStore _fileStore;
+        private readonly IFlightsService _flightsService;
 
-        public FlightsListViewModel(IHttpService httpService, IDeserializXMLService deserializService, IWPHardwareButtonEvents platformEvents, IJsonConverter jsonConverter)
+        private int count = 0;
+        private MainPageModel _mainPageModel;
+        private ObservableCollection<FavoriteModel> _addFavorite;
+        private ObservableCollection<FavoriteModel> _favoriteList;
+        private ObservableCollection<FlyInfoShowModel> _flightsList;
+        private bool _isLoadProcess = true;
+        private bool _isFlightAddedToFavorite;
+
+        public ICommand ShowFlightDetailsCommand { get; set; }
+        public ICommand ShowHelpInformationCommand { get; set; }
+        public ICommand ShowAboutInforamtionCommand { get; set; }
+        public ICommand AddToFavoritesCommand { get; set; }
+        public ICommand BackCommand { get; set; }
+
+        public bool IsLoadProcess
         {
-            _httpService = httpService;
-            _jsonConverter = jsonConverter;
-            flightsService = new FlightsService(_httpService, _jsonConverter); 
-            _deserializService = deserializService;
-            _platformEvents = platformEvents;
-            _platformEvents.BackButtonPressed += BackButtonPressed;
-        }
-        
-        bool isActiveProcess = true;
-        public bool IsActiveProcess
-        {
-            get
-            {
-                return isActiveProcess;
-            }
+            get { return _isLoadProcess; }
             set
             {
-                isActiveProcess = value;
-                RaisePropertyChanged(() => this.IsActiveProcess);
-            }
-        }
-        string textLoad = "Please wait...";
-        public string TextLoad
-        {
-            get
-            {
-                return textLoad;
-            }
-            set
-            {
-                textLoad = value;
-                RaisePropertyChanged(() => this.TextLoad);
-            }
-        }
-        bool isEnabledFavorite;
-        public bool IsEnabledFavorite
-        {
-            get
-            {
-                return isEnabledFavorite;
-            }
-            set
-            {
-                isEnabledFavorite = value;
-                RaisePropertyChanged(() => this.IsEnabledFavorite);
+                _isLoadProcess = value;
+                RaisePropertyChanged(() => IsLoadProcess);
             }
         }
 
-        ObservableCollection<FlyInfoShowModel> flightsList = new ObservableCollection<FlyInfoShowModel>();
+        public bool IsFlightAddedToFavorite
+        {
+            get { return _isFlightAddedToFavorite; }
+            set
+            {
+                _isFlightAddedToFavorite = value;
+                RaisePropertyChanged(() => IsFlightAddedToFavorite);
+            }
+        }
+
         public ObservableCollection<FlyInfoShowModel> FlightsList
         {
-            get
-            {
-                return flightsList;
-            }
+            get { return _flightsList; }
             set
             {
-                flightsList = value;
-                RaisePropertyChanged(() => this.FlightsList);
+                _flightsList = value;
+                RaisePropertyChanged(() => FlightsList);
             }
         }
 
-        public ICommand BackCommand
+        public FlightsListViewModel(
+            IJsonConverter jsonConverter, 
+            IMvxFileStore fileStore,
+            IFlightsService flightsService)
         {
-            get
+            _jsonConverter = jsonConverter;
+            _flightsService = flightsService;
+            _fileStore = fileStore;
+            _mainPageModel = new MainPageModel();
+            _addFavorite = new ObservableCollection<FavoriteModel>();
+            _favoriteList = new ObservableCollection<FavoriteModel>();
+            _flightsList = new ObservableCollection<FlyInfoShowModel>();
+            
+            BackCommand = new MvxCommand(() => ShowViewModel<MainPageViewModel>(_mainPageModel));
+            ShowFlightDetailsCommand = new MvxCommand<FlyInfoShowModel>(ShowFlyDetails);
+            ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
+            ShowAboutInforamtionCommand = new MvxCommand(() => ShowViewModel<AboutViewModel>());
+            //AddToFavoritesCommand = new MvxCommand(AddToFavorites);
+        }
+
+        public void Init(MainPageModel mainPageModel)
+        {
+            _mainPageModel = mainPageModel; 
+            _mainPageModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesF);
+            _mainPageModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesT);
+            _mainPageModel.IataFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataF);
+            _mainPageModel.IataTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataT);
+            _fileStore.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
             {
-                return new MvxCommand(() => ShowViewModel<MainPageViewModel>(mainPageModel));
-            }
+                return LoadFrom(inputStream);
+            });
+            ShowFlightsAsync();
         }
-        MvxCommand<FlyInfoShowModel> selectionChangedCommand;
-        public ICommand SelectionChangedCommand
-        {
-            get { return selectionChangedCommand ?? (selectionChangedCommand = new MvxCommand<FlyInfoShowModel>(c => this.ShowFlyInfo(c))); }
-        }
-        public void ShowFlyInfo(FlyInfoShowModel c)
-        {
-            ShowViewModel<FlightsInfoViewModel>(FlightsList[c.id]);
-        }
-        ICommand helpCommand;
-        public ICommand HelpCommand
-        {
-            get
-            {
-                return helpCommand
-                    ?? (helpCommand = new ActionCommand(() =>
-                    {
-                        ShowViewModel<HelpViewModel>();
-                    }));
-            }
-        }
-        ICommand aboutCommand;
-        public ICommand AboutCommand
-        {
-            get
-            {
-                return aboutCommand
-                    ?? (aboutCommand = new ActionCommand(() =>
-                    {
-                        ShowViewModel<AboutViewModel>();
-                    }));
-            }
-        }
-        ICommand favoriteCommand;
+        
+        //private void AddToFavorites()
+        //{
+        //    AddFavorite();
+
+        //    Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
+
+        //    IsFlightAddedToFavorite = false;
+        //}
+
+        //************ =>
+        private ICommand favoriteCommand;
         public ICommand FavoriteCommand
         {
             get
@@ -141,177 +116,93 @@ namespace Flights.Core.ViewModels
                     ?? (favoriteCommand = new ActionCommand(() =>
                     {
                         AddFavorite();
-                        var fileService = Mvx.Resolve<IMvxFileStore>();
-                        fileService.WriteFile("favoriteList.xml", (stream) =>
+                        _fileStore.WriteFile("favoriteList.xml", (stream) =>
                                                                  {
                                                                      var serializer = new XmlSerializer(typeof(ObservableCollection<FavoriteModel>));
-                                                                     serializer.Serialize(stream, addFavorite);
+                                                                     serializer.Serialize(stream, _addFavorite);
                                                                  });
-
-                        IsEnabledFavorite = false;
+                        IsFlightAddedToFavorite = false;
                     }));
             }
         }
-        
-        public void Init(MainPageModel _mainPageModel)
+        //********** <=
+        private void ShowFlyDetails(FlyInfoShowModel c)
         {
-            mainPageModel = _mainPageModel;
-            mainPageModel.CitiesFrom = _deserializService.Deserializ(mainPageModel.CitiesF);
-            mainPageModel.CitiesTo = _deserializService.Deserializ(mainPageModel.CitiesT);
-            mainPageModel.IataFrom = _deserializService.Deserializ(mainPageModel.IataF);
-            mainPageModel.IataTo = _deserializService.Deserializ(mainPageModel.IataT);
-
-            var fileService = Mvx.Resolve<IMvxFileStore>();
-            fileService.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
-            {
-                return LoadFrom(inputStream);
-            });
-
-            GenerateFlightsList();
+            ShowViewModel<FlightsInfoViewModel>(FlightsList.ElementAt(c.id));
         }
 
-        async void GenerateFlightsList()
+        async void ShowFlightsAsync()
         {
-            int count = mainPageModel.IataFrom.Length * mainPageModel.IataTo.Length;
-            flyInfoOneWayModel = new FlyInfoModel[count];
-            flyInfoReturnModel = new FlyInfoModel[count];
-            int valueOneWay = -1;
-            int valueReturn = -1;
-            for (int i = 0; i < mainPageModel.IataFrom.Length; i++)
+            FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateOneWay, false);
+            FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateReturn, true);
+            await GenerateFlightsListAsync(_flyInfoOneWayModel, false);
+            if (_mainPageModel.ReturnWay == true)
             {
-                for (int j = 0; j < mainPageModel.IataTo.Length; j++)
-                {
-                    valueOneWay++;
-                    flyInfoOneWayModel[valueOneWay] = new FlyInfoModel();
-                    flyInfoOneWayModel[valueOneWay] = await flightsService.GetFlight(mainPageModel.IataFrom[i], mainPageModel.IataTo[j], mainPageModel.DateOneWay);
-                    if (flyInfoOneWayModel[valueOneWay] == null)
-                        valueOneWay--;
-                }
+                await GenerateFlightsListAsync(_flyInfoReturnModel, true);
             }
-            if (mainPageModel.ReturnWay)
-            {
-                for (int i = 0; i < mainPageModel.IataTo.Length; i++)
-                {
-                    for (int j = 0; j < mainPageModel.IataFrom.Length; j++)
-                    {
-                        valueReturn++;
-                        flyInfoReturnModel[valueReturn] = new FlyInfoModel();
-                        flyInfoReturnModel[valueReturn] = await flightsService.GetFlight(mainPageModel.IataTo[i], mainPageModel.IataFrom[j], mainPageModel.DateReturn);
-                        if (flyInfoReturnModel[valueReturn] == null)
-                            valueReturn--;
-                    }
-                }
-            }
-            ShowFlights(valueOneWay, valueReturn);
+            IsLoadProcess = false;
+            IsFlightAddedToFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
         }
-        void ShowFlights(int valueOneWay, int valueReturn)
+
+        async Task GenerateFlightsListAsync(FlyInfoModel[] flyInfoModel, bool returnWay)
         {
-            if (valueOneWay != -1)
+            string picture = "ms-appx:///Assets/fly.png";
+            if (returnWay == true)
             {
-                foreach (var item in flyInfoOneWayModel) 
+                picture = "ms-appx:///Assets/fly_return.png";
+            }
+            foreach (var item in flyInfoModel)
+            {
+                if (item == null)
                 {
-                    if (item == null)
-                        continue; 
-                    for (int j = 0; j < item.Arrival.Length; j++)
-                    {
-                        FlightsList.Add(new FlyInfoShowModel
-                        {
-                            Arrival = item.Arrival.ElementAt(j),
-                            Duration = item.Duration.ElementAt(j),
-                            ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
-                            From = item.From.ElementAt(j),
-                            ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
-                            ThreadVehicle = item.ThreadVehicle.ElementAt(j),
-                            ThreadNumber = item.ThreadNumber.ElementAt(j),
-                            Departure = item.Departure.ElementAt(j),
-                            To = item.To.ElementAt(j),
-                            Image1 = "ms-appx:///Assets/fly.png",
-                            Image2 = "ms-appx:///Assets/direction.png"
-                        });
-                    }
+                    continue;
                 }
-                if (mainPageModel.ReturnWay && valueReturn != -1)
-                { 
-                    foreach (var item in flyInfoReturnModel)
+                for (int j = 0; j < item.Arrival.Length; j++)
+                {
+                    FlightsList.Add(new FlyInfoShowModel
                     {
-                        if (item == null)
-                            continue;
-                        for (int j = 0; j < item.Arrival.Length; j++)
-                        {
-                            FlightsList.Add(new FlyInfoShowModel
-                            {
-                                Arrival = item.Arrival.ElementAt(j),
-                                Duration = item.Duration.ElementAt(j),
-                                ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
-                                From = item.From.ElementAt(j),
-                                ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
-                                ThreadVehicle = item.ThreadVehicle.ElementAt(j),
-                                ThreadNumber = item.ThreadNumber.ElementAt(j),
-                                Departure = item.Departure.ElementAt(j),
-                                To = item.To.ElementAt(j),
-                                Image1 = "ms-appx:///Assets/fly.png",
-                                Image2 = "ms-appx:///Assets/direction.png"
-                            });
-                        }
-                    }
+                        Arrival = item.Arrival.ElementAt(j),
+                        Duration = item.Duration.ElementAt(j),
+                        ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
+                        From = item.From.ElementAt(j),
+                        ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
+                        ThreadVehicle = item.ThreadVehicle.ElementAt(j),
+                        ThreadNumber = item.ThreadNumber.ElementAt(j),
+                        Departure = item.Departure.ElementAt(j),
+                        To = item.To.ElementAt(j),
+                        id = count,
+                        Image1 = picture,
+                        Image2 = "ms-appx:///Assets/direction.png"
+                    });
+                    count++;
                 }
             }
-            else
-            {
-                FlightsList.Add(new FlyInfoShowModel
-                {
-                    Arrival = "",
-                    Duration = "",
-                    ArrivalTerminal = "",
-                    From = "There are no flights..",
-                    ThreadCarrierTitle = "",
-                    ThreadVehicle = "",
-                    ThreadNumber = "",
-                    Departure = "",
-                    To = "",
-                    Image1 = "",
-                    Image2 = ""
-                });
-            }
-            IsActiveProcess = false;
-            TextLoad = "";
-            IsEnabledFavorite = IsTheSame();
         }
+
         void AddFavorite()
         {
-            addFavorite = favoriteList;
-            addFavorite.Add(new FavoriteModel
+            _addFavorite = _favoriteList;
+            _addFavorite.Add(new FavoriteModel
             {
-                CitiesFrom = mainPageModel.CitiesFrom,
-                CitiesTo = mainPageModel.CitiesTo,
-                CityFrom = mainPageModel.CityFrom,
-                CityTo = mainPageModel.CityTo,
-                CountryFrom = mainPageModel.CountryFrom,
-                CountryTo = mainPageModel.CountryTo,
-                IataFrom = mainPageModel.IataFrom,
-                IataTo = mainPageModel.IataTo,
+                CitiesFrom = _mainPageModel.CitiesFrom,
+                CitiesTo = _mainPageModel.CitiesTo,
+                CityFrom = _mainPageModel.CityFrom,
+                CityTo = _mainPageModel.CityTo,
+                CountryFrom = _mainPageModel.CountryFrom,
+                CountryTo = _mainPageModel.CountryTo,
+                IataFrom = _mainPageModel.IataFrom,
+                IataTo = _mainPageModel.IataTo,
                 Image1 = "ms-appx:///Assets/favorite.png",
                 Image2 = "ms-appx:///Assets/direction.png"
             });
         }
-        bool IsTheSame()
+
+        private bool IsFlightEqualOfFavoriteModel(FavoriteModel model)
         {
-            int value = 0;
-            foreach (FavoriteModel f in favoriteList)
-            {
-                if (f.CountryFrom.Equals(mainPageModel.CountryFrom) && f.CityFrom.Equals(mainPageModel.CityFrom) 
-                    && f.CountryTo.Equals(mainPageModel.CountryTo) && f.CityTo.Equals(mainPageModel.CityTo))
-                {
-                    value++;
-                }
-            }
-            if (value != 0)
-            {
-                return false;
-            }
-            else
-                return true;
+            return model.CountryFrom == _mainPageModel.CountryFrom && model.CityFrom == _mainPageModel.CityFrom
+                   && model.CountryTo == _mainPageModel.CountryTo && model.CityTo == _mainPageModel.CityTo;
         }
+        
         bool LoadFrom(Stream inputStream)
         {
             try
@@ -323,7 +214,7 @@ namespace Flights.Core.ViewModels
                 using (var reader = loadedData.Root.CreateReader())
                 {
                     var list = (ObservableCollection<FavoriteModel>)new XmlSerializer(typeof(ObservableCollection<FavoriteModel>)).Deserialize(reader);
-                    favoriteList = new ObservableCollection<FavoriteModel>(list);
+                    _favoriteList = new ObservableCollection<FavoriteModel>(list);
                     return true;
                 }
             }
@@ -331,11 +222,6 @@ namespace Flights.Core.ViewModels
             {
                 return false;
             }
-        }
-        void BackButtonPressed(object sender, EventArgs e)
-        {
-            Close(this);
-            _platformEvents.BackButtonPressed -= BackButtonPressed;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Flights.Models
+﻿using System.Collections.Generic;
+
+namespace Flights.Models
 {
     public class FlyInfoModel
     {

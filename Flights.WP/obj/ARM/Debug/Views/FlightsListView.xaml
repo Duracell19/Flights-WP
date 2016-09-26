@@ -20,11 +20,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-            <ProgressRing Grid.Column="1" Grid.Row="0" Style="{StaticResource ProgressRingStyle}" IsActive="{Binding IsActiveProcess, Mode=TwoWay}"/>
+            <ProgressRing Grid.Column="1" Grid.Row="0" Style="{StaticResource ProgressRingStyle}" IsActive="{Binding IsLoadProcess, Mode=TwoWay}"/>
             <ListView Name="flyList" ItemsSource="{Binding FlightsList}" Grid.ColumnSpan="3">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=flyList, Path=SelectedItem}"/>
+                        <core:InvokeCommandAction Command="{Binding ShowFlightDetailsCommand}" CommandParameter="{Binding ElementName=flyList, Path=SelectedItem}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
@@ -55,10 +55,10 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Label="help" Icon="Help" Command="{Binding HelpCommand}"/>
-            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsEnabledFavorite, Mode=TwoWay}" Command="{Binding FavoriteCommand}"/>
+            <AppBarButton Label="help" Icon="Help" Command="{Binding ShowHelpInformationCommand}"/>
+            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAddedToFavorite, Mode=TwoWay}" Command="{Binding FavoriteCommand}"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" Command="{Binding AboutCommand}"/>
+                <AppBarButton Label="About" Command="{Binding ShowAboutInforamtionCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

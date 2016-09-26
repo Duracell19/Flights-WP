@@ -1,15 +1,26 @@
 ﻿using Flights.Infrastructure;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Flights.Services
 {
     public class JsonConverter : IJsonConverter
     {
-        public T Deserialize<T>(string response)
+        public T Deserialize<T>(string str)
         {
-            return JsonConvert.DeserializeObject<T>(response);
+            return JsonConvert.DeserializeObject<T>(str);
         }
-        public string Serialize<T>(T obj)
+        public T Deserialize<T>(Stream stream)
+        {
+            var serializer = new JsonSerializer();
+
+            using (var sr = new StreamReader(stream))
+            using (var jsonTextReader = new JsonTextReader(sr))
+            {
+                return serializer.Deserialize<T>(jsonTextReader);
+            }
+        }
+        public string Serialize(object obj)
         {
             return JsonConvert.SerializeObject(obj);
         }

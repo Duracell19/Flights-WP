@@ -3,7 +3,6 @@ using Flights.Infrastructure;
 using Flights.Models;
 using Flights.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 using System;
 using System.Collections.ObjectModel;
@@ -23,11 +22,14 @@ namespace Flights.Core.ViewModels
         readonly ISerializXMLService _serializService;
         readonly IDeserializXMLService _deserializService;
         readonly IJsonConverter _jsonConverter;
+        private readonly IMvxFileStore _fileStore;
 
         MainPageModel mainPageModel = new MainPageModel();
 
         public MainPageViewModel(ICountriesService countriesService, ICitiesService citiesService, IHttpService httpService,
-            IDateService dateService, ISerializXMLService serializService, IDeserializXMLService deserializService, IJsonConverter jsonConverter)
+            IDateService dateService, ISerializXMLService serializService, IDeserializXMLService deserializService, 
+            IJsonConverter jsonConverter,
+            IMvxFileStore fileStore)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
@@ -36,6 +38,7 @@ namespace Flights.Core.ViewModels
             _serializService = serializService;
             _deserializService = deserializService;
             _jsonConverter = jsonConverter;
+            _fileStore = fileStore;
         }
 
         public override void Start()
@@ -45,8 +48,7 @@ namespace Flights.Core.ViewModels
 
         public void Init(MainPageModel _mainPageModel)
         {
-            var fileService = Mvx.Resolve<IMvxFileStore>();
-            fileService.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
+            _fileStore.TryReadBinaryFile("favoriteList.xml", (inputStream) =>
             {
                 return LoadFrom(inputStream);
             });
@@ -60,10 +62,10 @@ namespace Flights.Core.ViewModels
                 TextCityTo = mainPageModel.CityTo;
                 if (mainPageModel.CitiesF != null)
                 {
-                    mainPageModel.CitiesFrom = _deserializService.Deserializ(mainPageModel.CitiesF);
-                    mainPageModel.CitiesTo = _deserializService.Deserializ(mainPageModel.CitiesT);
-                    mainPageModel.IataFrom = _deserializService.Deserializ(mainPageModel.IataF);
-                    mainPageModel.IataTo = _deserializService.Deserializ(mainPageModel.IataT);
+                    mainPageModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesF);
+                    mainPageModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesT);
+                    mainPageModel.IataFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataF);
+                    mainPageModel.IataTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataT);
                     DateOneWay = DateTimeOffset.Parse(mainPageModel.DateOneWayOffSet);
                     if (mainPageModel.ReturnWay)
                     {
@@ -645,10 +647,10 @@ namespace Flights.Core.ViewModels
                         mainPageModel.DateReturn = _dateService.GetDate(DateReturn);
                         mainPageModel.DateOneWayOffSet = _dateService.ConvertDate(DateOneWay);
                         mainPageModel.DateReturnOffSet = _dateService.ConvertDate(DateReturn);
-                        mainPageModel.CitiesF = _serializService.Serializ(mainPageModel.CitiesFrom);
-                        mainPageModel.CitiesT = _serializService.Serializ(mainPageModel.CitiesTo);
-                        mainPageModel.IataF = _serializService.Serializ(mainPageModel.IataFrom);
-                        mainPageModel.IataT = _serializService.Serializ(mainPageModel.IataTo);
+                        mainPageModel.CitiesF = _jsonConverter.Serialize(mainPageModel.CitiesFrom);
+                        mainPageModel.CitiesT = _jsonConverter.Serialize(mainPageModel.CitiesTo);
+                        mainPageModel.IataF = _jsonConverter.Serialize(mainPageModel.IataFrom);
+                        mainPageModel.IataT = _jsonConverter.Serialize(mainPageModel.IataTo);
                         ShowViewModel<FlightsListViewModel>(mainPageModel);
                     }));
             }

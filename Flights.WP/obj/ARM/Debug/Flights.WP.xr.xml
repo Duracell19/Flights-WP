@@ -6,7 +6,7 @@
     <RootPropertyPathName Name="Information" />
     <RootPropertyPathName Name="StaticInformation" />
     <RootPropertyPathName Name="FlightsList" />
-    <RootPropertyPathName Name="SelectionChangedCommand" />
+    <RootPropertyPathName Name="ShowFlightDetailsCommand" />
     <RootPropertyPathName Name="SelectedItem" />
     <RootPropertyPathName Name="Arrival" />
     <RootPropertyPathName Name="Image2" />
@@ -14,11 +14,11 @@
     <RootPropertyPathName Name="To" />
     <RootPropertyPathName Name="From" />
     <RootPropertyPathName Name="Image1" />
-    <RootPropertyPathName Name="IsActiveProcess" />
-    <RootPropertyPathName Name="IsEnabledFavorite" />
+    <RootPropertyPathName Name="IsLoadProcess" />
+    <RootPropertyPathName Name="IsFlightAddedToFavorite" />
     <RootPropertyPathName Name="FavoriteCommand" />
-    <RootPropertyPathName Name="HelpCommand" />
-    <RootPropertyPathName Name="AboutCommand" />
+    <RootPropertyPathName Name="ShowHelpInformationCommand" />
+    <RootPropertyPathName Name="ShowAboutInforamtionCommand" />
     <RootPropertyPathName Name="FavoriteHelpFlyInformation" />
     <RootPropertyPathName Name="ChangeHelpFlyInformation" />
     <RootPropertyPathName Name="ClearHelpFlyInformation" />
@@ -60,6 +60,7 @@
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="ChosenItemCountryFrom" />
     <RootPropertyPathName Name="TextChangedCountryFrom" />
+    <RootPropertyPathName Name="HelpCommand" />
     <RootPropertyPathName Name="IsEnabledChange" />
     <RootPropertyPathName Name="ChangeCommand" />
     <RootPropertyPathName Name="IsEnabledClear" />

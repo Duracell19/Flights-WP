@@ -5,6 +5,7 @@ namespace Flights.Infrastructure
 {
     public interface IFlightsService
     {
-        Task<FlyInfoModel> GetFlight(string from, string to, string date);
+        Task<FlyInfoModel> GetFlightAsync(string from, string to, string date);
+        Task<FlyInfoModel[]> ConfigurationOfFlights(MainPageModel mainPageModel, string date, bool returnWay);
     }
 }
