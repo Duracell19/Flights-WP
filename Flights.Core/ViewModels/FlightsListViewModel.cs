@@ -101,7 +101,7 @@ namespace Flights.Core.ViewModels
             ShowViewModel<FlightsInfoViewModel>(FlightsList.ElementAt(c.id));
         }
 
-        async void ShowFlightsAsync()
+        private async void ShowFlightsAsync()
         {
             FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateOneWay, false);
             FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateReturn, true);
@@ -121,7 +121,7 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        async Task GenerateFlightsListAsync(FlyInfoModel[] flyInfoModel, bool returnWay)
+        private async Task GenerateFlightsListAsync(FlyInfoModel[] flyInfoModel, bool returnWay)
         {
             string picture = "ms-appx:///Assets/fly.png";
             if (returnWay == true)
@@ -156,7 +156,7 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        void AddFavorite()
+        private void AddFavorite()
         {
             _addFavorite = _favoriteList;
             _addFavorite.Add(new FavoriteModel
@@ -180,7 +180,7 @@ namespace Flights.Core.ViewModels
                    && model.CountryTo == _mainPageModel.CountryTo && model.CityTo == _mainPageModel.CityTo;
         }
 
-        public T Load<T>(string fileName)
+        private T Load<T>(string fileName)
         {
             string txt;
             T result = default(T);
@@ -191,7 +191,7 @@ namespace Flights.Core.ViewModels
             return result;
         }
 
-        public void Save(string fileName, object obj)
+        private void Save(string fileName, object obj)
         {
             _fileStore.WriteFile(fileName, _jsonConverter.Serialize(_favoriteList));
         }

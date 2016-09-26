@@ -774,7 +774,7 @@ namespace Flights.Core.ViewModels
             PivotNumber = 0;
         }
 
-        public T Load<T>(string fileName)
+        private T Load<T>(string fileName)
         {
             string txt;
             T result = default(T);
