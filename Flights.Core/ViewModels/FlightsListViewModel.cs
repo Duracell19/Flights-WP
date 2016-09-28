@@ -15,7 +15,7 @@ namespace Flights.Core.ViewModels
         private readonly IMvxFileStore _fileStore;
         private readonly IFlightsService _flightsService;
         private int count = 0;
-        private MainPageModel _mainPageModel;
+        private DataOfFilghtsModel _dataOfFlightsModel;
         private ObservableCollection<FavoriteModel> _addFavorite;
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
@@ -66,25 +66,25 @@ namespace Flights.Core.ViewModels
             _jsonConverter = jsonConverter;
             _flightsService = flightsService;
             _fileStore = fileStore;
-            _mainPageModel = new MainPageModel();
+            _dataOfFlightsModel = new DataOfFilghtsModel();
             _addFavorite = new ObservableCollection<FavoriteModel>();
             _favoriteList = new ObservableCollection<FavoriteModel>();
             _flightsList = new ObservableCollection<FlyInfoShowModel>();
             
-            BackCommand = new MvxCommand(() => ShowViewModel<MainPageViewModel>(_mainPageModel));
+            BackCommand = new MvxCommand(() => ShowViewModel<MainPageViewModel>(_dataOfFlightsModel));
             ShowFlightDetailsCommand = new MvxCommand<FlyInfoShowModel>(ShowFlyDetails);
             ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
             ShowAboutInforamtionCommand = new MvxCommand(() => ShowViewModel<AboutViewModel>());
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public void Init(MainPageModel mainPageModel)
+        public void Init(DataOfFilghtsModel dataOfFlightsModel)
         {
-            _mainPageModel = mainPageModel; 
-            _mainPageModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesF);
-            _mainPageModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesT);
-            _mainPageModel.IataFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataF);
-            _mainPageModel.IataTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataT);
+            _dataOfFlightsModel = dataOfFlightsModel; 
+            _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.CitiesF);
+            _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.CitiesT);
+            _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.IataF);
+            _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.IataT);
             _favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
         }
@@ -101,12 +101,30 @@ namespace Flights.Core.ViewModels
             ShowViewModel<FlightsInfoViewModel>(FlightsList.ElementAt(c.id));
         }
 
+        private void AddFavorite()
+        {
+            _addFavorite = _favoriteList;
+            _addFavorite.Add(new FavoriteModel
+            {
+                CitiesFrom = _dataOfFlightsModel.CitiesFrom,
+                CitiesTo = _dataOfFlightsModel.CitiesTo,
+                CityFrom = _dataOfFlightsModel.CityFrom,
+                CityTo = _dataOfFlightsModel.CityTo,
+                CountryFrom = _dataOfFlightsModel.CountryFrom,
+                CountryTo = _dataOfFlightsModel.CountryTo,
+                IataFrom = _dataOfFlightsModel.IataFrom,
+                IataTo = _dataOfFlightsModel.IataTo,
+                Image1 = "ms-appx:///Assets/favorite.png",
+                Image2 = "ms-appx:///Assets/direction.png"
+            });
+        }
+
         private async void ShowFlightsAsync()
         {
-            FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateOneWay, false);
-            FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_mainPageModel, _mainPageModel.DateReturn, true);
+            FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateOneWay, false);
+            FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateReturn, true);
             await GenerateFlightsListAsync(_flyInfoOneWayModel, false);
-            if (_mainPageModel.ReturnWay == true)
+            if (_dataOfFlightsModel.ReturnWay == true)
             {
                 await GenerateFlightsListAsync(_flyInfoReturnModel, true);
             }
@@ -156,28 +174,10 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        private void AddFavorite()
-        {
-            _addFavorite = _favoriteList;
-            _addFavorite.Add(new FavoriteModel
-            {
-                CitiesFrom = _mainPageModel.CitiesFrom,
-                CitiesTo = _mainPageModel.CitiesTo,
-                CityFrom = _mainPageModel.CityFrom,
-                CityTo = _mainPageModel.CityTo,
-                CountryFrom = _mainPageModel.CountryFrom,
-                CountryTo = _mainPageModel.CountryTo,
-                IataFrom = _mainPageModel.IataFrom,
-                IataTo = _mainPageModel.IataTo,
-                Image1 = "ms-appx:///Assets/favorite.png",
-                Image2 = "ms-appx:///Assets/direction.png"
-            });
-        }
-
         private bool IsFlightEqualOfFavoriteModel(FavoriteModel model)
         {
-            return model.CountryFrom == _mainPageModel.CountryFrom && model.CityFrom == _mainPageModel.CityFrom
-                   && model.CountryTo == _mainPageModel.CountryTo && model.CityTo == _mainPageModel.CityTo;
+            return model.CountryFrom == _dataOfFlightsModel.CountryFrom && model.CityFrom == _dataOfFlightsModel.CityFrom
+                   && model.CountryTo == _dataOfFlightsModel.CountryTo && model.CityTo == _dataOfFlightsModel.CityTo;
         }
 
         private T Load<T>(string fileName)

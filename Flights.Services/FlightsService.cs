@@ -53,22 +53,22 @@ namespace Flights.Services
             return null;
         }
 
-        public async Task<FlyInfoModel[]> ConfigurationOfFlights(MainPageModel mainPageModel, string date, bool returnWay)
+        public async Task<FlyInfoModel[]> ConfigurationOfFlights(DataOfFilghtsModel dataOfFlightsModel, string date, bool returnWay)
         {
             int value = -1;
-            int count = mainPageModel.IataFrom.Length * mainPageModel.IataTo.Length;
+            int count = dataOfFlightsModel.IataFrom.Length * dataOfFlightsModel.IataTo.Length;
             FlyInfoModel[] flyInfoModel = new FlyInfoModel[count];
             string[] from;
             string[] to;
             if (returnWay != true)
             {
-                from = mainPageModel.IataFrom;
-                to = mainPageModel.IataTo;
+                from = dataOfFlightsModel.IataFrom;
+                to = dataOfFlightsModel.IataTo;
             }
             else
             {
-                from = mainPageModel.IataTo;
-                to = mainPageModel.IataFrom;
+                from = dataOfFlightsModel.IataTo;
+                to = dataOfFlightsModel.IataFrom;
             }
             for (int i = 0; i < from.Length; i++)
             {

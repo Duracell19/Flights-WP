@@ -1,10 +1,10 @@
-﻿using Flights.Core.Commands;
-using Flights.Infrastructure;
+﻿using Flights.Infrastructure;
 using Flights.Models;
 using Flights.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,17 +12,41 @@ namespace Flights.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        readonly ICountriesService _countriesService;
-        readonly ICitiesService _citiesService;
-        readonly IHttpService _httpService;
-        readonly IDateService _dateService;
-        readonly IJsonConverterService _jsonConverter;
+        private readonly ICountriesService _countriesService;
+        private readonly ICitiesService _citiesService;
+        private readonly IHttpService _httpService;
+        private readonly IDateService _dateService;
+        private readonly IJsonConverterService _jsonConverter;
         private readonly IMvxFileStore _fileStore;
+        private ObservableCollection<MainPagePropetiesModel> _properties;
+        private DataOfFilghtsModel _dataOfFlightsModel;
+        private bool _status;
 
-        MainPageModel mainPageModel = new MainPageModel();
+        public ICommand TextChangedCountryFromCommand { get; set; }
+        public ICommand TextChangedCountryToCommand { get; set; }
+        public ICommand TextChangedCityFromCommand { get; set; }
+        public ICommand TextChangedCityToCommand { get; set; }
+        public ICommand SelectCountryFromCommand { get; set; }
+        public ICommand SelectCountryToCommand { get; set; }
+        public ICommand SelectCityFromCommand { get; set; }
+        public ICommand SelectCityToCommand { get; set; }
+        public ICommand SetOneWayCommand { get; set; }
+        public ICommand SetReturnWayCommand { get; set; }
+        public ICommand FindFlightsCommand { get; set; }
+        public ICommand ChangeFieldsCommand { get; set; }
+        public ICommand ClearFieldsCommand { get; set; }
+        public ICommand SetTheVisibilityIconCommand { get; set; }
+        public ICommand ShowHelpInformationCommand { get; set; }
+        public ICommand SetFlightCommand { get; set; }
+
+        public ObservableCollection<MainPagePropetiesModel> Properties
+        {
+            get { return _properties; }
+            set { _properties = value; }
+        }
 
         public MainPageViewModel(ICountriesService countriesService,
-            ICitiesService citiesService, 
+            ICitiesService citiesService,
             IHttpService httpService,
             IDateService dateService,
             IJsonConverterService jsonConverter,
@@ -34,6 +58,43 @@ namespace Flights.Core.ViewModels
             _dateService = dateService;
             _jsonConverter = jsonConverter;
             _fileStore = fileStore;
+
+            _dataOfFlightsModel = new DataOfFilghtsModel();
+            _properties = new ObservableCollection<MainPagePropetiesModel>();
+
+            Properties.Add(new MainPagePropetiesModel
+            {
+                TextCountryFrom = "",
+                TextCountryTo = "",
+                TextCityFrom = "",
+                TextCityTo = "",
+                PlaceholderTextCityFrom = "Choose city",
+                PlaceholderTextCityTo = "Choose city",
+                DateOneWay = DateTimeOffset.Now,
+                DateReturn = DateTimeOffset.Now,
+                IsEnabledButtonFind = false,
+                IsCheckedOneWay = true,
+                IsEnabledDateReturn = false,
+                CountriesFrom = _countriesService.GetCountries(),
+                CountriesTo = _countriesService.GetCountries(),
+            });
+
+            ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
+            TextChangedCountryFromCommand = new MvxCommand(TextChangedCountryFrom);
+            TextChangedCountryToCommand = new MvxCommand(TextChangedCountryTo);
+            TextChangedCityFromCommand = new MvxCommand(TextChangedCityFrom);
+            TextChangedCityToCommand = new MvxCommand(TextChangedCityTo);
+            SetOneWayCommand = new MvxCommand(SetOneWay);
+            SetReturnWayCommand = new MvxCommand(SetReturnWay);
+            FindFlightsCommand = new MvxCommand(FindFlights);
+            ChangeFieldsCommand = new MvxCommand(ChangeFields);
+            ClearFieldsCommand = new MvxCommand(ClearFields);
+            SetTheVisibilityIconCommand = new MvxCommand(SetTheVisibilityIcon);
+            SelectCountryFromCommand = new MvxCommand<string>(SelectCountryFromAsync);
+            SelectCountryToCommand = new MvxCommand<string>(SelectCountryToAsync);
+            SelectCityFromCommand = new MvxCommand<string>(SelectCityFromAsync);
+            SelectCityToCommand = new MvxCommand<string>(SelectCityToAsync);
+            SetFlightCommand = new MvxCommand<object>(SetFlight);
         }
 
         public override void Start()
@@ -41,739 +102,347 @@ namespace Flights.Core.ViewModels
             base.Start();
         }
 
-        public void Init(MainPageModel _mainPageModel)
+        public void Init(DataOfFilghtsModel dataOfFlightsModel)
         {
-            favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
-            if (favoriteList == null)
+            Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            if (Properties[0].FavoriteList == null)
             {
-                favoriteList = new ObservableCollection<FavoriteModel>();
+                Properties[0].FavoriteList = new ObservableCollection<FavoriteModel>();
             }
-            if (_mainPageModel.CountryFrom != null)
+            if (dataOfFlightsModel.CountryFrom != null)
             {
-                mainPageModel = _mainPageModel;
-                TextCountryFrom = mainPageModel.CountryFrom;
-                TextCountryTo = mainPageModel.CountryTo;
-                TextCityFrom = mainPageModel.CityFrom;
-                TextCityTo = mainPageModel.CityTo;
-                if (mainPageModel.CitiesF != null)
+                _dataOfFlightsModel = dataOfFlightsModel;
+                Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryFrom;
+                Properties[0].TextCountryTo = _dataOfFlightsModel.CountryTo;
+                Properties[0].TextCityFrom = _dataOfFlightsModel.CityFrom;
+                Properties[0].TextCityTo = _dataOfFlightsModel.CityTo;
+                if (_dataOfFlightsModel.CitiesF != null)
                 {
-                    mainPageModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesF);
-                    mainPageModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.CitiesT);
-                    mainPageModel.IataFrom = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataF);
-                    mainPageModel.IataTo = _jsonConverter.Deserialize<string[]>(_mainPageModel.IataT);
-                    DateOneWay = DateTimeOffset.Parse(mainPageModel.DateOneWayOffSet);
-                    if (mainPageModel.ReturnWay)
+                    _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.CitiesF);
+                    _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.CitiesT);
+                    _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.IataF);
+                    _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.IataT);
+                    Properties[0].DateOneWay = DateTimeOffset.Parse(_dataOfFlightsModel.DateOneWayOffSet);
+                    if (_dataOfFlightsModel.ReturnWay)
                     {
-                        IsEnabledDateReturn = true;
-                        DateReturn = DateTimeOffset.Parse(mainPageModel.DateReturnOffSet);
-                        IsCheckedReturn = true;
-                        IsCheckedOneWay = false;
+                        Properties[0].IsEnabledDateReturn = true;
+                        Properties[0].DateReturn = DateTimeOffset.Parse(_dataOfFlightsModel.DateReturnOffSet);
+                        Properties[0].IsCheckedReturn = true;
+                        Properties[0].IsCheckedOneWay = false;
                     }
-                    IsEnabledCityFrom = true;
-                    IsEnabledCityTo = true;
-                    IsEnabledButtonFind = true;
-                    status = true;
+                    Properties[0].IsEnabledCityFrom = true;
+                    Properties[0].IsEnabledCityTo = true;
+                    Properties[0].IsEnabledButtonFind = true;
+                    _status = true;
                 }
             }
+            RaisePropertyChanged(() => Properties);
         }
-
-        bool isEnabledCityFrom = false;
-        public bool IsEnabledCityFrom
-        {
-            get
-            {
-                return isEnabledCityFrom;
-            }
-            set
-            {
-                isEnabledCityFrom = value;
-                RaisePropertyChanged(() => this.IsEnabledCityFrom);
-            }
-        }
-        bool isEnabledCityTo = false;
-        public bool IsEnabledCityTo
-        {
-            get
-            {
-                return isEnabledCityTo;
-            }
-            set
-            {
-                isEnabledCityTo = value;
-                RaisePropertyChanged(() => this.IsEnabledCityTo);
-            }
-        }
-        bool isCheckedOneWay = true;
-        public bool IsCheckedOneWay
-        {
-            get
-            {
-                return isCheckedOneWay;
-            }
-            set
-            {
-                isCheckedOneWay = value;
-                RaisePropertyChanged(() => this.IsCheckedOneWay);
-            }
-        }
-        bool isCheckedReturn = false;
-        public bool IsCheckedReturn
-        {
-            get
-            {
-                return isCheckedReturn;
-            }
-            set
-            {
-                isCheckedReturn = value;
-                RaisePropertyChanged(() => this.IsCheckedReturn);
-            }
-        }
-        bool isEnabledDateReturn = false;
-        public bool IsEnabledDateReturn
-        {
-            get
-            {
-                return isEnabledDateReturn;
-            }
-            set
-            {
-                isEnabledDateReturn = value;
-                RaisePropertyChanged(() => this.IsEnabledDateReturn);
-            }
-        }
-        bool isEnabledButtonFind = false;
-        public bool IsEnabledButtonFind
-        {
-            get
-            {
-                return isEnabledButtonFind;
-            }
-            set
-            {
-                isEnabledButtonFind = value;
-                RaisePropertyChanged(() => this.IsEnabledButtonFind);
-            }
-        }
-        bool isEnabledChange = false;
-        public bool IsEnabledChange
-        {
-            get
-            {
-                return isEnabledChange;
-            }
-            set
-            {
-                isEnabledChange = value;
-                RaisePropertyChanged(() => this.IsEnabledChange);
-            }
-        }
-        bool isEnabledClear = true;
-        public bool IsEnabledClear
-        {
-            get
-            {
-                return isEnabledClear;
-            }
-            set
-            {
-                isEnabledClear = value;
-                RaisePropertyChanged(() => this.IsEnabledClear);
-            }
-        }
-        string placeholderTextCityFrom = "Choose city";
-        public string PlaceholderTextCityFrom
-        {
-            get
-            {
-                return placeholderTextCityFrom;
-            }
-            set
-            {
-                placeholderTextCityFrom = value;
-                RaisePropertyChanged(() => this.PlaceholderTextCityFrom);
-            }
-        }
-        string placeholderTextCityTo = "Choose city";
-        public string PlaceholderTextCityTo
-        {
-            get
-            {
-                return placeholderTextCityTo;
-            }
-            set
-            {
-                placeholderTextCityTo = value;
-                RaisePropertyChanged(() => this.PlaceholderTextCityTo);
-            }
-        }
-        string textCountryFrom = "";
-        public string TextCountryFrom
-        {
-            get
-            {
-                return textCountryFrom;
-            }
-            set
-            {
-                textCountryFrom = value;
-                RaisePropertyChanged(() => this.TextCountryFrom);
-            }
-        }
-        string textCountryTo = "";
-        public string TextCountryTo
-        {
-            get
-            {
-                return textCountryTo;
-            }
-            set
-            {
-                textCountryTo = value;
-                RaisePropertyChanged(() => this.TextCountryTo);
-            }
-        }
-        string textCityFrom = "";
-        public string TextCityFrom
-        {
-            get
-            {
-                return textCityFrom;
-            }
-            set
-            {
-                textCityFrom = value;
-                RaisePropertyChanged(() => this.TextCityFrom);
-            }
-        }
-        string textCityTo = "";
-        public string TextCityTo
-        {
-            get
-            {
-                return textCityTo;
-            }
-            set
-            {
-                textCityTo = value;
-                RaisePropertyChanged(() => this.TextCityTo);
-            }
-        }
-        DateTimeOffset dateOneWay = DateTimeOffset.Now;
-        public DateTimeOffset DateOneWay
-        {
-            get
-            {
-                return dateOneWay;
-            }
-            set
-            {
-                dateOneWay = value;
-                RaisePropertyChanged(() => this.DateOneWay);
-            }
-        }
-        DateTimeOffset dateReturn = DateTimeOffset.Now;
-        public DateTimeOffset DateReturn
-        {
-            get
-            {
-                return dateReturn;
-            }
-            set
-            {
-                dateReturn = value;
-                RaisePropertyChanged(() => this.DateReturn);
-            }
-        }
-        int pivotNumber;
-        public int PivotNumber
-        {
-            get
-            {
-                return pivotNumber;
-            }
-            set
-            {
-                pivotNumber = value;
-                RaisePropertyChanged(() => this.PivotNumber);
-            }
-        }
-        bool status;
         
-        ObservableCollection<string> countriesFrom = new ObservableCollection<string>();
-        public ObservableCollection<string> CountriesFrom
+        private void TextChangedCountryFrom()
         {
-            get
+            if (Properties[0].TextCountryFrom.Length > -1)
             {
-                if (countriesFrom.Count == 0)
+                List<string> s = _countriesService.GetCountries();
+                List<string> result = new List<string>();
+                foreach (string st in s)
                 {
-                    string[] country = _countriesService.GetCountries();
-                    foreach (string s in country)
+                    if (st.Contains(Properties[0].TextCountryFrom))
                     {
-                        countriesFrom.Add(s);
+                        result.Add(st);
                     }
                 }
-                return countriesFrom;
+                Properties[0].CountriesFrom = new List<string>();
+                Properties[0].CountriesFrom = result;
             }
-            set
-            {
-                countriesFrom = value;
-                RaisePropertyChanged(() => this.CountriesFrom);
-            }
+            RaisePropertyChanged(() => Properties);
         }
-        ObservableCollection<string> countriesTo = new ObservableCollection<string>();
-        public ObservableCollection<string> CountriesTo
+        
+        private void TextChangedCountryTo()
         {
-            get
+            if (Properties[0].TextCountryTo.Length > -1)
             {
-                if (countriesTo.Count == 0)
+                List<string> s = _countriesService.GetCountries();
+                List<string> result = new List<string>();
+                foreach (string st in s)
                 {
-                    string[] country = _countriesService.GetCountries();
-                    foreach (string s in country)
+                    if (st.Contains(Properties[0].TextCountryTo))
                     {
-                        countriesTo.Add(s);
+                        result.Add(st);
                     }
                 }
-                return countriesTo;
+                Properties[0].CountriesTo = new List<string>();
+                Properties[0].CountriesTo = result;
             }
-            set
-            {
-                countriesTo = value;
-                RaisePropertyChanged(() => this.CountriesTo);
-            }
-        }
-        ObservableCollection<string> citiesFrom = new ObservableCollection<string>();
-        public ObservableCollection<string> CitiesFrom
-        {
-            get
-            {
-                return citiesFrom;
-            }
-            set
-            {
-                citiesFrom = value;
-                RaisePropertyChanged(() => this.CitiesFrom);
-            }
-        }
-        ObservableCollection<string> citiesTo = new ObservableCollection<string>();
-        public ObservableCollection<string> CitiesTo
-        {
-            get
-            {
-                return citiesTo;
-            }
-            set
-            {
-                citiesTo = value;
-                RaisePropertyChanged(() => this.CitiesTo);
-            }
-        }
-        ObservableCollection<FavoriteModel> favoriteList = new ObservableCollection<FavoriteModel>();
-        public ObservableCollection<FavoriteModel> FavoriteList
-        {
-            get
-            {
-                return favoriteList;
-            }
-            set
-            {
-                favoriteList = value;
-                RaisePropertyChanged(() => this.FavoriteList);
-            }
+            RaisePropertyChanged(() => Properties);
         }
 
-        ICommand textChangedCountryFrom;
-        public ICommand TextChangedCountryFrom
+        private void TextChangedCityFrom()
         {
-            get
+            if (Properties[0].TextCityFrom.Length > -1)
             {
-                return textChangedCountryFrom
-                    ?? (textChangedCountryFrom = new ActionCommand(() =>
+                if (_dataOfFlightsModel.CitiesFrom != null)
+                {
+                    string[] s = _dataOfFlightsModel.CitiesFrom;
+                    List<string> result = new List<string>();
+                    foreach (string st in s)
                     {
-                        if (TextCountryFrom.Length > -1)
+                        if (st.Contains(Properties[0].TextCityFrom))
                         {
-                            string[] s = _countriesService.GetCountries();
-                            ObservableCollection<string> result = new ObservableCollection<string>();
-                            foreach (string st in s)
-                            {
-                                if (st.Contains(TextCountryFrom))
-                                {
-                                    result.Add(st);
-                                }
-                            }
-                            CountriesFrom = result;
+                            result.Add(st);
                         }
-                    }));
-            }
-        }
-        ICommand textChangedCountryTo;
-        public ICommand TextChangedCountryTo
-        {
-            get
-            {
-                return textChangedCountryTo
-                    ?? (textChangedCountryTo = new ActionCommand(() =>
-                    {
-                        if (TextCountryTo.Length > -1)
-                        {
-                            string[] s = _countriesService.GetCountries();
-                            ObservableCollection<string> result = new ObservableCollection<string>();
-                            foreach (string st in s)
-                            {
-                                if (st.Contains(TextCountryTo))
-                                {
-                                    result.Add(st);
-                                }
-                            }
-                            CountriesTo = result;
-                        }
-                    }));
-            }
-        }
-        ICommand textChangedCityFrom;
-        public ICommand TextChangedCityFrom
-        {
-            get
-            {
-                return textChangedCityFrom
-                    ?? (textChangedCityFrom = new ActionCommand(() =>
-                    {
-                        if (TextCityFrom.Length > -1)
-                        {
-                            if (mainPageModel.CitiesFrom != null)
-                            {
-                                string[] s = mainPageModel.CitiesFrom;
-                                ObservableCollection<string> result = new ObservableCollection<string>();
-                                foreach (string st in s)
-                                {
-                                    if (st.Contains(TextCityFrom))
-                                    {
-                                        result.Add(st);
-                                    }
-                                }
-                                CitiesFrom = result;
-                            }
-                        }
-                        else
-                            IsEnabledButtonFind = false;
-                    }));
-            }
-        }
-        ICommand textChangedCityTo;
-        public ICommand TextChangedCityTo
-        {
-            get
-            {
-                return textChangedCityTo
-                    ?? (textChangedCityTo = new ActionCommand(() =>
-                    {
-                        if (TextCityTo.Length > -1)
-                        {
-                            if (mainPageModel.CitiesTo != null)
-                            {
-                                string[] s = mainPageModel.CitiesTo;
-                                ObservableCollection<string> result = new ObservableCollection<string>();
-                                foreach (string st in s)
-                                {
-                                    if (st.Contains(TextCityTo))
-                                    {
-                                        result.Add(st);
-                                    }
-                                }
-                                CitiesTo = result;
-                            }
-                        }
-                        else
-                            IsEnabledButtonFind = false;
-                    }));
-            }
-        }
-        MvxCommand<string> chosenItemCountryFrom;
-        public ICommand ChosenItemCountryFrom
-        {
-            get { return chosenItemCountryFrom ?? (chosenItemCountryFrom = new MvxCommand<string>(arg => this.ChooseCountryFrom(arg))); }
-        }
-        public async void ChooseCountryFrom(string arg)
-        {
-            mainPageModel.CountryFrom = arg;
-            TextCityFrom = "";
-            IsEnabledCityFrom = false;
-            IsEnabledButtonFind = false;
-            CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
-            mainPageModel.CitiesFrom = await citiesService.GetCities(mainPageModel.CountryFrom);
-            if (IsEnabledCityTo == true)
-            {
-                IsEnabledChange = true;
+                    }
+                    Properties[0].CitiesFrom = new List<string>();
+                    Properties[0].CitiesFrom = result;
+                }
             }
             else
             {
-                IsEnabledChange = false;
+                Properties[0].IsEnabledButtonFind = false;
             }
-            status = IsEnabledChange;
-            if (mainPageModel.CitiesFrom != null && mainPageModel.CitiesFrom.Length != 0)
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void TextChangedCityTo()
+        {
+            if (Properties[0].TextCityTo.Length > -1)
             {
-                ObservableCollection<string> result = new ObservableCollection<string>();
-                foreach (string s in mainPageModel.CitiesFrom)
+                if (_dataOfFlightsModel.CitiesTo != null)
+                {
+                    string[] s = _dataOfFlightsModel.CitiesTo;
+                    List<string> result = new List<string>();
+                    foreach (string st in s)
+                    {
+                        if (st.Contains(Properties[0].TextCityTo))
+                        {
+                            result.Add(st);
+                        }
+                    }
+                    Properties[0].CitiesTo = new List<string>();
+                    Properties[0].CitiesTo = result;
+                }
+            }
+            else
+            {
+                Properties[0].IsEnabledButtonFind = false;
+            }
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void SetOneWay()
+        {
+            Properties[0].IsCheckedOneWay = true;
+            Properties[0].IsCheckedReturn = false;
+            _dataOfFlightsModel.ReturnWay = false;
+            Properties[0].IsEnabledDateReturn = false;
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void SetReturnWay()
+        {
+            Properties[0].IsCheckedOneWay = false;
+            Properties[0].IsCheckedReturn = true;
+            _dataOfFlightsModel.ReturnWay = true;
+            Properties[0].IsEnabledDateReturn = true;
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void FindFlights()
+        {
+            _dataOfFlightsModel.DateOneWay = _dateService.GetDate(Properties[0].DateOneWay);
+            _dataOfFlightsModel.DateReturn = _dateService.GetDate(Properties[0].DateReturn);
+            _dataOfFlightsModel.DateOneWayOffSet = _dateService.ConvertDate(Properties[0].DateOneWay);
+            _dataOfFlightsModel.DateReturnOffSet = _dateService.ConvertDate(Properties[0].DateReturn);
+            _dataOfFlightsModel.CitiesF = _jsonConverter.Serialize(_dataOfFlightsModel.CitiesFrom);
+            _dataOfFlightsModel.CitiesT = _jsonConverter.Serialize(_dataOfFlightsModel.CitiesTo);
+            _dataOfFlightsModel.IataF = _jsonConverter.Serialize(_dataOfFlightsModel.IataFrom);
+            _dataOfFlightsModel.IataT = _jsonConverter.Serialize(_dataOfFlightsModel.IataTo);
+            ShowViewModel<FlightsListViewModel>(_dataOfFlightsModel);
+        }
+
+        private void ClearFields()
+        {
+            _dataOfFlightsModel.CountryFrom = "";
+            _dataOfFlightsModel.CountryTo = "";
+            _dataOfFlightsModel.CityFrom = "";
+            _dataOfFlightsModel.CityTo = "";
+            Properties[0].TextCountryFrom = "";
+            Properties[0].TextCountryTo = "";
+            Properties[0].TextCityFrom = "";
+            Properties[0].TextCityTo = "";
+            Properties[0].PlaceholderTextCityFrom = "Choose city";
+            Properties[0].PlaceholderTextCityTo = "Choose city";
+            Properties[0].IsCheckedOneWay = true;
+            Properties[0].IsCheckedReturn = false;
+            Properties[0].IsEnabledDateReturn = false;
+            Properties[0].IsEnabledButtonFind = false;
+            Properties[0].IsEnabledCityFrom = false;
+            Properties[0].IsEnabledCityTo = false;
+            Properties[0].IsEnabledChange = false;
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void ChangeFields()
+        {
+            string value = Properties[0].TextCountryTo;
+            Properties[0].TextCountryTo = Properties[0].TextCountryFrom;
+            Properties[0].TextCountryFrom = value;
+            value = Properties[0].TextCityTo;
+            Properties[0].TextCityTo = Properties[0].TextCityFrom;
+            Properties[0].TextCityFrom = value;
+            _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
+            _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
+            _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
+            _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
+            string[] iata = _dataOfFlightsModel.IataFrom;
+            _dataOfFlightsModel.IataFrom = _dataOfFlightsModel.IataTo;
+            _dataOfFlightsModel.IataTo = iata;
+            string[] cities = _dataOfFlightsModel.CitiesFrom;
+            _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
+            _dataOfFlightsModel.CitiesTo = cities;
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void SetTheVisibilityIcon()
+        {
+            int number = Properties[0].PivotNumber;
+            if (number == 1 || number == 2)
+            {
+                Properties[0].IsEnabledChange = false;
+                Properties[0].IsEnabledClear = false;
+            }
+            else
+            {
+                Properties[0].IsEnabledChange = _status;
+                Properties[0].IsEnabledClear = true;
+            }
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private async void SelectCountryFromAsync(string arg)
+        {
+            _dataOfFlightsModel.CountryFrom = arg;
+            Properties[0].TextCityFrom = "";
+            Properties[0].IsEnabledCityFrom = false;
+            Properties[0].IsEnabledButtonFind = false;
+            CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
+            _dataOfFlightsModel.CitiesFrom = await citiesService.GetCities(_dataOfFlightsModel.CountryFrom);
+            if (Properties[0].IsEnabledCityTo == true)
+            {
+                Properties[0].IsEnabledChange = true;
+            }
+            else
+            {
+                Properties[0].IsEnabledChange = false;
+            }
+            _status = Properties[0].IsEnabledChange;
+            if (_dataOfFlightsModel.CitiesFrom != null && _dataOfFlightsModel.CitiesFrom.Length != 0)
+            {
+                List<string> result = new List<string>();
+                foreach (string s in _dataOfFlightsModel.CitiesFrom)
                 {
                     result.Add(s);
                 }
-                CitiesFrom = result;
-                IsEnabledCityFrom = true;
-                PlaceholderTextCityFrom = "Choose city";
+                Properties[0].CitiesFrom = result;
+                Properties[0].IsEnabledCityFrom = true;
+                Properties[0].PlaceholderTextCityFrom = "Choose city";
             }
             else
             {
-                CitiesFrom = null;
-                PlaceholderTextCityFrom = "No available airports";
-                IsEnabledCityFrom = false;
-                IsEnabledButtonFind = false;
+                Properties[0].CitiesFrom = null;
+                Properties[0].PlaceholderTextCityFrom = "No available airports";
+                Properties[0].IsEnabledCityFrom = false;
+                Properties[0].IsEnabledButtonFind = false;
             }
+            RaisePropertyChanged(() => Properties);
         }
-        MvxCommand<string> chosenItemCountryTo;
-        public ICommand ChosenItemCountryTo
+        
+        private async void SelectCountryToAsync(string arg)
         {
-            get { return chosenItemCountryTo ?? (chosenItemCountryTo = new MvxCommand<string>(arg => this.ChooseCountryTo(arg))); }
-        }
-        public async void ChooseCountryTo(string arg)
-        {
-            mainPageModel.CountryTo = arg;
-            TextCityTo = "";
-            IsEnabledCityTo = false;
-            IsEnabledButtonFind = false;
+            _dataOfFlightsModel.CountryTo = arg;
+            Properties[0].TextCityTo = "";
+            Properties[0].IsEnabledCityTo = false;
+            Properties[0].IsEnabledButtonFind = false;
             CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
-            mainPageModel.CitiesTo = await citiesService.GetCities(mainPageModel.CountryTo);
-            if (IsEnabledCityFrom == true)
+            _dataOfFlightsModel.CitiesTo = await citiesService.GetCities(_dataOfFlightsModel.CountryTo);
+            if (Properties[0].IsEnabledCityFrom == true)
             {
-                IsEnabledChange = true;
+                Properties[0].IsEnabledChange = true;
             }
             else
             {
-                IsEnabledChange = false;
+                Properties[0].IsEnabledChange = false;
             }
-            status = IsEnabledChange;
-            if (mainPageModel.CitiesTo != null && mainPageModel.CitiesTo.Length != 0)
+            _status = Properties[0].IsEnabledChange;
+            if (_dataOfFlightsModel.CitiesTo != null && _dataOfFlightsModel.CitiesTo.Length != 0)
             {
-                ObservableCollection<string> result = new ObservableCollection<string>();
-                foreach (string s in mainPageModel.CitiesTo)
+                List<string> result = new List<string>();
+                foreach (string s in _dataOfFlightsModel.CitiesTo)
                 {
                     result.Add(s);
                 }
-                CitiesTo = result;
-                IsEnabledCityTo = true;
-                PlaceholderTextCityTo = "Choose city";
+                Properties[0].CitiesTo = result;
+                Properties[0].IsEnabledCityTo = true;
+                Properties[0].PlaceholderTextCityTo = "Choose city";
             }
             else
             {
-                CitiesTo = null;
-                PlaceholderTextCityTo = "No available airports";
-                IsEnabledCityTo = false;
-                IsEnabledButtonFind = false;
+                Properties[0].CitiesTo = null;
+                Properties[0].PlaceholderTextCityTo = "No available airports";
+                Properties[0].IsEnabledCityTo = false;
+                Properties[0].IsEnabledButtonFind = false;
             }
+            RaisePropertyChanged(() => Properties);
         }
-        MvxCommand<string> chosenItemCityFrom;
-        public ICommand ChosenItemCityFrom
+        
+        private async void SelectCityFromAsync(string arg)
         {
-            get { return chosenItemCityFrom ?? (chosenItemCityFrom = new MvxCommand<string>(arg => this.ChooseCityFrom(arg))); }
-        }
-        public async void ChooseCityFrom(string arg)
-        {
-            mainPageModel.CityFrom = arg;
+            _dataOfFlightsModel.CityFrom = arg;
             IataService iataService = new IataService(_httpService, _jsonConverter);
-            mainPageModel.IataFrom = await iataService.GetIata(mainPageModel.CityFrom);
-            if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataFrom != null)
-                IsEnabledButtonFind = true;
+            _dataOfFlightsModel.IataFrom = await iataService.GetIata(_dataOfFlightsModel.CityFrom);
+            if (Properties[0].TextCityFrom.Length != 0 && Properties[0].TextCityTo.Length != 0 && _dataOfFlightsModel.IataFrom != null)
+                Properties[0].IsEnabledButtonFind = true;
             else
-                IsEnabledButtonFind = false;
+                Properties[0].IsEnabledButtonFind = false;
+            RaisePropertyChanged(() => Properties);
         }
-        MvxCommand<string> chosenItemCityTo;
-        public ICommand ChosenItemCityTo
+        
+        private async void SelectCityToAsync(string arg)
         {
-            get { return chosenItemCityTo ?? (chosenItemCityTo = new MvxCommand<string>(arg => this.ChooseCityTo(arg))); }
-        }
-        public async void ChooseCityTo(string arg)
-        {
-            mainPageModel.CityTo = arg;
+            _dataOfFlightsModel.CityTo = arg;
             IataService iataService = new IataService(_httpService, _jsonConverter);
-            mainPageModel.IataTo = await iataService.GetIata(mainPageModel.CityTo);
-            if (TextCityFrom.Length != 0 && TextCityTo.Length != 0 && mainPageModel.IataTo != null)
-                IsEnabledButtonFind = true;
+            _dataOfFlightsModel.IataTo = await iataService.GetIata(_dataOfFlightsModel.CityTo);
+            if (Properties[0].TextCityFrom.Length != 0 && Properties[0].TextCityTo.Length != 0 && _dataOfFlightsModel.IataTo != null)
+                Properties[0].IsEnabledButtonFind = true;
             else
-                IsEnabledButtonFind = false;
+                Properties[0].IsEnabledButtonFind = false;
+            RaisePropertyChanged(() => Properties);
         }
-        ICommand oneWayCommand;
-        public ICommand OneWayCommand
-        {
-            get
-            {
-                return oneWayCommand
-                    ?? (oneWayCommand = new ActionCommand(() =>
-                    {
-                        IsCheckedOneWay = true;
-                        IsCheckedReturn = false;
-                        mainPageModel.ReturnWay = false;
-                        IsEnabledDateReturn = false;
-                    }));
-            }
-        }
-        ICommand returnCommand;
-        public ICommand ReturnCommand
-        {
-            get
-            {
-                return returnCommand
-                    ?? (returnCommand = new ActionCommand(() =>
-                    {
-                        IsCheckedOneWay = false;
-                        IsCheckedReturn = true;
-                        mainPageModel.ReturnWay = true;
-                        IsEnabledDateReturn = true;
-                    }));
-            }
-        }
-        ICommand findCommand;
-        public ICommand FindCommand
-        {
-            get
-            {
-                return findCommand
-                    ?? (findCommand = new ActionCommand(() =>
-                    {
-                        mainPageModel.DateOneWay = _dateService.GetDate(DateOneWay);
-                        mainPageModel.DateReturn = _dateService.GetDate(DateReturn);
-                        mainPageModel.DateOneWayOffSet = _dateService.ConvertDate(DateOneWay);
-                        mainPageModel.DateReturnOffSet = _dateService.ConvertDate(DateReturn);
-                        mainPageModel.CitiesF = _jsonConverter.Serialize(mainPageModel.CitiesFrom);
-                        mainPageModel.CitiesT = _jsonConverter.Serialize(mainPageModel.CitiesTo);
-                        mainPageModel.IataF = _jsonConverter.Serialize(mainPageModel.IataFrom);
-                        mainPageModel.IataT = _jsonConverter.Serialize(mainPageModel.IataTo);
-                        ShowViewModel<FlightsListViewModel>(mainPageModel);
-                    }));
-            }
-        }
-        ICommand clearCommand;
-        public ICommand ClearCommand
-        {
-            get
-            {
-                return clearCommand
-                    ?? (clearCommand = new ActionCommand(() =>
-                    {
-                        mainPageModel.CountryFrom = "";
-                        mainPageModel.CountryTo = "";
-                        mainPageModel.CityFrom = "";
-                        mainPageModel.CityTo = "";
-                        TextCountryFrom = "";
-                        TextCountryTo = "";
-                        TextCityFrom = "";
-                        TextCityTo = "";
-                        PlaceholderTextCityFrom = "Choose city";
-                        PlaceholderTextCityTo = "Choose city";
-                        IsCheckedOneWay = true;
-                        IsCheckedReturn = false;
-                        IsEnabledDateReturn = false;
-                        IsEnabledButtonFind = false;
-                        IsEnabledCityFrom = false;
-                        IsEnabledCityTo = false;
-                        IsEnabledChange = false;
-                    }));
-            }
-        }
-        ICommand changeCommand;
-        public ICommand ChangeCommand
-        {
-            get
-            {
-                return changeCommand
-                    ?? (changeCommand = new ActionCommand(() =>
-                    {
-                        string value = TextCountryTo;
-                        TextCountryTo = TextCountryFrom;
-                        TextCountryFrom = value;
-                        value = TextCityTo;
-                        TextCityTo = TextCityFrom;
-                        TextCityFrom = value;
-                        mainPageModel.CountryFrom = TextCountryFrom;
-                        mainPageModel.CountryTo = TextCountryTo;
-                        mainPageModel.CityFrom = TextCityFrom;
-                        mainPageModel.CityTo = TextCityTo;
-                        string[] iata = mainPageModel.IataFrom;
-                        mainPageModel.IataFrom = mainPageModel.IataTo;
-                        mainPageModel.IataTo = iata;
-                        string[] cities = mainPageModel.CitiesFrom;
-                        mainPageModel.CitiesFrom = mainPageModel.CitiesTo;
-                        mainPageModel.CitiesTo = cities;
-                    }));
-            }
-        }
-        ICommand helpCommand;
-        public ICommand HelpCommand
-        {
-            get
-            {
-                return helpCommand
-                    ?? (helpCommand = new ActionCommand(() =>
-                    {
-                        ShowViewModel<HelpViewModel>();
-                    }));
-            }
-        }
-        ICommand pivotSelectionChanged;
-        public ICommand PivotSelectionChanged
-        {
-            get
-            {
-                return pivotSelectionChanged
-                    ?? (pivotSelectionChanged = new ActionCommand(() =>
-                    {
-                        int number = PivotNumber;
-                        if (number == 1 || number == 2)
-                        {
-                            IsEnabledChange = false;
-                            IsEnabledClear = false;
-                        }
-                        else
-                        {
-                            IsEnabledChange = status;
-                            IsEnabledClear = true;
-                        }
-                    }));
-            }
-        }
-        RelayCommand favoritesItemClick;
-        public ICommand FavoritesItemClick
-        {
-            get
-            {
-                if (favoritesItemClick == null)
-                {
-                    favoritesItemClick = new RelayCommand(param => this.ItemClick(param));
-                }
-                return favoritesItemClick;
-            }
-        }
-        public void ItemClick(object arg)
+
+        private void SetFlight(object arg)
         {
             FavoriteModel item = (FavoriteModel)arg;
-            TextCountryFrom = item.CountryFrom;
-            TextCountryTo = item.CountryTo;
-            TextCityFrom = item.CityFrom;
-            TextCityTo = item.CityTo;
-            mainPageModel.IataFrom = item.IataFrom;
-            mainPageModel.IataTo = item.IataTo;
-            mainPageModel.CitiesFrom = item.CitiesFrom;
-            mainPageModel.CitiesTo = item.CitiesTo;
-            mainPageModel.CountryFrom = TextCountryFrom;
-            mainPageModel.CountryTo = TextCountryTo;
-            mainPageModel.CityFrom = TextCityFrom;
-            mainPageModel.CityTo = TextCityTo;
-            mainPageModel.ReturnWay = false;
-            IsEnabledCityFrom = true;
-            IsEnabledCityTo = true;
-            IsEnabledButtonFind = true;
-            status = true;
-            PivotNumber = 0;
+            Properties[0].TextCountryFrom = item.CountryFrom;
+            Properties[0].TextCountryTo = item.CountryTo;
+            Properties[0].TextCityFrom = item.CityFrom;
+            Properties[0].TextCityTo = item.CityTo;
+            _dataOfFlightsModel.IataFrom = item.IataFrom;
+            _dataOfFlightsModel.IataTo = item.IataTo;
+            _dataOfFlightsModel.CitiesFrom = item.CitiesFrom;
+            _dataOfFlightsModel.CitiesTo = item.CitiesTo;
+            _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
+            _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
+            _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
+            _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
+            _dataOfFlightsModel.ReturnWay = false;
+            Properties[0].IsEnabledCityFrom = true;
+            Properties[0].IsEnabledCityTo = true;
+            Properties[0].IsEnabledButtonFind = true;
+            _status = true;
+            Properties[0].PivotNumber = 0;
+            RaisePropertyChanged(() => Properties);
         }
-
+  
         private T Load<T>(string fileName)
         {
             string txt;

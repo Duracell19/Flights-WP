@@ -1,7 +1,9 @@
-﻿namespace Flights.Infrastructure
+﻿using System.Collections.Generic;
+
+namespace Flights.Infrastructure
 {
     public interface ICountriesService
     {
-        string[] GetCountries();
+        List<string> GetCountries();
     }
 }

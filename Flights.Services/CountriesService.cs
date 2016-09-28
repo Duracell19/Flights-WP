@@ -1,10 +1,11 @@
 ﻿using Flights.Infrastructure;
+using System.Collections.Generic;
 
 namespace Flights.Services
 {
     public class CountriesService : ICountriesService
     {
-        private static string[] countries = new string[]
+        private static List<string> countries = new List<string>
    {
     "Afghanistan",
     "Albania",
@@ -232,7 +233,7 @@ namespace Flights.Services
     "Zambia",
     "Zimbabwe",
    };
-        public string[] GetCountries()
+        public List<string> GetCountries()
         {
             return countries;
         }

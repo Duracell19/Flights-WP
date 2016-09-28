@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Flights.Models
+﻿namespace Flights.Models
 {
-    public class MainPageModel
+    public class DataOfFilghtsModel
     {
         public string CountryFrom { get; set; }
         public string CountryTo { get; set; }
