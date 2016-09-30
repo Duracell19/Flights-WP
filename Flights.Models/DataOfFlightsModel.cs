@@ -1,15 +1,17 @@
-﻿namespace Flights.Models
+﻿using System.Collections.Generic;
+
+namespace Flights.Models
 {
-    public class DataOfFilghtsModel
-    {
+    public class DataOfFlightsModel
+    { 
         public string CountryFrom { get; set; }
         public string CountryTo { get; set; }
         public string CityFrom { get; set; }
         public string CityTo { get; set; }
-        public string[] IataFrom { get; set; }
-        public string[] IataTo { get; set; }
-        public string[] CitiesFrom { get; set; }
-        public string[] CitiesTo { get; set; }
+        public List<string> IataFrom { get; set; }
+        public List<string> IataTo { get; set; }
+        public List<string> CitiesFrom { get; set; }
+        public List<string> CitiesTo { get; set; }
         public string IataF { get; set; }
         public string IataT { get; set; }
         public string CitiesF { get; set; }

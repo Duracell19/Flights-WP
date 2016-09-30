@@ -6,7 +6,6 @@ using MvvmCross.Plugins.File;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace Flights.Core.ViewModels
 {
@@ -19,30 +18,19 @@ namespace Flights.Core.ViewModels
         private readonly IJsonConverterService _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private ObservableCollection<MainPagePropetiesModel> _properties;
-        private DataOfFilghtsModel _dataOfFlightsModel;
+        private ObservableCollection<MainPageCommandsModel> _commands;
+        private DataOfFlightsModel _dataOfFlightsModel;                    
         private bool _status;
-
-        public ICommand TextChangedCountryFromCommand { get; set; }
-        public ICommand TextChangedCountryToCommand { get; set; }
-        public ICommand TextChangedCityFromCommand { get; set; }
-        public ICommand TextChangedCityToCommand { get; set; }
-        public ICommand SelectCountryFromCommand { get; set; }
-        public ICommand SelectCountryToCommand { get; set; }
-        public ICommand SelectCityFromCommand { get; set; }
-        public ICommand SelectCityToCommand { get; set; }
-        public ICommand SetOneWayCommand { get; set; }
-        public ICommand SetReturnWayCommand { get; set; }
-        public ICommand FindFlightsCommand { get; set; }
-        public ICommand ChangeFieldsCommand { get; set; }
-        public ICommand ClearFieldsCommand { get; set; }
-        public ICommand SetTheVisibilityIconCommand { get; set; }
-        public ICommand ShowHelpInformationCommand { get; set; }
-        public ICommand SetFlightCommand { get; set; }
 
         public ObservableCollection<MainPagePropetiesModel> Properties
         {
             get { return _properties; }
             set { _properties = value; }
+        }
+        public ObservableCollection<MainPageCommandsModel> Commands
+        {
+            get { return _commands; }
+            set { _commands = value; }
         }
 
         public MainPageViewModel(ICountriesService countriesService,
@@ -59,9 +47,10 @@ namespace Flights.Core.ViewModels
             _jsonConverter = jsonConverter;
             _fileStore = fileStore;
 
-            _dataOfFlightsModel = new DataOfFilghtsModel();
+            _dataOfFlightsModel = new DataOfFlightsModel();
+            _commands = new ObservableCollection<MainPageCommandsModel>();
             _properties = new ObservableCollection<MainPagePropetiesModel>();
-
+            
             Properties.Add(new MainPagePropetiesModel
             {
                 TextCountryFrom = "",
@@ -78,23 +67,24 @@ namespace Flights.Core.ViewModels
                 CountriesFrom = _countriesService.GetCountries(),
                 CountriesTo = _countriesService.GetCountries(),
             });
+            Commands.Add(new MainPageCommandsModel { });
 
-            ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
-            TextChangedCountryFromCommand = new MvxCommand(TextChangedCountryFrom);
-            TextChangedCountryToCommand = new MvxCommand(TextChangedCountryTo);
-            TextChangedCityFromCommand = new MvxCommand(TextChangedCityFrom);
-            TextChangedCityToCommand = new MvxCommand(TextChangedCityTo);
-            SetOneWayCommand = new MvxCommand(SetOneWay);
-            SetReturnWayCommand = new MvxCommand(SetReturnWay);
-            FindFlightsCommand = new MvxCommand(FindFlights);
-            ChangeFieldsCommand = new MvxCommand(ChangeFields);
-            ClearFieldsCommand = new MvxCommand(ClearFields);
-            SetTheVisibilityIconCommand = new MvxCommand(SetTheVisibilityIcon);
-            SelectCountryFromCommand = new MvxCommand<string>(SelectCountryFromAsync);
-            SelectCountryToCommand = new MvxCommand<string>(SelectCountryToAsync);
-            SelectCityFromCommand = new MvxCommand<string>(SelectCityFromAsync);
-            SelectCityToCommand = new MvxCommand<string>(SelectCityToAsync);
-            SetFlightCommand = new MvxCommand<object>(SetFlight);
+            Commands[0].ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
+            Commands[0].TextChangedCountryFromCommand = new MvxCommand(TextChangedCountryFrom);
+            Commands[0].TextChangedCountryToCommand = new MvxCommand(TextChangedCountryTo);
+            Commands[0].TextChangedCityFromCommand = new MvxCommand(TextChangedCityFrom);
+            Commands[0].TextChangedCityToCommand = new MvxCommand(TextChangedCityTo);
+            Commands[0].SetOneWayCommand = new MvxCommand(SetOneWay);
+            Commands[0].SetReturnWayCommand = new MvxCommand(SetReturnWay);
+            Commands[0].FindFlightsCommand = new MvxCommand(FindFlights);
+            Commands[0].ChangeFieldsCommand = new MvxCommand(ChangeFields);
+            Commands[0].ClearFieldsCommand = new MvxCommand(ClearFields);
+            Commands[0].SetTheVisibilityIconCommand = new MvxCommand(SetTheVisibilityIcon);
+            Commands[0].SelectCountryFromCommand = new MvxCommand<string>(SelectCountryFromAsync);
+            Commands[0].SelectCountryToCommand = new MvxCommand<string>(SelectCountryToAsync);
+            Commands[0].SelectCityFromCommand = new MvxCommand<string>(SelectCityFromAsync);
+            Commands[0].SelectCityToCommand = new MvxCommand<string>(SelectCityToAsync);
+            Commands[0].SetFlightCommand = new MvxCommand<object>(SetFlight);
         }
 
         public override void Start()
@@ -102,7 +92,7 @@ namespace Flights.Core.ViewModels
             base.Start();
         }
 
-        public void Init(DataOfFilghtsModel dataOfFlightsModel)
+        public void Init(DataOfFlightsModel dataOfFlightsModel)
         {
             Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             if (Properties[0].FavoriteList == null)
@@ -118,10 +108,10 @@ namespace Flights.Core.ViewModels
                 Properties[0].TextCityTo = _dataOfFlightsModel.CityTo;
                 if (_dataOfFlightsModel.CitiesF != null)
                 {
-                    _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.CitiesF);
-                    _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.CitiesT);
-                    _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.IataF);
-                    _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<string[]>(dataOfFlightsModel.IataT);
+                    _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.CitiesF);
+                    _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.CitiesT);
+                    _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.IataF);
+                    _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.IataT);
                     Properties[0].DateOneWay = DateTimeOffset.Parse(_dataOfFlightsModel.DateOneWayOffSet);
                     if (_dataOfFlightsModel.ReturnWay)
                     {
@@ -183,7 +173,7 @@ namespace Flights.Core.ViewModels
             {
                 if (_dataOfFlightsModel.CitiesFrom != null)
                 {
-                    string[] s = _dataOfFlightsModel.CitiesFrom;
+                    List<string> s = _dataOfFlightsModel.CitiesFrom; 
                     List<string> result = new List<string>();
                     foreach (string st in s)
                     {
@@ -209,7 +199,7 @@ namespace Flights.Core.ViewModels
             {
                 if (_dataOfFlightsModel.CitiesTo != null)
                 {
-                    string[] s = _dataOfFlightsModel.CitiesTo;
+                    List<string> s = _dataOfFlightsModel.CitiesTo; 
                     List<string> result = new List<string>();
                     foreach (string st in s)
                     {
@@ -294,10 +284,10 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
             _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
             _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
-            string[] iata = _dataOfFlightsModel.IataFrom;
+            List<string> iata = _dataOfFlightsModel.IataFrom; 
             _dataOfFlightsModel.IataFrom = _dataOfFlightsModel.IataTo;
             _dataOfFlightsModel.IataTo = iata;
-            string[] cities = _dataOfFlightsModel.CitiesFrom;
+            List<string> cities = _dataOfFlightsModel.CitiesFrom;
             _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
             _dataOfFlightsModel.CitiesTo = cities;
             RaisePropertyChanged(() => Properties);
@@ -336,7 +326,7 @@ namespace Flights.Core.ViewModels
                 Properties[0].IsEnabledChange = false;
             }
             _status = Properties[0].IsEnabledChange;
-            if (_dataOfFlightsModel.CitiesFrom != null && _dataOfFlightsModel.CitiesFrom.Length != 0)
+            if (_dataOfFlightsModel.CitiesFrom != null && _dataOfFlightsModel.CitiesFrom.Count != 0) 
             {
                 List<string> result = new List<string>();
                 foreach (string s in _dataOfFlightsModel.CitiesFrom)
@@ -374,7 +364,7 @@ namespace Flights.Core.ViewModels
                 Properties[0].IsEnabledChange = false;
             }
             _status = Properties[0].IsEnabledChange;
-            if (_dataOfFlightsModel.CitiesTo != null && _dataOfFlightsModel.CitiesTo.Length != 0)
+            if (_dataOfFlightsModel.CitiesTo != null && _dataOfFlightsModel.CitiesTo.Count != 0) 
             {
                 List<string> result = new List<string>();
                 foreach (string s in _dataOfFlightsModel.CitiesTo)

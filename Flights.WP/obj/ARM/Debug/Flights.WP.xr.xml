@@ -24,6 +24,7 @@
     <RootPropertyPathName Name="ClearHelpFlyInformation" />
     <RootPropertyPathName Name="Properties" />
     <RootPropertyPathName Name="PivotNumber" />
+    <RootPropertyPathName Name="Commands" />
     <RootPropertyPathName Name="SetTheVisibilityIconCommand" />
     <RootPropertyPathName Name="FavoriteList" />
     <RootPropertyPathName Name="SetFlightCommand" />
@@ -61,7 +62,6 @@
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="SelectCountryFromCommand" />
     <RootPropertyPathName Name="TextChangedCountryFromCommand" />
-    <RootPropertyPathName Name="ShowHelpInformation" />
     <RootPropertyPathName Name="IsEnabledChange" />
     <RootPropertyPathName Name="ChangeFieldsCommand" />
     <RootPropertyPathName Name="IsEnabledClear" />

@@ -1,6 +1,7 @@
 ﻿using Flights.Infrastructure;
 using Flights.Models;
 using Flights.Services.DataModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Flights.Services
@@ -53,13 +54,13 @@ namespace Flights.Services
             return null;
         }
 
-        public async Task<FlyInfoModel[]> ConfigurationOfFlights(DataOfFilghtsModel dataOfFlightsModel, string date, bool returnWay)
+        public async Task<FlyInfoModel[]> ConfigurationOfFlights(DataOfFlightsModel dataOfFlightsModel, string date, bool returnWay)
         {
             int value = -1;
-            int count = dataOfFlightsModel.IataFrom.Length * dataOfFlightsModel.IataTo.Length;
+            int count = dataOfFlightsModel.IataFrom.Count * dataOfFlightsModel.IataTo.Count; //.Length
             FlyInfoModel[] flyInfoModel = new FlyInfoModel[count];
-            string[] from;
-            string[] to;
+            List<string> from; 
+            List<string> to; 
             if (returnWay != true)
             {
                 from = dataOfFlightsModel.IataFrom;
@@ -70,9 +71,9 @@ namespace Flights.Services
                 from = dataOfFlightsModel.IataTo;
                 to = dataOfFlightsModel.IataFrom;
             }
-            for (int i = 0; i < from.Length; i++)
+            for (int i = 0; i < from.Count; i++) 
             {
-                for (int j = 0; j < to.Length; j++)
+                for (int j = 0; j < to.Count; j++) 
                 {
                     value++;
                     flyInfoModel[value] = await GetFlightAsync(from[i], to[j], date);

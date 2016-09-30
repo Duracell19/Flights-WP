@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Flights.Infrastructure
+﻿namespace Flights.Infrastructure
 {
     public interface IJsonConverterService
     {

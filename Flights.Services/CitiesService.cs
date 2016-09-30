@@ -1,6 +1,7 @@
 ﻿using Flights.Infrastructure;
 using Flights.Services.DataModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,22 +18,20 @@ namespace Flights.Services
             _jsonConverter = jsonConverter;
         }
 
-        public async Task<string[]> GetCities(string country)
+        public async Task<List<string>> GetCities(string country)  //string[]
         {
             string uri = "http://flybaseapi.azurewebsites.net/odata/country('" + country + "')";
             string response = await _httpService.GetRequest(uri);
             if (response != null)
             {
                 AirportInfoDataModel airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);
-                string[] cities = new string[airportInfo.value.Count];
-                int i = 0;
+                List<string> cities = new List<string>(); 
                 foreach (var item in airportInfo.value)
                 {
-                    cities[i] = item.City;
-                    i++;
+                    cities.Add(item.City); 
                 }
-                Array.Sort(cities);
-                return cities.Distinct().ToArray();
+                cities.Sort();
+                return cities.Distinct().ToList(); 
             }
             return null;
         }

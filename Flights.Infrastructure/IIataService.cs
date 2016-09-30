@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Flights.Infrastructure
 {
     public interface IIataService
     {
-        Task<string[]> GetIata(string city);
+        Task<List<string>> GetIata(string city);
     }
 }

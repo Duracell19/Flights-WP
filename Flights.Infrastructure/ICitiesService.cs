@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Flights.Infrastructure
 {
     public interface ICitiesService
     {
-        Task<string[]> GetCities(string country);
+        Task<List<string>> GetCities(string country);
     }
 }

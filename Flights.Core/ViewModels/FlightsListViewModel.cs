@@ -2,6 +2,7 @@
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Flights.Core.ViewModels
         private readonly IMvxFileStore _fileStore;
         private readonly IFlightsService _flightsService;
         private int count = 0;
-        private DataOfFilghtsModel _dataOfFlightsModel;
+        private DataOfFlightsModel _dataOfFlightsModel;
         private ObservableCollection<FavoriteModel> _addFavorite;
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
@@ -66,7 +67,7 @@ namespace Flights.Core.ViewModels
             _jsonConverter = jsonConverter;
             _flightsService = flightsService;
             _fileStore = fileStore;
-            _dataOfFlightsModel = new DataOfFilghtsModel();
+            _dataOfFlightsModel = new DataOfFlightsModel();
             _addFavorite = new ObservableCollection<FavoriteModel>();
             _favoriteList = new ObservableCollection<FavoriteModel>();
             _flightsList = new ObservableCollection<FlyInfoShowModel>();
@@ -78,13 +79,13 @@ namespace Flights.Core.ViewModels
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public void Init(DataOfFilghtsModel dataOfFlightsModel)
+        public void Init(DataOfFlightsModel dataOfFlightsModel) 
         {
             _dataOfFlightsModel = dataOfFlightsModel; 
-            _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.CitiesF);
-            _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.CitiesT);
-            _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.IataF);
-            _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<string[]>(_dataOfFlightsModel.IataT);
+            _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.CitiesF);
+            _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.CitiesT);
+            _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.IataF);
+            _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<List<string >>(_dataOfFlightsModel.IataT);
             _favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
         }

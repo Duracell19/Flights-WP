@@ -1,5 +1,6 @@
 ﻿using Flights.Infrastructure;
 using Flights.Services.DataModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Flights.Services
@@ -15,19 +16,18 @@ namespace Flights.Services
             _jsonConverter = jsonConverter;
         }
 
-        public async Task<string[]> GetIata(string city)
+        public async Task<List<string>> GetIata(string city) //
         {
             string uri = "http://flybaseapi.azurewebsites.net/odata/code_iata('" + city + "')";
             string response = await _httpService.GetRequest(uri);
             if (response != null)
             {
                 AirportInfoDataModel airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);
-                string[] iata = new string[airportInfo.value.Count];
+                List<string> iata = new List<string>(); 
                 int i = 0;
                 foreach (var item in airportInfo.value)
                 {
-                    iata[i] = item.Iata;
-                    i++;
+                    iata.Add(item.Iata);
                 }
                 return iata;
             }
