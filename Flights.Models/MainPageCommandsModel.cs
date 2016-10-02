@@ -4,10 +4,6 @@ namespace Flights.Models
 {
     public class MainPageCommandsModel
     {
-        public ICommand TextChangedCountryFromCommand { get; set; }
-        public ICommand TextChangedCountryToCommand { get; set; }
-        public ICommand TextChangedCityFromCommand { get; set; }
-        public ICommand TextChangedCityToCommand { get; set; }
         public ICommand SelectCountryFromCommand { get; set; }
         public ICommand SelectCountryToCommand { get; set; }
         public ICommand SelectCityFromCommand { get; set; }
@@ -20,5 +16,6 @@ namespace Flights.Models
         public ICommand SetTheVisibilityIconCommand { get; set; }
         public ICommand ShowHelpInformationCommand { get; set; }
         public ICommand SetFlightCommand { get; set; }
+        public ICommand DeleteFavoriteFlightCommand { get; set; }
     }
 }

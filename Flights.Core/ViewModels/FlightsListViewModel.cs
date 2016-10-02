@@ -5,7 +5,6 @@ using MvvmCross.Plugins.File;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Flights.Core.ViewModels
@@ -124,10 +123,10 @@ namespace Flights.Core.ViewModels
         {
             FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateOneWay, false);
             FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateReturn, true);
-            await GenerateFlightsListAsync(_flyInfoOneWayModel, false);
-            if (_dataOfFlightsModel.ReturnWay == true)
+            GenerateFlightsList(_flyInfoOneWayModel, false);
+            if (_dataOfFlightsModel.ReturnWay)
             {
-                await GenerateFlightsListAsync(_flyInfoReturnModel, true);
+                GenerateFlightsList(_flyInfoReturnModel, true);
             }
             IsLoadProcess = false;
             if (_favoriteList != null)
@@ -136,17 +135,14 @@ namespace Flights.Core.ViewModels
             }
             else
             {
+                IsFlightAddedToFavorite = true;
                 _favoriteList = new ObservableCollection<FavoriteModel>();
             }
         }
 
-        private async Task GenerateFlightsListAsync(FlyInfoModel[] flyInfoModel, bool returnWay)
+        private void GenerateFlightsList(FlyInfoModel[] flyInfoModel, bool returnWay)
         {
-            string picture = "ms-appx:///Assets/fly.png";
-            if (returnWay == true)
-            {
-                picture = "ms-appx:///Assets/fly_return.png";
-            }
+            string picture = (returnWay) ? "ms-appx:///Assets/fly_return.png" : "ms-appx:///Assets/fly.png";
             foreach (var item in flyInfoModel)
             {
                 if (item == null)
@@ -194,7 +190,7 @@ namespace Flights.Core.ViewModels
 
         private void Save(string fileName, object obj)
         {
-            _fileStore.WriteFile(fileName, _jsonConverter.Serialize(_favoriteList));
+            _fileStore.WriteFile(fileName, _jsonConverter.Serialize(obj));
         }
     }
 }

@@ -57,10 +57,10 @@ namespace Flights.Services
         public async Task<FlyInfoModel[]> ConfigurationOfFlights(DataOfFlightsModel dataOfFlightsModel, string date, bool returnWay)
         {
             int value = -1;
-            int count = dataOfFlightsModel.IataFrom.Count * dataOfFlightsModel.IataTo.Count; //.Length
+            int count = dataOfFlightsModel.IataFrom.Count * dataOfFlightsModel.IataTo.Count;
             FlyInfoModel[] flyInfoModel = new FlyInfoModel[count];
-            List<string> from; 
-            List<string> to; 
+            List<string> from;
+            List<string> to;
             if (returnWay != true)
             {
                 from = dataOfFlightsModel.IataFrom;

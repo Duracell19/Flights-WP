@@ -27,6 +27,7 @@
     <RootPropertyPathName Name="Commands" />
     <RootPropertyPathName Name="SetTheVisibilityIconCommand" />
     <RootPropertyPathName Name="FavoriteList" />
+    <RootPropertyPathName Name="DeleteFavoriteFlightCommand" />
     <RootPropertyPathName Name="SetFlightCommand" />
     <RootPropertyPathName Name="CityTo" />
     <RootPropertyPathName Name="CityFrom" />
@@ -46,22 +47,17 @@
     <RootPropertyPathName Name="PlaceholderTextCityTo" />
     <RootPropertyPathName Name="IsEnabledCityTo" />
     <RootPropertyPathName Name="SelectCityToCommand" />
-    <RootPropertyPathName Name="Text" />
-    <RootPropertyPathName Name="TextChangedCityToCommand" />
     <RootPropertyPathName Name="TextCountryTo" />
     <RootPropertyPathName Name="CountriesTo" />
     <RootPropertyPathName Name="SelectCountryToCommand" />
-    <RootPropertyPathName Name="TextChangedCountryToCommand" />
     <RootPropertyPathName Name="TextCityFrom" />
     <RootPropertyPathName Name="CitiesFrom" />
     <RootPropertyPathName Name="PlaceholderTextCityFrom" />
     <RootPropertyPathName Name="IsEnabledCityFrom" />
     <RootPropertyPathName Name="SelectCityFromCommand" />
-    <RootPropertyPathName Name="TextChangedCityFromCommand" />
     <RootPropertyPathName Name="TextCountryFrom" />
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="SelectCountryFromCommand" />
-    <RootPropertyPathName Name="TextChangedCountryFromCommand" />
     <RootPropertyPathName Name="IsEnabledChange" />
     <RootPropertyPathName Name="ChangeFieldsCommand" />
     <RootPropertyPathName Name="IsEnabledClear" />
@@ -99,9 +95,8 @@
       <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Text" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="SelectedItem" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="Style" />
       <RootProperty Name="PlaceholderText" />

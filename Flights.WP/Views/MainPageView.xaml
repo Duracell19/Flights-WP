@@ -30,55 +30,43 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <AutoSuggestBox Name="countryFrom" Text="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesFrom}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="Choose country">
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
                                 <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="TextChanged">
-                                        <core:InvokeCommandAction Command ="{Binding Commands[0].TextChangedCountryFromCommand}" />
-                                    </core:EventTriggerBehavior> 
-                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}" CommandParameter="{Binding ElementName=countryFrom, Path=Text}"/>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}"/>
                                     </core:EventTriggerBehavior>
                                 </i:Interaction.Behaviors>
-                            </AutoSuggestBox>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <AutoSuggestBox Name="cityFrom" Text="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesFrom}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom, Mode=TwoWay}" IsEnabled="{Binding Properties[0].IsEnabledCityFrom, Mode=TwoWay}">
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom}" IsEnabled="{Binding Properties[0].IsEnabledCityFrom}">
                                 <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="TextChanged">
-                                        <core:InvokeCommandAction Command ="{Binding Commands[0].TextChangedCityFromCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}" CommandParameter="{Binding ElementName=cityFrom, Path=Text}"/>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}"/>
                                     </core:EventTriggerBehavior>
                                 </i:Interaction.Behaviors>
-                            </AutoSuggestBox>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="To" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <AutoSuggestBox Name="countryTo"  Text="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesTo}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="Choose country">
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
                                 <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="TextChanged">
-                                        <core:InvokeCommandAction Command ="{Binding Commands[0].TextChangedCountryToCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}" CommandParameter="{Binding ElementName=countryTo, Path=Text}"/>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}"/>
                                     </core:EventTriggerBehavior>
                                 </i:Interaction.Behaviors>
-                            </AutoSuggestBox>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <AutoSuggestBox Name="cityTo" Text="{Binding Properties[0].TextCityTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesTo}" Style="{StaticResource AutoSuggestBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityTo, Mode=TwoWay}" IsEnabled="{Binding Properties[0].IsEnabledCityTo, Mode=TwoWay}">
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCityTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityTo}" IsEnabled="{Binding Properties[0].IsEnabledCityTo}">
                                 <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="TextChanged">
-                                        <core:InvokeCommandAction Command ="{Binding Commands[0].TextChangedCityToCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                    <core:EventTriggerBehavior EventName="SuggestionChosen">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}" CommandParameter="{Binding ElementName=cityTo, Path=Text}"/>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}"/>
                                     </core:EventTriggerBehavior>
                                 </i:Interaction.Behaviors>
-                            </AutoSuggestBox>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}" Width="210"/>
@@ -102,8 +90,11 @@
             <Grid>
                 <ListView Name="favoriteList" ItemsSource="{Binding  Properties[0].FavoriteList}">
                     <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:EventTriggerBehavior EventName="Tapped">
                             <core:InvokeCommandAction Command="{Binding  Commands[0].SetFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="DoubleTapped">
+                            <core:InvokeCommandAction Command="{Binding  Commands[0].DeleteFavoriteFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                     <ListView.ItemTemplate>
