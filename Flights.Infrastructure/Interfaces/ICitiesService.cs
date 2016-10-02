@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Flights.Infrastructure
+namespace Flights.Infrastructure.Interfaces
 {
     public interface ICitiesService
     {

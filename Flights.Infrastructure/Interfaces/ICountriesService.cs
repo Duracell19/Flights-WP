@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Flights.Infrastructure
+namespace Flights.Infrastructure.Interfaces
 {
     public interface ICountriesService
     {

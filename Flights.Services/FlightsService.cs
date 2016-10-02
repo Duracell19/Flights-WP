@@ -1,4 +1,4 @@
-﻿using Flights.Infrastructure;
+﻿using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using Flights.Services.DataModels;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ namespace Flights.Services
     public class FlightsService: IFlightsService
     {
         readonly IHttpService _httpService;
-        readonly IJsonConverterService _jsonConverter;
+        readonly IJsonConverter _jsonConverter;
 
-        public FlightsService(IHttpService httpService, IJsonConverterService jsonConverter)
+        public FlightsService(IHttpService httpService, IJsonConverter jsonConverter)
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter; 

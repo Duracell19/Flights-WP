@@ -9,12 +9,11 @@
     <RootPropertyPathName Name="ShowFlightDetailsCommand" />
     <RootPropertyPathName Name="SelectedItem" />
     <RootPropertyPathName Name="Arrival" />
-    <RootPropertyPathName Name="Image2" />
     <RootPropertyPathName Name="Departure" />
     <RootPropertyPathName Name="To" />
     <RootPropertyPathName Name="From" />
     <RootPropertyPathName Name="Image1" />
-    <RootPropertyPathName Name="IsLoadProcess" />
+    <RootPropertyPathName Name="IsLoading" />
     <RootPropertyPathName Name="IsFlightAddedToFavorite" />
     <RootPropertyPathName Name="AddToFavoritesCommand" />
     <RootPropertyPathName Name="ShowHelpInformationCommand" />
@@ -124,6 +123,7 @@
     <RootType FullName="MvvmCross.WindowsCommon.Views.MvxWindowsPage">
       <RootProperty Name="Content" />
       <RootProperty Name="BottomAppBar" />
+      <RootProperty Name="NavigationCacheMode" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="RowDefinitions" />

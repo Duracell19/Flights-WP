@@ -1,4 +1,4 @@
-﻿using Flights.Infrastructure;
+﻿using Flights.Infrastructure.Interfaces;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

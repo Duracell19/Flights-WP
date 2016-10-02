@@ -7,7 +7,8 @@
     xmlns:views="using:MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core">
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    NavigationCacheMode="Required">
     <Pivot SelectedIndex="{Binding Properties[0].PivotNumber, Mode=TwoWay}">
         <i:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -105,12 +106,12 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding CountryFrom}" FontSize="18" Padding="10" Foreground="#FF959595"/>
-                                            <Image Source="{Binding Image2}"  Height="13" Width="13"/>
+                                            <Image Source="ms-appx:///Assets/direction.png"  Height="13" Width="13"/>
                                             <TextBlock Text="{Binding CountryTo}" FontSize="18" Padding="10" Foreground="#FF959595"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding CityFrom}" FontSize="15" Padding="10" Foreground="#FF959595"/>
-                                            <Image Source="{Binding Image2}"  Height="13" Width="13"/>
+                                            <Image Source="ms-appx:///Assets/direction.png"  Height="13" Width="13"/>
                                             <TextBlock Text="{Binding CityTo}" FontSize="15" Padding="10" Foreground="#FF959595"/>
                                         </StackPanel>
                                     </StackPanel>

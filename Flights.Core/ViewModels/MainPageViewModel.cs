@@ -1,4 +1,5 @@
 ﻿using Flights.Infrastructure;
+using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using Flights.Services;
 using MvvmCross.Core.ViewModels;
@@ -15,7 +16,7 @@ namespace Flights.Core.ViewModels
         private readonly ICitiesService _citiesService;
         private readonly IHttpService _httpService;
         private readonly IDateService _dateService;
-        private readonly IJsonConverterService _jsonConverter;
+        private readonly IJsonConverter _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private ObservableCollection<MainPagePropetiesModel> _properties;
         private ObservableCollection<MainPageCommandsModel> _commands;
@@ -37,7 +38,7 @@ namespace Flights.Core.ViewModels
             ICitiesService citiesService,
             IHttpService httpService,
             IDateService dateService,
-            IJsonConverterService jsonConverter,
+            IJsonConverter jsonConverter,
             IMvxFileStore fileStore)
         {
             _countriesService = countriesService;

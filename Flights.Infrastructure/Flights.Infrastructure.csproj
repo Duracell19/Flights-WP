@@ -42,15 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defines.cs" />
-    <Compile Include="ICitiesService.cs" />
-    <Compile Include="ICountriesService.cs" />
-    <Compile Include="IDateService.cs" />
-    <Compile Include="IFlightsService.cs" />
-    <Compile Include="IHttpService.cs" />
-    <Compile Include="IIataService.cs" />
-    <Compile Include="IJsonConverterService.cs" />
+    <Compile Include="Interfaces\ICitiesService.cs" />
+    <Compile Include="Interfaces\ICountriesService.cs" />
+    <Compile Include="Interfaces\IDateService.cs" />
+    <Compile Include="Interfaces\IFlightsService.cs" />
+    <Compile Include="Interfaces\IHttpService.cs" />
+    <Compile Include="Interfaces\IIataService.cs" />
+    <Compile Include="Interfaces\IJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -42,7 +42,7 @@
     <Compile Include="FlightsService.cs" />
     <Compile Include="HttpService.cs" />
     <Compile Include="IataService.cs" />
-    <Compile Include="JsonConverterService.cs" />
+    <Compile Include="JsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

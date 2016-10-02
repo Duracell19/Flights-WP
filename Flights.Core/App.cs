@@ -1,4 +1,4 @@
-using Flights.Infrastructure;
+using Flights.Infrastructure.Interfaces;
 using Flights.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -21,7 +21,7 @@ namespace Flights.Core
             Mvx.RegisterType<IIataService, IataService>();
             Mvx.RegisterType<IDateService, DateService>();
             Mvx.RegisterType<IFlightsService, FlightsService>();
-            Mvx.RegisterType<IJsonConverterService, JsonConverterService>();
+            Mvx.RegisterType<IJsonConverter, JsonConverter>();
             RegisterAppStart<ViewModels.MainPageViewModel>();
         }
     }

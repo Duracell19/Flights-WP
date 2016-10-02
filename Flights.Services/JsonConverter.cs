@@ -1,9 +1,9 @@
-﻿using Flights.Infrastructure;
+﻿using Flights.Infrastructure.Interfaces;
 using Newtonsoft.Json;
 
 namespace Flights.Services
 {
-    public class JsonConverterService : IJsonConverterService
+    public class JsonConverter : IJsonConverter
     {
         public T Deserialize<T>(string str)
         {

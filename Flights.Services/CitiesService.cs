@@ -1,6 +1,5 @@
-﻿using Flights.Infrastructure;
+﻿using Flights.Infrastructure.Interfaces;
 using Flights.Services.DataModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,15 +9,15 @@ namespace Flights.Services
     public class CitiesService : ICitiesService
     {
         readonly IHttpService _httpService;
-        readonly IJsonConverterService _jsonConverter;
+        readonly IJsonConverter _jsonConverter;
 
-        public CitiesService(IHttpService httpService, IJsonConverterService jsonConverter)
+        public CitiesService(IHttpService httpService, IJsonConverter jsonConverter)
         {
             _httpService = httpService;
             _jsonConverter = jsonConverter;
         }
 
-        public async Task<List<string>> GetCities(string country)  //string[]
+        public async Task<List<string>> GetCities(string country)  
         {
             string uri = "http://flybaseapi.azurewebsites.net/odata/country('" + country + "')";
             string response = await _httpService.GetRequest(uri);

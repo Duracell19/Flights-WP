@@ -1,4 +1,5 @@
 ﻿using Flights.Infrastructure;
+using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
@@ -11,7 +12,7 @@ namespace Flights.Core.ViewModels
 {
     public class FlightsListViewModel : MvxViewModel
     {
-        private readonly IJsonConverterService _jsonConverter;
+        private readonly IJsonConverter _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private readonly IFlightsService _flightsService;
         private int count = 0;
@@ -19,7 +20,7 @@ namespace Flights.Core.ViewModels
         private ObservableCollection<FavoriteModel> _addFavorite;
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
-        private bool _isLoadProcess = true;
+        private bool _isLoading = true;
         private bool _isFlightAddedToFavorite;
 
         public ICommand ShowFlightDetailsCommand { get; set; }
@@ -28,13 +29,13 @@ namespace Flights.Core.ViewModels
         public ICommand AddToFavoritesCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
-        public bool IsLoadProcess
+        public bool IsLoading
         {
-            get { return _isLoadProcess; }
+            get { return _isLoading; }
             set
             {
-                _isLoadProcess = value;
-                RaisePropertyChanged(() => IsLoadProcess);
+                _isLoading = value;
+                RaisePropertyChanged(() => IsLoading);
             }
         }
 
@@ -59,7 +60,7 @@ namespace Flights.Core.ViewModels
         }
 
         public FlightsListViewModel(
-            IJsonConverterService jsonConverter, 
+            IJsonConverter jsonConverter, 
             IMvxFileStore fileStore,
             IFlightsService flightsService)
         {
@@ -114,8 +115,7 @@ namespace Flights.Core.ViewModels
                 CountryTo = _dataOfFlightsModel.CountryTo,
                 IataFrom = _dataOfFlightsModel.IataFrom,
                 IataTo = _dataOfFlightsModel.IataTo,
-                Image1 = "ms-appx:///Assets/favorite.png",
-                Image2 = "ms-appx:///Assets/direction.png"
+                Image1 = "ms-appx:///Assets/favorite.png"
             });
         }
 
@@ -128,7 +128,7 @@ namespace Flights.Core.ViewModels
             {
                 GenerateFlightsList(_flyInfoReturnModel, true);
             }
-            IsLoadProcess = false;
+            IsLoading = false;
             if (_favoriteList != null)
             {
                 IsFlightAddedToFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
@@ -163,8 +163,7 @@ namespace Flights.Core.ViewModels
                         Departure = item.Departure.ElementAt(j),
                         To = item.To.ElementAt(j),
                         id = count,
-                        Image1 = picture,
-                        Image2 = "ms-appx:///Assets/direction.png"
+                        Image1 = picture
                     });
                     count++;
                 }
@@ -194,3 +193,4 @@ namespace Flights.Core.ViewModels
         }
     }
 }
+

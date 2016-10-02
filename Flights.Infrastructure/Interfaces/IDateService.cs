@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Flights.Infrastructure
+namespace Flights.Infrastructure.Interfaces
 {
     public interface IDateService
     {
