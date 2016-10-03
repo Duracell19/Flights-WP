@@ -2,7 +2,6 @@
 {
     public class FlyInfoShowModel
     {
-        public int id { get; set; }
         public string Arrival { get; set; }
         public string Duration { get; set; }
         public string ArrivalTerminal { get; set; }

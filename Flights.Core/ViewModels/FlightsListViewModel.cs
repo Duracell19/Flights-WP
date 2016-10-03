@@ -13,7 +13,6 @@ namespace Flights.Core.ViewModels
         private readonly IJsonConverter _jsonConverter;
         private readonly IFileStore _fileStore;
         private readonly IFlightsService _flightsService;
-        private int count = 0;
         private DataOfFlightsModel _dataOfFlightsModel;
         private ObservableCollection<FavoriteModel> _addFavorite;
         private ObservableCollection<FavoriteModel> _favoriteList;
@@ -57,7 +56,7 @@ namespace Flights.Core.ViewModels
         }
 
         public FlightsListViewModel(
-            IJsonConverter jsonConverter, 
+            IJsonConverter jsonConverter,
             IFileStore fileStore,
             IFlightsService flightsService)
         {
@@ -68,14 +67,14 @@ namespace Flights.Core.ViewModels
             _addFavorite = new ObservableCollection<FavoriteModel>();
             _favoriteList = new ObservableCollection<FavoriteModel>();
             _flightsList = new ObservableCollection<FlyInfoShowModel>();
-            
-            ShowFlightDetailsCommand = new MvxCommand<FlyInfoShowModel>(ShowFlyDetails);
+
+            ShowFlightDetailsCommand = new MvxCommand<object>(ShowFlyDetails);
             ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
             ShowAboutInforamtionCommand = new MvxCommand(() => ShowViewModel<AboutViewModel>());
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public void Init(string param) 
+        public void Init(string param)
         {
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
@@ -89,9 +88,13 @@ namespace Flights.Core.ViewModels
             IsFlightAddedToFavorite = false;
         }
 
-        private void ShowFlyDetails(FlyInfoShowModel c)
+        private void ShowFlyDetails(object arg)
         {
-            ShowViewModel<FlightsInfoViewModel>(FlightsList.ElementAt(c.id));
+            if (arg is FlyInfoShowModel)
+            {
+                FlyInfoShowModel item = (FlyInfoShowModel)arg;
+                ShowViewModel<FlightsInfoViewModel>(arg);
+            }
         }
 
         private void AddFavorite()
@@ -154,10 +157,8 @@ namespace Flights.Core.ViewModels
                         ThreadNumber = item.ThreadNumber.ElementAt(j),
                         Departure = item.Departure.ElementAt(j),
                         To = item.To.ElementAt(j),
-                        id = count,
                         Image1 = picture
                     });
-                    count++;
                 }
             }
         }

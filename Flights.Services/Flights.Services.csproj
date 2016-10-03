@@ -37,7 +37,13 @@
     <Compile Include="CitiesService.cs" />
     <Compile Include="CountriesService.cs" />
     <Compile Include="DataModels\AirportInfoDataModel.cs" />
+    <Compile Include="DataModels\CarrierInfoDataModel.cs" />
     <Compile Include="DataModels\FlightInfoDataModel.cs" />
+    <Compile Include="DataModels\FromInfoDataModel.cs" />
+    <Compile Include="DataModels\ThreadInfoDataModel.cs" />
+    <Compile Include="DataModels\ThreadsInfoDataModel.cs" />
+    <Compile Include="DataModels\ToInfoDataModel.cs" />
+    <Compile Include="DataModels\ValueDataModel.cs" />
     <Compile Include="FileStore.cs" />
     <Compile Include="FlightsService.cs" />
     <Compile Include="HttpService.cs" />

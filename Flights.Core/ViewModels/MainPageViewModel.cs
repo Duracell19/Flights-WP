@@ -18,7 +18,7 @@ namespace Flights.Core.ViewModels
         private readonly IFileStore _fileStore;
         private ObservableCollection<MainPagePropetiesModel> _properties;
         private ObservableCollection<MainPageCommandsModel> _commands;
-        private DataOfFlightsModel _dataOfFlightsModel;            
+        private DataOfFlightsModel _dataOfFlightsModel;
         private bool _status;
 
         public ObservableCollection<MainPagePropetiesModel> Properties
@@ -47,13 +47,13 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel = new DataOfFlightsModel();
             _commands = new ObservableCollection<MainPageCommandsModel>();
             _properties = new ObservableCollection<MainPagePropetiesModel>();
-            
+
             Properties.Add(new MainPagePropetiesModel
             {
                 PlaceholderTextCityFrom = "Choose city",
                 PlaceholderTextCityTo = "Choose city",
-                DateOneWay = DateTimeOffset.Now,
-                DateReturn = DateTimeOffset.Now,
+                DateOneWay = DateTime.Now,
+                DateReturn = DateTime.Now,
                 IsEnabledButtonFind = false,
                 IsEnabledCityFrom = false,
                 IsEnabledCityTo = false,
@@ -94,7 +94,7 @@ namespace Flights.Core.ViewModels
             }
             RaisePropertyChanged(() => Properties);
         }
-       
+
         private void SetOneWay()
         {
             Properties[0].IsCheckedOneWay = true;
@@ -123,10 +123,6 @@ namespace Flights.Core.ViewModels
 
         private void ClearFields()
         {
-            _dataOfFlightsModel.CountryFrom = "";
-            _dataOfFlightsModel.CountryTo = "";
-            _dataOfFlightsModel.CityFrom = "";
-            _dataOfFlightsModel.CityTo = "";
             Properties[0].IsCheckedOneWay = true;
             Properties[0].IsCheckedReturn = false;
             Properties[0].IsEnabledDateReturn = false;
@@ -148,6 +144,13 @@ namespace Flights.Core.ViewModels
             string value = Properties[0].TextCountryTo;
             Properties[0].TextCountryTo = Properties[0].TextCountryFrom;
             Properties[0].TextCountryFrom = value;
+            List<string> cities = _dataOfFlightsModel.CitiesFrom;
+            _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
+            _dataOfFlightsModel.CitiesTo = cities;
+            RaisePropertyChanged(() => Properties);
+            List<string> iata = _dataOfFlightsModel.IataFrom;
+            _dataOfFlightsModel.IataFrom = _dataOfFlightsModel.IataTo;
+            _dataOfFlightsModel.IataTo = iata;
             value = Properties[0].TextCityTo;
             Properties[0].TextCityTo = Properties[0].TextCityFrom;
             Properties[0].TextCityFrom = value;
@@ -155,12 +158,6 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
             _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
             _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
-            List<string> iata = _dataOfFlightsModel.IataFrom; 
-            _dataOfFlightsModel.IataFrom = _dataOfFlightsModel.IataTo;
-            _dataOfFlightsModel.IataTo = iata;
-            List<string> cities = _dataOfFlightsModel.CitiesFrom;
-            _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
-            _dataOfFlightsModel.CitiesTo = cities;
             RaisePropertyChanged(() => Properties);
         }
 
@@ -272,7 +269,7 @@ namespace Flights.Core.ViewModels
 
         private void SetFlight(object arg)
         {
-            if(arg is FavoriteModel)
+            if (arg is FavoriteModel)
             {
                 FavoriteModel item = (FavoriteModel)arg;
                 Properties[0].TextCountryFrom = item.CountryFrom;
