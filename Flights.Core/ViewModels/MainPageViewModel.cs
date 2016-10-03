@@ -3,7 +3,6 @@ using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using Flights.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.File;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +15,7 @@ namespace Flights.Core.ViewModels
         private readonly ICitiesService _citiesService;
         private readonly IHttpService _httpService;
         private readonly IJsonConverter _jsonConverter;
-        private readonly IMvxFileStore _fileStore;
+        private readonly IFileStore _fileStore;
         private ObservableCollection<MainPagePropetiesModel> _properties;
         private ObservableCollection<MainPageCommandsModel> _commands;
         private DataOfFlightsModel _dataOfFlightsModel;            
@@ -37,7 +36,7 @@ namespace Flights.Core.ViewModels
             ICitiesService citiesService,
             IHttpService httpService,
             IJsonConverter jsonConverter,
-            IMvxFileStore fileStore)
+            IFileStore fileStore)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
@@ -88,7 +87,7 @@ namespace Flights.Core.ViewModels
 
         public void Init()
         {
-            Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            Properties[0].FavoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             if (Properties[0].FavoriteList == null)
             {
                 Properties[0].FavoriteList = new ObservableCollection<FavoriteModel>();
@@ -184,7 +183,7 @@ namespace Flights.Core.ViewModels
 
         private void UpdateFavoriteList()
         {
-            Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            Properties[0].FavoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             if (Properties[0].FavoriteList == null)
             {
                 Properties[0].FavoriteList = new ObservableCollection<FavoriteModel>();
@@ -304,26 +303,10 @@ namespace Flights.Core.ViewModels
             {
                 FavoriteModel item = (FavoriteModel)arg;
                 Properties[0].FavoriteList.Remove(item);
-                Save(Defines.FAVORITE_LIST_FILE_NAME, Properties[0].FavoriteList);
+                _fileStore.Save(Defines.FAVORITE_LIST_FILE_NAME, Properties[0].FavoriteList);
                 Properties[0].PivotNumber = 1;
                 RaisePropertyChanged(() => Properties);
             }
-        }
-
-        private T Load<T>(string fileName)
-        {
-            string txt;
-            T result = default(T);
-            if (_fileStore.TryReadTextFile(fileName, out txt))
-            {
-                return _jsonConverter.Deserialize<T>(txt);
-            }
-            return result;
-        }
-        
-        private void Save(string fileName, object obj)
-        {
-            _fileStore.WriteFile(fileName, (string)_jsonConverter.Serialize(obj));
         }
     }
 }

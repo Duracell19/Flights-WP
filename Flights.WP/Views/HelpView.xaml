@@ -33,6 +33,10 @@
                     <AppBarButton Label="favorite" Icon="Favorite"/>
                     <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding FavoriteHelpFlyInformation}"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Label="refresh" Icon="Refresh"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding RefreshHelpFlyinformation}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Column="1"  Grid.Row="1">

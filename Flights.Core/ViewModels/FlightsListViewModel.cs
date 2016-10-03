@@ -2,7 +2,6 @@
 using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.File;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -12,7 +11,7 @@ namespace Flights.Core.ViewModels
     public class FlightsListViewModel : MvxViewModel
     {
         private readonly IJsonConverter _jsonConverter;
-        private readonly IMvxFileStore _fileStore;
+        private readonly IFileStore _fileStore;
         private readonly IFlightsService _flightsService;
         private int count = 0;
         private DataOfFlightsModel _dataOfFlightsModel;
@@ -59,7 +58,7 @@ namespace Flights.Core.ViewModels
 
         public FlightsListViewModel(
             IJsonConverter jsonConverter, 
-            IMvxFileStore fileStore,
+            IFileStore fileStore,
             IFlightsService flightsService)
         {
             _jsonConverter = jsonConverter;
@@ -79,14 +78,14 @@ namespace Flights.Core.ViewModels
         public void Init(string param) 
         {
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
-            _favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
         }
 
         private void AddToFavorites()
         {
             AddFavorite();
-            Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
+            _fileStore.Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
             IsFlightAddedToFavorite = false;
         }
 
@@ -167,22 +166,6 @@ namespace Flights.Core.ViewModels
         {
             return model.CountryFrom == _dataOfFlightsModel.CountryFrom && model.CityFrom == _dataOfFlightsModel.CityFrom
                    && model.CountryTo == _dataOfFlightsModel.CountryTo && model.CityTo == _dataOfFlightsModel.CityTo;
-        }
-
-        private T Load<T>(string fileName)
-        {
-            string txt;
-            T result = default(T);
-            if(_fileStore.TryReadTextFile(fileName, out txt))
-            {
-                return _jsonConverter.Deserialize<T>(txt);
-            }
-            return result;
-        }
-
-        private void Save(string fileName, object obj)
-        {
-            _fileStore.WriteFile(fileName, (string)_jsonConverter.Serialize(obj));
         }
     }
 }

@@ -18,6 +18,7 @@
     <RootPropertyPathName Name="AddToFavoritesCommand" />
     <RootPropertyPathName Name="ShowHelpInformationCommand" />
     <RootPropertyPathName Name="ShowAboutInforamtionCommand" />
+    <RootPropertyPathName Name="RefreshHelpFlyinformation" />
     <RootPropertyPathName Name="FavoriteHelpFlyInformation" />
     <RootPropertyPathName Name="ChangeHelpFlyInformation" />
     <RootPropertyPathName Name="ClearHelpFlyInformation" />

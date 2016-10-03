@@ -21,6 +21,7 @@ namespace Flights.Core
             Mvx.RegisterType<IIataService, IataService>();
             Mvx.RegisterType<IFlightsService, FlightsService>();
             Mvx.RegisterType<IJsonConverter, JsonConverter>();
+            Mvx.RegisterType<IFileStore, FileStore>();
             RegisterAppStart<ViewModels.MainPageViewModel>();
         }
     }

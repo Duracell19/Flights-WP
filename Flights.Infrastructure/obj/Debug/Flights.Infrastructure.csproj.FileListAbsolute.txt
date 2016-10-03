@@ -10,3 +10,5 @@ D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\bin\Debug\Flights
 D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\obj\Debug\Flights.Infrastructure.csprojResolveAssemblyReference.cache
 D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\obj\Debug\Flights.Infrastructure.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\obj\Debug\Flights.Infrastructure.pdb
+D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\bin\Debug\MvvmCross.Platform.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\bin\Debug\MvvmCross.Plugins.File.dll

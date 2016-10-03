@@ -19,3 +19,5 @@ D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Servi
 D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Services.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.Services\obj\Debug\Flights.Services.pdb
 D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\Windows.winmd
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\MvvmCross.Platform.dll
+D:\MyProject\WP\Flights\Flights Project\Flights.Services\bin\Debug\MvvmCross.Plugins.File.dll

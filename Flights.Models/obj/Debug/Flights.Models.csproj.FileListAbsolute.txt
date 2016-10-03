@@ -10,3 +10,4 @@ D:\MyProject\WP\Flights\Flights Project\Flights.Models\obj\Debug\Flights.Models.
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\bin\Debug\Newtonsoft.Json.dll
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\bin\Debug\Newtonsoft.Json.xml
 D:\MyProject\WP\Flights\Flights Project\Flights.Models\obj\Debug\Flights.Models.csprojResolveAssemblyReference.cache
+D:\MyProject\WP\Flights\Flights Project\Flights.Models\bin\Debug\MvvmCross.Platform.dll

@@ -44,13 +44,26 @@
     <Compile Include="Defines.cs" />
     <Compile Include="Interfaces\ICitiesService.cs" />
     <Compile Include="Interfaces\ICountriesService.cs" />
+    <Compile Include="Interfaces\IFileStore.cs" />
     <Compile Include="Interfaces\IFlightsService.cs" />
     <Compile Include="Interfaces\IHttpService.cs" />
     <Compile Include="Interfaces\IIataService.cs" />
     <Compile Include="Interfaces\IJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
