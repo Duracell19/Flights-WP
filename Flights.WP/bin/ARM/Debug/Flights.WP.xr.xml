@@ -57,6 +57,8 @@
     <RootPropertyPathName Name="TextCountryFrom" />
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="SelectCountryFromCommand" />
+    <RootPropertyPathName Name="IsEnabledRefresh" />
+    <RootPropertyPathName Name="UpdateFavoriteListCommand" />
     <RootPropertyPathName Name="IsEnabledChange" />
     <RootPropertyPathName Name="ChangeFieldsCommand" />
     <RootPropertyPathName Name="IsEnabledClear" />

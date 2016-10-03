@@ -17,5 +17,6 @@ namespace Flights.Models
         public ICommand ShowHelpInformationCommand { get; set; }
         public ICommand SetFlightCommand { get; set; }
         public ICommand DeleteFavoriteFlightCommand { get; set; }
+        public ICommand UpdateFavoriteListCommand { get; set; }
     }
 }

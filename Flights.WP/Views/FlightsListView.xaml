@@ -50,7 +50,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Button Grid.Column="1" Grid.Row="1" Content="Enter other data" Style="{StaticResource ButtonStyle}" Command="{Binding BackCommand}"/>
     </Grid>
 
     <Page.BottomAppBar>

@@ -3,7 +3,6 @@ using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.File;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -27,7 +26,6 @@ namespace Flights.Core.ViewModels
         public ICommand ShowHelpInformationCommand { get; set; }
         public ICommand ShowAboutInforamtionCommand { get; set; }
         public ICommand AddToFavoritesCommand { get; set; }
-        public ICommand BackCommand { get; set; }
 
         public bool IsLoading
         {
@@ -72,20 +70,15 @@ namespace Flights.Core.ViewModels
             _favoriteList = new ObservableCollection<FavoriteModel>();
             _flightsList = new ObservableCollection<FlyInfoShowModel>();
             
-            BackCommand = new MvxCommand(() => ShowViewModel<MainPageViewModel>(_dataOfFlightsModel));
             ShowFlightDetailsCommand = new MvxCommand<FlyInfoShowModel>(ShowFlyDetails);
             ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
             ShowAboutInforamtionCommand = new MvxCommand(() => ShowViewModel<AboutViewModel>());
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public void Init(DataOfFlightsModel dataOfFlightsModel) 
+        public void Init(string param) 
         {
-            _dataOfFlightsModel = dataOfFlightsModel; 
-            _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.CitiesF);
-            _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.CitiesT);
-            _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<List<string>>(_dataOfFlightsModel.IataF);
-            _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<List<string >>(_dataOfFlightsModel.IataT);
+            _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
         }
@@ -189,7 +182,7 @@ namespace Flights.Core.ViewModels
 
         private void Save(string fileName, object obj)
         {
-            _fileStore.WriteFile(fileName, _jsonConverter.Serialize(obj));
+            _fileStore.WriteFile(fileName, (string)_jsonConverter.Serialize(obj));
         }
     }
 }

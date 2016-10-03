@@ -147,6 +147,7 @@
         <CommandBar>
             <AppBarButton IsEnabled="{Binding Properties[0].IsEnabledClear}" Label="Clear" Icon="Clear" Command="{Binding Commands[0].ClearFieldsCommand}"/>
             <AppBarButton IsEnabled="{Binding Properties[0].IsEnabledChange}" Label="Change" Icon="Sort" Command="{Binding Commands[0].ChangeFieldsCommand}"/>
+            <AppBarButton IsEnabled="{Binding Properties[0].IsEnabledRefresh}" Label="Refresh" Icon="Refresh" Command="{Binding Commands[0].UpdateFavoriteListCommand}"/>
             <AppBarButton Label="Help" Icon="Help" Command="{Binding Commands[0].ShowHelpInformationCommand}"/>
         </CommandBar>
     </Page.BottomAppBar>

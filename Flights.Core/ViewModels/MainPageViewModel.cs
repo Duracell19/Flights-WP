@@ -15,12 +15,11 @@ namespace Flights.Core.ViewModels
         private readonly ICountriesService _countriesService;
         private readonly ICitiesService _citiesService;
         private readonly IHttpService _httpService;
-        private readonly IDateService _dateService;
         private readonly IJsonConverter _jsonConverter;
         private readonly IMvxFileStore _fileStore;
         private ObservableCollection<MainPagePropetiesModel> _properties;
         private ObservableCollection<MainPageCommandsModel> _commands;
-        private DataOfFlightsModel _dataOfFlightsModel;                    
+        private DataOfFlightsModel _dataOfFlightsModel;            
         private bool _status;
 
         public ObservableCollection<MainPagePropetiesModel> Properties
@@ -37,14 +36,12 @@ namespace Flights.Core.ViewModels
         public MainPageViewModel(ICountriesService countriesService,
             ICitiesService citiesService,
             IHttpService httpService,
-            IDateService dateService,
             IJsonConverter jsonConverter,
             IMvxFileStore fileStore)
         {
             _countriesService = countriesService;
             _citiesService = citiesService;
             _httpService = httpService;
-            _dateService = dateService;
             _jsonConverter = jsonConverter;
             _fileStore = fileStore;
 
@@ -74,6 +71,7 @@ namespace Flights.Core.ViewModels
             Commands[0].FindFlightsCommand = new MvxCommand(FindFlights);
             Commands[0].ChangeFieldsCommand = new MvxCommand(ChangeFields);
             Commands[0].ClearFieldsCommand = new MvxCommand(ClearFields);
+            Commands[0].UpdateFavoriteListCommand = new MvxCommand(UpdateFavoriteList);
             Commands[0].SetTheVisibilityIconCommand = new MvxCommand(SetTheVisibilityIcon);
             Commands[0].SelectCountryFromCommand = new MvxCommand(SelectCountryFromAsync);
             Commands[0].SelectCountryToCommand = new MvxCommand(SelectCountryToAsync);
@@ -88,39 +86,12 @@ namespace Flights.Core.ViewModels
             base.Start();
         }
 
-        public void Init(DataOfFlightsModel dataOfFlightsModel)
+        public void Init()
         {
             Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             if (Properties[0].FavoriteList == null)
             {
                 Properties[0].FavoriteList = new ObservableCollection<FavoriteModel>();
-            }
-            if (dataOfFlightsModel.CountryFrom != null)
-            {
-                _dataOfFlightsModel = dataOfFlightsModel;
-                Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryFrom;
-                Properties[0].TextCountryTo = _dataOfFlightsModel.CountryTo;
-                Properties[0].TextCityFrom = _dataOfFlightsModel.CityFrom;
-                Properties[0].TextCityTo = _dataOfFlightsModel.CityTo;
-                if (_dataOfFlightsModel.CitiesF != null)
-                {
-                    _dataOfFlightsModel.CitiesFrom = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.CitiesF);
-                    _dataOfFlightsModel.CitiesTo = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.CitiesT);
-                    _dataOfFlightsModel.IataFrom = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.IataF);
-                    _dataOfFlightsModel.IataTo = _jsonConverter.Deserialize<List<string>>(dataOfFlightsModel.IataT);
-                    Properties[0].DateOneWay = DateTimeOffset.Parse(_dataOfFlightsModel.DateOneWayOffSet);
-                    if (_dataOfFlightsModel.ReturnWay)
-                    {
-                        Properties[0].IsEnabledDateReturn = true;
-                        Properties[0].DateReturn = DateTimeOffset.Parse(_dataOfFlightsModel.DateReturnOffSet);
-                        Properties[0].IsCheckedReturn = true;
-                        Properties[0].IsCheckedOneWay = false;
-                    }
-                    Properties[0].IsEnabledCityFrom = true;
-                    Properties[0].IsEnabledCityTo = true;
-                    Properties[0].IsEnabledButtonFind = true;
-                    _status = true;
-                }
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -145,15 +116,10 @@ namespace Flights.Core.ViewModels
 
         private void FindFlights()
         {
-            _dataOfFlightsModel.DateOneWay = _dateService.GetDate(Properties[0].DateOneWay);
-            _dataOfFlightsModel.DateReturn = _dateService.GetDate(Properties[0].DateReturn);
-            _dataOfFlightsModel.DateOneWayOffSet = _dateService.ConvertDate(Properties[0].DateOneWay);
-            _dataOfFlightsModel.DateReturnOffSet = _dateService.ConvertDate(Properties[0].DateReturn);
-            _dataOfFlightsModel.CitiesF = _jsonConverter.Serialize(_dataOfFlightsModel.CitiesFrom);
-            _dataOfFlightsModel.CitiesT = _jsonConverter.Serialize(_dataOfFlightsModel.CitiesTo);
-            _dataOfFlightsModel.IataF = _jsonConverter.Serialize(_dataOfFlightsModel.IataFrom);
-            _dataOfFlightsModel.IataT = _jsonConverter.Serialize(_dataOfFlightsModel.IataTo);
-            ShowViewModel<FlightsListViewModel>(_dataOfFlightsModel);
+            _dataOfFlightsModel.DateOneWay = Properties[0].DateOneWay.ToString("yyyy-MM-dd");
+            _dataOfFlightsModel.DateReturn = Properties[0].DateReturn.ToString("yyyy-MM-dd");
+            string param = _jsonConverter.Serialize(_dataOfFlightsModel);
+            ShowViewModel<FlightsListViewModel>(new { param });
         }
 
         private void ClearFields()
@@ -202,6 +168,7 @@ namespace Flights.Core.ViewModels
         private void SetTheVisibilityIcon()
         {
             int number = Properties[0].PivotNumber;
+            Properties[0].IsEnabledRefresh = (number == 1) ? true : false;
             if (number == 1 || number == 2)
             {
                 Properties[0].IsEnabledChange = false;
@@ -211,6 +178,16 @@ namespace Flights.Core.ViewModels
             {
                 Properties[0].IsEnabledChange = _status;
                 Properties[0].IsEnabledClear = true;
+            }
+            RaisePropertyChanged(() => Properties);
+        }
+
+        private void UpdateFavoriteList()
+        {
+            Properties[0].FavoriteList = Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            if (Properties[0].FavoriteList == null)
+            {
+                Properties[0].FavoriteList = new ObservableCollection<FavoriteModel>();
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -346,7 +323,7 @@ namespace Flights.Core.ViewModels
         
         private void Save(string fileName, object obj)
         {
-            _fileStore.WriteFile(fileName, _jsonConverter.Serialize(obj));
+            _fileStore.WriteFile(fileName, (string)_jsonConverter.Serialize(obj));
         }
     }
 }

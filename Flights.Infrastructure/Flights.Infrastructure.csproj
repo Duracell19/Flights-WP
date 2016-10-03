@@ -44,7 +44,6 @@
     <Compile Include="Defines.cs" />
     <Compile Include="Interfaces\ICitiesService.cs" />
     <Compile Include="Interfaces\ICountriesService.cs" />
-    <Compile Include="Interfaces\IDateService.cs" />
     <Compile Include="Interfaces\IFlightsService.cs" />
     <Compile Include="Interfaces\IHttpService.cs" />
     <Compile Include="Interfaces\IIataService.cs" />
