@@ -2,8 +2,10 @@
 using Flights.Infrastructure.Interfaces;
 using Flights.Models;
 using MvvmCross.Core.ViewModels;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Flights.Core.ViewModels
@@ -14,11 +16,10 @@ namespace Flights.Core.ViewModels
         private readonly IFileStore _fileStore;
         private readonly IFlightsService _flightsService;
         private DataOfFlightsModel _dataOfFlightsModel;
-        private ObservableCollection<FavoriteModel> _addFavorite;
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
-        private bool _isLoading = true;
-        private bool _isFlightAddedToFavorite;
+        private bool _isLoading;
+        private bool _isFlightAlreadyInFavorite;
 
         public ICommand ShowFlightDetailsCommand { get; set; }
         public ICommand ShowHelpInformationCommand { get; set; }
@@ -35,13 +36,13 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        public bool IsFlightAddedToFavorite
+        public bool IsFlightAlreadyInFavorite
         {
-            get { return _isFlightAddedToFavorite; }
+            get { return _isFlightAlreadyInFavorite; }
             set
             {
-                _isFlightAddedToFavorite = value;
-                RaisePropertyChanged(() => IsFlightAddedToFavorite);
+                _isFlightAlreadyInFavorite = value;
+                RaisePropertyChanged(() => IsFlightAlreadyInFavorite);
             }
         }
 
@@ -63,9 +64,6 @@ namespace Flights.Core.ViewModels
             _jsonConverter = jsonConverter;
             _flightsService = flightsService;
             _fileStore = fileStore;
-            _dataOfFlightsModel = new DataOfFlightsModel();
-            _addFavorite = new ObservableCollection<FavoriteModel>();
-            _favoriteList = new ObservableCollection<FavoriteModel>();
             _flightsList = new ObservableCollection<FlyInfoShowModel>();
 
             ShowFlightDetailsCommand = new MvxCommand<object>(ShowFlyDetails);
@@ -85,7 +83,7 @@ namespace Flights.Core.ViewModels
         {
             AddFavorite();
             _fileStore.Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
-            IsFlightAddedToFavorite = false;
+            IsFlightAlreadyInFavorite = false;
         }
 
         private void ShowFlyDetails(object arg)
@@ -96,11 +94,10 @@ namespace Flights.Core.ViewModels
                 ShowViewModel<FlightsInfoViewModel>(arg);
             }
         }
-
+        
         private void AddFavorite()
         {
-            _addFavorite = _favoriteList;
-            _addFavorite.Add(new FavoriteModel
+            _favoriteList.Add(new FavoriteModel
             {
                 CitiesFrom = _dataOfFlightsModel.CitiesFrom,
                 CitiesTo = _dataOfFlightsModel.CitiesTo,
@@ -108,59 +105,70 @@ namespace Flights.Core.ViewModels
                 CityTo = _dataOfFlightsModel.CityTo,
                 CountryFrom = _dataOfFlightsModel.CountryFrom,
                 CountryTo = _dataOfFlightsModel.CountryTo,
-                IataFrom = _dataOfFlightsModel.IataFrom,
-                IataTo = _dataOfFlightsModel.IataTo,
+                IataFrom = _dataOfFlightsModel.IatasFrom,
+                IataTo = _dataOfFlightsModel.IatasTo,
                 Image1 = "ms-appx:///Assets/favorite.png"
             });
         }
 
         private async void ShowFlightsAsync()
         {
-            FlyInfoModel[] _flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateOneWay, false);
-            FlyInfoModel[] _flyInfoReturnModel = await _flightsService.ConfigurationOfFlights(_dataOfFlightsModel, _dataOfFlightsModel.DateReturn, true);
-            GenerateFlightsList(_flyInfoOneWayModel, false);
-            if (_dataOfFlightsModel.ReturnWay)
+            IsLoading = true;
+
+            await InitializeDataAsync(
+                _dataOfFlightsModel.DateOneWay,
+                _dataOfFlightsModel.IatasFrom,
+                _dataOfFlightsModel.IatasTo);
+
+            if (_dataOfFlightsModel.ReturnWay == true)
             {
-                GenerateFlightsList(_flyInfoReturnModel, true);
+                await InitializeDataAsync(
+                            _dataOfFlightsModel.DateReturn,
+                            _dataOfFlightsModel.IatasTo,
+                            _dataOfFlightsModel.IatasFrom,
+                            true);
             }
-            IsLoading = false;
+
             if (_favoriteList != null)
             {
-                IsFlightAddedToFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
+                IsFlightAlreadyInFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
             }
-            else
+
+            IsLoading = false;
+        }
+
+        private async Task InitializeDataAsync(string date, List<string> from, List<string> to, bool isReversed = false)
+        {
+            var flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(date, from, to);
+
+            AddToFlightsList(flyInfoOneWayModel, isReversed);
+        }
+
+        private void AddToFlightsList(List<FlyInfoModel> flyInfoModel, bool isReversedFlight = false)
+        {
+            foreach (var item in flyInfoModel)
             {
-                IsFlightAddedToFavorite = true;
-                _favoriteList = new ObservableCollection<FavoriteModel>();
+                FlightsList.Add(CreateFlyInfoShowModel(item, isReversedFlight));
             }
         }
 
-        private void GenerateFlightsList(FlyInfoModel[] flyInfoModel, bool returnWay)
+        private FlyInfoShowModel CreateFlyInfoShowModel(FlyInfoModel infoModel, bool isReversedFlight)
         {
-            string picture = (returnWay) ? "ms-appx:///Assets/fly_return.png" : "ms-appx:///Assets/fly.png";
-            foreach (var item in flyInfoModel)
+            string picture = (isReversedFlight) ? "ms-appx:///Assets/fly_return.png" : "ms-appx:///Assets/fly.png";
+
+            return new FlyInfoShowModel
             {
-                if (item == null)
-                {
-                    continue;
-                }
-                for (int j = 0; j < item.Arrival.Length; j++)
-                {
-                    FlightsList.Add(new FlyInfoShowModel
-                    {
-                        Arrival = item.Arrival.ElementAt(j),
-                        Duration = item.Duration.ElementAt(j),
-                        ArrivalTerminal = item.ArrivalTerminal.ElementAt(j),
-                        From = item.From.ElementAt(j),
-                        ThreadCarrierTitle = item.ThreadCarrierTitle.ElementAt(j),
-                        ThreadVehicle = item.ThreadVehicle.ElementAt(j),
-                        ThreadNumber = item.ThreadNumber.ElementAt(j),
-                        Departure = item.Departure.ElementAt(j),
-                        To = item.To.ElementAt(j),
-                        Image1 = picture
-                    });
-                }
-            }
+                Arrival = infoModel.Arrival,
+                Duration = infoModel.Duration,
+                ArrivalTerminal = infoModel.ArrivalTerminal,
+                From = infoModel.From,
+                ThreadCarrierTitle = infoModel.ThreadCarrierTitle,
+                ThreadVehicle = infoModel.ThreadVehicle,
+                ThreadNumber = infoModel.ThreadNumber,
+                Departure = infoModel.Departure,
+                To = infoModel.To,
+                Image1 = picture
+            };
         }
 
         private bool IsFlightEqualOfFavoriteModel(FavoriteModel model)

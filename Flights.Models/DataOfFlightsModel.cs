@@ -8,8 +8,8 @@ namespace Flights.Models
         public string CountryTo { get; set; }
         public string CityFrom { get; set; }
         public string CityTo { get; set; }
-        public List<string> IataFrom { get; set; }
-        public List<string> IataTo { get; set; }
+        public List<string> IatasFrom { get; set; }
+        public List<string> IatasTo { get; set; }
         public List<string> CitiesFrom { get; set; }
         public List<string> CitiesTo { get; set; }
         public bool ReturnWay { get; set; }

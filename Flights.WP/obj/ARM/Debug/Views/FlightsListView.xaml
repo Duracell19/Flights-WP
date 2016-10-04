@@ -55,7 +55,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Label="help" Icon="Help" Command="{Binding ShowHelpInformationCommand}"/>
-            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAddedToFavorite, Mode=TwoWay}" Command="{Binding AddToFavoritesCommand}"/>
+            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAlreadyInFavorite, Mode=TwoWay}" Command="{Binding AddToFavoritesCommand}"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="About" Command="{Binding ShowAboutInforamtionCommand}"/>
             </CommandBar.SecondaryCommands>

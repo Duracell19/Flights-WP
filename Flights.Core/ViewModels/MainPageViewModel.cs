@@ -148,9 +148,9 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
             _dataOfFlightsModel.CitiesTo = cities;
             RaisePropertyChanged(() => Properties);
-            List<string> iata = _dataOfFlightsModel.IataFrom;
-            _dataOfFlightsModel.IataFrom = _dataOfFlightsModel.IataTo;
-            _dataOfFlightsModel.IataTo = iata;
+            List<string> iata = _dataOfFlightsModel.IatasFrom;
+            _dataOfFlightsModel.IatasFrom = _dataOfFlightsModel.IatasTo;
+            _dataOfFlightsModel.IatasTo = iata;
             value = Properties[0].TextCityTo;
             Properties[0].TextCityTo = Properties[0].TextCityFrom;
             Properties[0].TextCityFrom = value;
@@ -240,8 +240,8 @@ namespace Flights.Core.ViewModels
         {
             _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
             IataService iataService = new IataService(_httpService, _jsonConverter);
-            _dataOfFlightsModel.IataFrom = await iataService.GetIata(_dataOfFlightsModel.CityFrom);
-            if (Properties[0].TextCityFrom != null && Properties[0].TextCityTo != null && _dataOfFlightsModel.IataFrom != null)
+            _dataOfFlightsModel.IatasFrom = await iataService.GetIata(_dataOfFlightsModel.CityFrom);
+            if (Properties[0].TextCityFrom != null && Properties[0].TextCityTo != null && _dataOfFlightsModel.IatasFrom != null && _dataOfFlightsModel.IatasTo != null)
             {
                 Properties[0].IsEnabledButtonFind = true;
             }
@@ -255,8 +255,8 @@ namespace Flights.Core.ViewModels
         private async void SelectCityToAsync()
         {
             _dataOfFlightsModel.CityTo = Properties[0].TextCityTo; IataService iataService = new IataService(_httpService, _jsonConverter);
-            _dataOfFlightsModel.IataTo = await iataService.GetIata(_dataOfFlightsModel.CityTo);
-            if (Properties[0].TextCityFrom != null && Properties[0].TextCityTo != null && _dataOfFlightsModel.IataTo != null)
+            _dataOfFlightsModel.IatasTo = await iataService.GetIata(_dataOfFlightsModel.CityTo);
+            if (Properties[0].TextCityFrom != null && Properties[0].TextCityTo != null && _dataOfFlightsModel.IatasTo != null && _dataOfFlightsModel.IatasFrom != null)
             {
                 Properties[0].IsEnabledButtonFind = true;
             }
@@ -276,8 +276,8 @@ namespace Flights.Core.ViewModels
                 Properties[0].TextCountryTo = item.CountryTo;
                 Properties[0].TextCityFrom = item.CityFrom;
                 Properties[0].TextCityTo = item.CityTo;
-                _dataOfFlightsModel.IataFrom = item.IataFrom;
-                _dataOfFlightsModel.IataTo = item.IataTo;
+                _dataOfFlightsModel.IatasFrom = item.IataFrom;
+                _dataOfFlightsModel.IatasTo = item.IataTo;
                 _dataOfFlightsModel.CitiesFrom = item.CitiesFrom;
                 _dataOfFlightsModel.CitiesTo = item.CitiesTo;
                 _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
