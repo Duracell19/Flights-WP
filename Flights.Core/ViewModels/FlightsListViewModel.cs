@@ -121,14 +121,11 @@ namespace Flights.Core.ViewModels
                 _dataOfFlightsModel.IatasFrom,
                 _dataOfFlightsModel.IatasTo);
 
-            if (_dataOfFlightsModel.ReturnWay == true)
-            {
-                await InitializeDataAsync(
-                            _dataOfFlightsModel.DateReturn,
-                            _dataOfFlightsModel.IatasTo,
-                            _dataOfFlightsModel.IatasFrom,
-                            true);
-            }
+            await InitializeDataAsync(
+                _dataOfFlightsModel.DateReturn,
+                _dataOfFlightsModel.IatasTo,
+                _dataOfFlightsModel.IatasFrom,
+                _dataOfFlightsModel.ReturnWay);
 
             if (_favoriteList != null)
             {
