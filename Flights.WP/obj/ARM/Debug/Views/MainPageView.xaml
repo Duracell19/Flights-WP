@@ -89,18 +89,20 @@
 
         <PivotItem Header="Favorites">
             <Grid>
-                <ListView Name="favoriteList" ItemsSource="{Binding  Properties[0].FavoriteList}">
+                <ListView Name="favoriteList" ItemsSource="{Binding Properties[0].FavoriteList}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
                             <core:InvokeCommandAction Command="{Binding  Commands[0].SetFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
                         </core:EventTriggerBehavior>
-                        <core:EventTriggerBehavior EventName="DoubleTapped">
-                            <core:InvokeCommandAction Command="{Binding  Commands[0].DeleteFavoriteFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
-                        </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                            <StackPanel x:ConnectionId='1' Orientation="Vertical" Grid.Column="0" Grid.Row="0"                           >
+                                <FlyoutBase.AttachedFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem x:ConnectionId='2' Text="Delete"                      />
+                                    </MenuFlyout>
+                                </FlyoutBase.AttachedFlyout>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding Image1}" Height="35" Width="35"/>
                                     <StackPanel Orientation="Vertical">

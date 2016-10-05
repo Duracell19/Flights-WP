@@ -74,6 +74,7 @@ namespace Flights.Core.ViewModels
 
         public void Init(string param)
         {
+            IsFlightAlreadyInFavorite = true;
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             ShowFlightsAsync();
@@ -83,7 +84,7 @@ namespace Flights.Core.ViewModels
         {
             AddFavorite();
             _fileStore.Save(Defines.FAVORITE_LIST_FILE_NAME, _favoriteList);
-            IsFlightAlreadyInFavorite = false;
+            IsFlightAlreadyInFavorite = true;
         }
 
         private void ShowFlyDetails(object arg)
@@ -131,7 +132,7 @@ namespace Flights.Core.ViewModels
 
             if (_favoriteList != null)
             {
-                IsFlightAlreadyInFavorite = !(_favoriteList.Any(IsFlightEqualOfFavoriteModel));
+                IsFlightAlreadyInFavorite = _favoriteList.Any(IsFlightEqualOfFavoriteModel);
             }
 
             IsLoading = false;

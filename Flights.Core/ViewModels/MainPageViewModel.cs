@@ -77,7 +77,6 @@ namespace Flights.Core.ViewModels
             Commands[0].SelectCityFromCommand = new MvxCommand(SelectCityFromAsync);
             Commands[0].SelectCityToCommand = new MvxCommand(SelectCityToAsync);
             Commands[0].SetFlightCommand = new MvxCommand<object>(SetFlight);
-            Commands[0].DeleteFavoriteFlightCommand = new MvxCommand<object>(DeleteFavoriteFlight);
         }
 
         public override void Start()
@@ -292,19 +291,7 @@ namespace Flights.Core.ViewModels
                 Properties[0].PivotNumber = 0;
                 RaisePropertyChanged(() => Properties);
             }
-        }
-
-        private void DeleteFavoriteFlight(object arg)
-        {
-            if (arg is FavoriteModel)
-            {
-                FavoriteModel item = (FavoriteModel)arg;
-                Properties[0].FavoriteList.Remove(item);
-                _fileStore.Save(Defines.FAVORITE_LIST_FILE_NAME, Properties[0].FavoriteList);
-                Properties[0].PivotNumber = 1;
-                RaisePropertyChanged(() => Properties);
-            }
-        }
+        }        
     }
 }
 

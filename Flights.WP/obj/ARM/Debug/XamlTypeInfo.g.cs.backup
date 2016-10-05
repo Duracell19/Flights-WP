@@ -401,7 +401,7 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
             case 21:   //  Flights.WP.Views.MainPageView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
                 userType.Activator = Activate_21_MainPageView;
-                userType.AddMemberName("FavoriteList");
+                userType.AddMemberName("Favorite");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -549,15 +549,15 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
             var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
             that.InputConverterLanguage = (global::System.String)Value;
         }
-        private object get_12_MainPageView_FavoriteList(object instance)
+        private object get_12_MainPageView_Favorite(object instance)
         {
             var that = (global::Flights.WP.Views.MainPageView)instance;
-            return that.FavoriteList;
+            return that.Favorite;
         }
-        private void set_12_MainPageView_FavoriteList(object instance, object Value)
+        private void set_12_MainPageView_Favorite(object instance, object Value)
         {
             var that = (global::Flights.WP.Views.MainPageView)instance;
-            that.FavoriteList = (global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>)Value;
+            that.Favorite = (global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>)Value;
         }
         private object get_13_FavoriteModel_CitiesFrom(object instance)
         {
@@ -739,11 +739,11 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlMember.Getter = get_11_InvokeCommandAction_InputConverterLanguage;
                 xamlMember.Setter = set_11_InvokeCommandAction_InputConverterLanguage;
                 break;
-            case "Flights.WP.Views.MainPageView.FavoriteList":
+            case "Flights.WP.Views.MainPageView.Favorite":
                 userType = (global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Flights.WP.Views.MainPageView");
-                xamlMember = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlMember(this, "FavoriteList", "System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>");
-                xamlMember.Getter = get_12_MainPageView_FavoriteList;
-                xamlMember.Setter = set_12_MainPageView_FavoriteList;
+                xamlMember = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlMember(this, "Favorite", "System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>");
+                xamlMember.Getter = get_12_MainPageView_Favorite;
+                xamlMember.Setter = set_12_MainPageView_Favorite;
                 break;
             case "Flights.Models.FavoriteModel.CitiesFrom":
                 userType = (global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Flights.Models.FavoriteModel");

@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-            <ProgressRing Grid.Column="1" Grid.Row="0" Style="{StaticResource ProgressRingStyle}" IsActive="{Binding IsLoading, Mode=TwoWay}"/>
+            <ProgressRing Grid.Column="1" Grid.Row="0" Style="{StaticResource ProgressRingStyle}" IsActive="{Binding IsLoading}"/>
             <ListView Name="flyList" ItemsSource="{Binding FlightsList}" Grid.ColumnSpan="3">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -55,7 +55,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Label="help" Icon="Help" Command="{Binding ShowHelpInformationCommand}"/>
-            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAlreadyInFavorite, Mode=TwoWay}" Command="{Binding AddToFavoritesCommand}"/>
+            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAlreadyInFavorite, Converter={StaticResource Inversion}}" Command="{Binding AddToFavoritesCommand}"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="About" Command="{Binding ShowAboutInforamtionCommand}"/>
             </CommandBar.SecondaryCommands>
