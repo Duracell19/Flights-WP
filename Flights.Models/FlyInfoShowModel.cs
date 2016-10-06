@@ -11,6 +11,6 @@
         public string Departure { get; set; }
         public string To { get; set; }
         public string From { get; set; }
-        public string Image1 { get; set; }
+        public bool IsReservedFlight { get; set; }
     }
 }

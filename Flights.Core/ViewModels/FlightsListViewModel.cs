@@ -121,11 +121,14 @@ namespace Flights.Core.ViewModels
                 _dataOfFlightsModel.IatasFrom,
                 _dataOfFlightsModel.IatasTo);
 
-            await InitializeDataAsync(
+            if (_dataOfFlightsModel.ReturnWay)
+            {
+                await InitializeDataAsync(
                 _dataOfFlightsModel.DateReturn,
                 _dataOfFlightsModel.IatasTo,
                 _dataOfFlightsModel.IatasFrom,
                 _dataOfFlightsModel.ReturnWay);
+            }
 
             if (_favoriteList != null)
             {
@@ -152,8 +155,6 @@ namespace Flights.Core.ViewModels
 
         private FlyInfoShowModel CreateFlyInfoShowModel(FlyInfoModel infoModel, bool isReversedFlight)
         {
-            string picture = (isReversedFlight) ? "ms-appx:///Assets/fly_return.png" : "ms-appx:///Assets/fly.png";
-
             return new FlyInfoShowModel
             {
                 Arrival = infoModel.Arrival,
@@ -165,7 +166,7 @@ namespace Flights.Core.ViewModels
                 ThreadNumber = infoModel.ThreadNumber,
                 Departure = infoModel.Departure,
                 To = infoModel.To,
-                Image1 = picture
+                IsReservedFlight = isReversedFlight
             };
         }
 

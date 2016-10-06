@@ -9,6 +9,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     NavigationCacheMode="Required">
+    
     <Pivot SelectedIndex="{Binding Properties[0].PivotNumber, Mode=TwoWay}">
         <i:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="SelectionChanged">

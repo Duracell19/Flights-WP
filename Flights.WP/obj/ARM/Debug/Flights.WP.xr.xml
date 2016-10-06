@@ -15,7 +15,7 @@
     <RootPropertyPathName Name="Departure" />
     <RootPropertyPathName Name="To" />
     <RootPropertyPathName Name="From" />
-    <RootPropertyPathName Name="Image1" />
+    <RootPropertyPathName Name="IsReservedFlight" />
     <RootPropertyPathName Name="IsLoading" />
     <RootPropertyPathName Name="IsFlightAlreadyInFavorite" />
     <RootPropertyPathName Name="AddToFavoritesCommand" />
@@ -35,6 +35,7 @@
     <RootPropertyPathName Name="CityFrom" />
     <RootPropertyPathName Name="CountryTo" />
     <RootPropertyPathName Name="CountryFrom" />
+    <RootPropertyPathName Name="Image1" />
     <RootPropertyPathName Name="IsEnabledButtonFind" />
     <RootPropertyPathName Name="FindFlightsCommand" />
     <RootPropertyPathName Name="DateReturn" />
@@ -122,6 +123,7 @@
       <RootProperty Name="Style" />
     </RootType>
     <RootType FullName="Flights.WP.Converters.InvertBoolenConverter" />
+    <RootType FullName="Flights.WP.Converters.PictureConverter" />
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
       <RootProperty Name="Value" />

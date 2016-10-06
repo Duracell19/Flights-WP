@@ -16,17 +16,17 @@ namespace Flights.Core.ViewModels
         private readonly IHttpService _httpService;
         private readonly IJsonConverter _jsonConverter;
         private readonly IFileStore _fileStore;
-        private ObservableCollection<MainPagePropetiesModel> _properties;
-        private ObservableCollection<MainPageCommandsModel> _commands;
+        private List<MainPagePropetiesModel> _properties;
+        private List<MainPageCommandsModel> _commands;
         private DataOfFlightsModel _dataOfFlightsModel;
         private bool _status;
 
-        public ObservableCollection<MainPagePropetiesModel> Properties
+        public List<MainPagePropetiesModel> Properties
         {
             get { return _properties; }
             set { _properties = value; }
         }
-        public ObservableCollection<MainPageCommandsModel> Commands
+        public List<MainPageCommandsModel> Commands
         {
             get { return _commands; }
             set { _commands = value; }
@@ -45,8 +45,8 @@ namespace Flights.Core.ViewModels
             _fileStore = fileStore;
 
             _dataOfFlightsModel = new DataOfFlightsModel();
-            _commands = new ObservableCollection<MainPageCommandsModel>();
-            _properties = new ObservableCollection<MainPagePropetiesModel>();
+            _commands = new List<MainPageCommandsModel>();
+            _properties = new List<MainPagePropetiesModel>();
 
             Properties.Add(new MainPagePropetiesModel
             {
@@ -140,9 +140,10 @@ namespace Flights.Core.ViewModels
 
         private void ChangeFields()
         {
-            string value = Properties[0].TextCountryTo;
-            Properties[0].TextCountryTo = Properties[0].TextCountryFrom;
-            Properties[0].TextCountryFrom = value;
+            Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryTo;
+            Properties[0].TextCountryTo = _dataOfFlightsModel.CountryFrom;
+            Properties[0].TextCityFrom = _dataOfFlightsModel.CityTo;
+            Properties[0].TextCityTo = _dataOfFlightsModel.CityFrom;
             List<string> cities = _dataOfFlightsModel.CitiesFrom;
             _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
             _dataOfFlightsModel.CitiesTo = cities;
@@ -150,9 +151,6 @@ namespace Flights.Core.ViewModels
             List<string> iata = _dataOfFlightsModel.IatasFrom;
             _dataOfFlightsModel.IatasFrom = _dataOfFlightsModel.IatasTo;
             _dataOfFlightsModel.IatasTo = iata;
-            value = Properties[0].TextCityTo;
-            Properties[0].TextCityTo = Properties[0].TextCityFrom;
-            Properties[0].TextCityFrom = value;
             _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
             _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
             _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
@@ -162,15 +160,15 @@ namespace Flights.Core.ViewModels
 
         private void SetTheVisibilityIcon()
         {
-            int number = Properties[0].PivotNumber;
-            Properties[0].IsEnabledRefresh = (number == 1) ? true : false;
-            if (number == 1 || number == 2)
+            if (Properties[0].PivotNumber == 1 || Properties[0].PivotNumber == 2)
             {
+                Properties[0].IsEnabledRefresh = (Properties[0].PivotNumber == 1) ? true : false;
                 Properties[0].IsEnabledChange = false;
                 Properties[0].IsEnabledClear = false;
             }
             else
             {
+                Properties[0].IsEnabledRefresh = false;
                 Properties[0].IsEnabledChange = _status;
                 Properties[0].IsEnabledClear = true;
             }

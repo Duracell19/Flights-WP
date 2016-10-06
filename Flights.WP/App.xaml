@@ -2,7 +2,6 @@
     x:Class="Flights.WP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converter="using:InvertBoolenConverter"
     xmlns:local="using:Flights.WP.Converters">
 
     <Application.Resources>
@@ -76,6 +75,7 @@
         </Style>
 
         <local:InvertBoolenConverter x:Key="Inversion"/>
+        <local:PictureConverter x:Key="ChangePicture"/>
 
     </Application.Resources>
 </Application>

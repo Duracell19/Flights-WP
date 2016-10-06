@@ -31,7 +31,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Image1}" Height="35" Width="35"/>
+                                <Image Source="{Binding IsReservedFlight, Converter={StaticResource ChangePicture}}" Height="35" Width="35"/>
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding From}" FontSize="18" Padding="10" Foreground="#FF959595"/>
