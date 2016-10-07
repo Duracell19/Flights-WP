@@ -17,6 +17,7 @@
     <RootPropertyPathName Name="From" />
     <RootPropertyPathName Name="IsReservedFlight" />
     <RootPropertyPathName Name="IsLoading" />
+    <RootPropertyPathName Name="CommentAboutFlights" />
     <RootPropertyPathName Name="IsFlightAlreadyInFavorite" />
     <RootPropertyPathName Name="AddToFavoritesCommand" />
     <RootPropertyPathName Name="ShowHelpInformationCommand" />
@@ -61,11 +62,11 @@
     <RootPropertyPathName Name="TextCountryFrom" />
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="SelectCountryFromCommand" />
-    <RootPropertyPathName Name="IsEnabledRefresh" />
+    <RootPropertyPathName Name="IsVisibleRefresh" />
     <RootPropertyPathName Name="UpdateFavoriteListCommand" />
-    <RootPropertyPathName Name="IsEnabledChange" />
+    <RootPropertyPathName Name="IsVisibleChange" />
     <RootPropertyPathName Name="ChangeFieldsCommand" />
-    <RootPropertyPathName Name="IsEnabledClear" />
+    <RootPropertyPathName Name="IsVisibleClear" />
     <RootPropertyPathName Name="ClearFieldsCommand" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -124,6 +125,7 @@
     </RootType>
     <RootType FullName="Flights.WP.Converters.InvertBoolenConverter" />
     <RootType FullName="Flights.WP.Converters.PictureConverter" />
+    <RootType FullName="Flights.WP.Converters.VisibilityAppBarIconConverter" />
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
       <RootProperty Name="Value" />
@@ -202,6 +204,7 @@
       <RootProperty Name="Icon" />
       <RootProperty Name="Command" />
       <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Flights.WP.Views.FlightsListView" />
     <RootType FullName="Flights.WP.Views.HelpView" />

@@ -51,6 +51,12 @@
             <Setter Property="Width" Value="370"/>
         </Style>
 
+        <Style TargetType="TextBlock" x:Key="CommentAboutFlightsStyle">
+            <Setter Property="Foreground" Value="#FFEA4141"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
         <Style TargetType="ComboBox" x:Key="ComboBoxStyle">
             <Setter Property="Width" Value="271"/>
         </Style>
@@ -76,6 +82,7 @@
 
         <local:InvertBoolenConverter x:Key="Inversion"/>
         <local:PictureConverter x:Key="ChangePicture"/>
+        <local:VisibilityAppBarIconConverter x:Key="SetVisibleIcon"/>
 
     </Application.Resources>
 </Application>

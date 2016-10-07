@@ -124,63 +124,65 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[27];
+            _typeNameTable = new string[28];
             _typeNameTable[0] = "Flights.WP.Converters.InvertBoolenConverter";
             _typeNameTable[1] = "Object";
             _typeNameTable[2] = "Flights.WP.Converters.PictureConverter";
-            _typeNameTable[3] = "MvvmCross.WindowsCommon.Views.MvxWindowsPage";
-            _typeNameTable[4] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[5] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[6] = "MvvmCross.WindowsCommon.Views.IMvxWindowsFrame";
-            _typeNameTable[7] = "MvvmCross.Core.ViewModels.IMvxViewModel";
-            _typeNameTable[8] = "Flights.WP.Views.AboutView";
-            _typeNameTable[9] = "Flights.WP.Views.FlightsInfoView";
-            _typeNameTable[10] = "Microsoft.Xaml.Interactivity.Interaction";
-            _typeNameTable[11] = "Microsoft.Xaml.Interactivity.BehaviorCollection";
-            _typeNameTable[12] = "Windows.UI.Xaml.DependencyObjectCollection";
-            _typeNameTable[13] = "Windows.UI.Xaml.DependencyObject";
-            _typeNameTable[14] = "Microsoft.Xaml.Interactions.Core.EventTriggerBehavior";
-            _typeNameTable[15] = "Microsoft.Xaml.Interactivity.ActionCollection";
-            _typeNameTable[16] = "String";
-            _typeNameTable[17] = "Microsoft.Xaml.Interactions.Core.InvokeCommandAction";
-            _typeNameTable[18] = "System.Windows.Input.ICommand";
-            _typeNameTable[19] = "Windows.UI.Xaml.Data.IValueConverter";
-            _typeNameTable[20] = "Flights.WP.Views.FlightsListView";
-            _typeNameTable[21] = "Flights.WP.Views.HelpView";
-            _typeNameTable[22] = "Flights.WP.Views.MainPageView";
-            _typeNameTable[23] = "System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>";
-            _typeNameTable[24] = "System.Collections.ObjectModel.Collection`1<Flights.Models.FavoriteModel>";
-            _typeNameTable[25] = "Flights.Models.FavoriteModel";
-            _typeNameTable[26] = "System.Collections.Generic.List`1<String>";
+            _typeNameTable[3] = "Flights.WP.Converters.VisibilityAppBarIconConverter";
+            _typeNameTable[4] = "MvvmCross.WindowsCommon.Views.MvxWindowsPage";
+            _typeNameTable[5] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[6] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[7] = "MvvmCross.WindowsCommon.Views.IMvxWindowsFrame";
+            _typeNameTable[8] = "MvvmCross.Core.ViewModels.IMvxViewModel";
+            _typeNameTable[9] = "Flights.WP.Views.AboutView";
+            _typeNameTable[10] = "Flights.WP.Views.FlightsInfoView";
+            _typeNameTable[11] = "Microsoft.Xaml.Interactivity.Interaction";
+            _typeNameTable[12] = "Microsoft.Xaml.Interactivity.BehaviorCollection";
+            _typeNameTable[13] = "Windows.UI.Xaml.DependencyObjectCollection";
+            _typeNameTable[14] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[15] = "Microsoft.Xaml.Interactions.Core.EventTriggerBehavior";
+            _typeNameTable[16] = "Microsoft.Xaml.Interactivity.ActionCollection";
+            _typeNameTable[17] = "String";
+            _typeNameTable[18] = "Microsoft.Xaml.Interactions.Core.InvokeCommandAction";
+            _typeNameTable[19] = "System.Windows.Input.ICommand";
+            _typeNameTable[20] = "Windows.UI.Xaml.Data.IValueConverter";
+            _typeNameTable[21] = "Flights.WP.Views.FlightsListView";
+            _typeNameTable[22] = "Flights.WP.Views.HelpView";
+            _typeNameTable[23] = "Flights.WP.Views.MainPageView";
+            _typeNameTable[24] = "System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>";
+            _typeNameTable[25] = "System.Collections.ObjectModel.Collection`1<Flights.Models.FavoriteModel>";
+            _typeNameTable[26] = "Flights.Models.FavoriteModel";
+            _typeNameTable[27] = "System.Collections.Generic.List`1<String>";
 
-            _typeTable = new global::System.Type[27];
+            _typeTable = new global::System.Type[28];
             _typeTable[0] = typeof(global::Flights.WP.Converters.InvertBoolenConverter);
             _typeTable[1] = typeof(global::System.Object);
             _typeTable[2] = typeof(global::Flights.WP.Converters.PictureConverter);
-            _typeTable[3] = typeof(global::MvvmCross.WindowsCommon.Views.MvxWindowsPage);
-            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[6] = typeof(global::MvvmCross.WindowsCommon.Views.IMvxWindowsFrame);
-            _typeTable[7] = typeof(global::MvvmCross.Core.ViewModels.IMvxViewModel);
-            _typeTable[8] = typeof(global::Flights.WP.Views.AboutView);
-            _typeTable[9] = typeof(global::Flights.WP.Views.FlightsInfoView);
-            _typeTable[10] = typeof(global::Microsoft.Xaml.Interactivity.Interaction);
-            _typeTable[11] = typeof(global::Microsoft.Xaml.Interactivity.BehaviorCollection);
-            _typeTable[12] = typeof(global::Windows.UI.Xaml.DependencyObjectCollection);
-            _typeTable[13] = typeof(global::Windows.UI.Xaml.DependencyObject);
-            _typeTable[14] = typeof(global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior);
-            _typeTable[15] = typeof(global::Microsoft.Xaml.Interactivity.ActionCollection);
-            _typeTable[16] = typeof(global::System.String);
-            _typeTable[17] = typeof(global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction);
-            _typeTable[18] = typeof(global::System.Windows.Input.ICommand);
-            _typeTable[19] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
-            _typeTable[20] = typeof(global::Flights.WP.Views.FlightsListView);
-            _typeTable[21] = typeof(global::Flights.WP.Views.HelpView);
-            _typeTable[22] = typeof(global::Flights.WP.Views.MainPageView);
-            _typeTable[23] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>);
-            _typeTable[24] = typeof(global::System.Collections.ObjectModel.Collection<global::Flights.Models.FavoriteModel>);
-            _typeTable[25] = typeof(global::Flights.Models.FavoriteModel);
-            _typeTable[26] = typeof(global::System.Collections.Generic.List<global::System.String>);
+            _typeTable[3] = typeof(global::Flights.WP.Converters.VisibilityAppBarIconConverter);
+            _typeTable[4] = typeof(global::MvvmCross.WindowsCommon.Views.MvxWindowsPage);
+            _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[6] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[7] = typeof(global::MvvmCross.WindowsCommon.Views.IMvxWindowsFrame);
+            _typeTable[8] = typeof(global::MvvmCross.Core.ViewModels.IMvxViewModel);
+            _typeTable[9] = typeof(global::Flights.WP.Views.AboutView);
+            _typeTable[10] = typeof(global::Flights.WP.Views.FlightsInfoView);
+            _typeTable[11] = typeof(global::Microsoft.Xaml.Interactivity.Interaction);
+            _typeTable[12] = typeof(global::Microsoft.Xaml.Interactivity.BehaviorCollection);
+            _typeTable[13] = typeof(global::Windows.UI.Xaml.DependencyObjectCollection);
+            _typeTable[14] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[15] = typeof(global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior);
+            _typeTable[16] = typeof(global::Microsoft.Xaml.Interactivity.ActionCollection);
+            _typeTable[17] = typeof(global::System.String);
+            _typeTable[18] = typeof(global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction);
+            _typeTable[19] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[20] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
+            _typeTable[21] = typeof(global::Flights.WP.Views.FlightsListView);
+            _typeTable[22] = typeof(global::Flights.WP.Views.HelpView);
+            _typeTable[23] = typeof(global::Flights.WP.Views.MainPageView);
+            _typeTable[24] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>);
+            _typeTable[25] = typeof(global::System.Collections.ObjectModel.Collection<global::Flights.Models.FavoriteModel>);
+            _typeTable[26] = typeof(global::Flights.Models.FavoriteModel);
+            _typeTable[27] = typeof(global::System.Collections.Generic.List<global::System.String>);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -217,44 +219,45 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
 
         private object Activate_0_InvertBoolenConverter() { return new global::Flights.WP.Converters.InvertBoolenConverter(); }
         private object Activate_2_PictureConverter() { return new global::Flights.WP.Converters.PictureConverter(); }
-        private object Activate_8_AboutView() { return new global::Flights.WP.Views.AboutView(); }
-        private object Activate_9_FlightsInfoView() { return new global::Flights.WP.Views.FlightsInfoView(); }
-        private object Activate_11_BehaviorCollection() { return new global::Microsoft.Xaml.Interactivity.BehaviorCollection(); }
-        private object Activate_14_EventTriggerBehavior() { return new global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior(); }
-        private object Activate_15_ActionCollection() { return new global::Microsoft.Xaml.Interactivity.ActionCollection(); }
-        private object Activate_17_InvokeCommandAction() { return new global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction(); }
-        private object Activate_20_FlightsListView() { return new global::Flights.WP.Views.FlightsListView(); }
-        private object Activate_21_HelpView() { return new global::Flights.WP.Views.HelpView(); }
-        private object Activate_22_MainPageView() { return new global::Flights.WP.Views.MainPageView(); }
-        private object Activate_23_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>(); }
-        private object Activate_24_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Flights.Models.FavoriteModel>(); }
-        private object Activate_25_FavoriteModel() { return new global::Flights.Models.FavoriteModel(); }
-        private object Activate_26_List() { return new global::System.Collections.Generic.List<global::System.String>(); }
-        private void VectorAdd_11_BehaviorCollection(object instance, object item)
+        private object Activate_3_VisibilityAppBarIconConverter() { return new global::Flights.WP.Converters.VisibilityAppBarIconConverter(); }
+        private object Activate_9_AboutView() { return new global::Flights.WP.Views.AboutView(); }
+        private object Activate_10_FlightsInfoView() { return new global::Flights.WP.Views.FlightsInfoView(); }
+        private object Activate_12_BehaviorCollection() { return new global::Microsoft.Xaml.Interactivity.BehaviorCollection(); }
+        private object Activate_15_EventTriggerBehavior() { return new global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior(); }
+        private object Activate_16_ActionCollection() { return new global::Microsoft.Xaml.Interactivity.ActionCollection(); }
+        private object Activate_18_InvokeCommandAction() { return new global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction(); }
+        private object Activate_21_FlightsListView() { return new global::Flights.WP.Views.FlightsListView(); }
+        private object Activate_22_HelpView() { return new global::Flights.WP.Views.HelpView(); }
+        private object Activate_23_MainPageView() { return new global::Flights.WP.Views.MainPageView(); }
+        private object Activate_24_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Flights.Models.FavoriteModel>(); }
+        private object Activate_25_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Flights.Models.FavoriteModel>(); }
+        private object Activate_26_FavoriteModel() { return new global::Flights.Models.FavoriteModel(); }
+        private object Activate_27_List() { return new global::System.Collections.Generic.List<global::System.String>(); }
+        private void VectorAdd_12_BehaviorCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.DependencyObject>)instance;
             var newItem = (global::Windows.UI.Xaml.DependencyObject)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_15_ActionCollection(object instance, object item)
+        private void VectorAdd_16_ActionCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.DependencyObject>)instance;
             var newItem = (global::Windows.UI.Xaml.DependencyObject)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_23_ObservableCollection(object instance, object item)
+        private void VectorAdd_24_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Flights.Models.FavoriteModel>)instance;
             var newItem = (global::Flights.Models.FavoriteModel)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_24_Collection(object instance, object item)
+        private void VectorAdd_25_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Flights.Models.FavoriteModel>)instance;
             var newItem = (global::Flights.Models.FavoriteModel)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_26_List(object instance, object item)
+        private void VectorAdd_27_List(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.String>)instance;
             var newItem = (global::System.String)item;
@@ -289,71 +292,78 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 3:   //  MvvmCross.WindowsCommon.Views.MvxWindowsPage
+            case 3:   //  Flights.WP.Converters.VisibilityAppBarIconConverter
+                userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_3_VisibilityAppBarIconConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 4:   //  MvvmCross.WindowsCommon.Views.MvxWindowsPage
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.AddMemberName("WrappedFrame");
                 userType.AddMemberName("ViewModel");
                 xamlType = userType;
                 break;
 
-            case 4:   //  Windows.UI.Xaml.Controls.Page
+            case 5:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 5:   //  Windows.UI.Xaml.Controls.UserControl
+            case 6:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 6:   //  MvvmCross.WindowsCommon.Views.IMvxWindowsFrame
+            case 7:   //  MvvmCross.WindowsCommon.Views.IMvxWindowsFrame
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 7:   //  MvvmCross.Core.ViewModels.IMvxViewModel
+            case 8:   //  MvvmCross.Core.ViewModels.IMvxViewModel
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Flights.WP.Views.AboutView
+            case 9:   //  Flights.WP.Views.AboutView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
-                userType.Activator = Activate_8_AboutView;
+                userType.Activator = Activate_9_AboutView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  Flights.WP.Views.FlightsInfoView
+            case 10:   //  Flights.WP.Views.FlightsInfoView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
-                userType.Activator = Activate_9_FlightsInfoView;
+                userType.Activator = Activate_10_FlightsInfoView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  Microsoft.Xaml.Interactivity.Interaction
+            case 11:   //  Microsoft.Xaml.Interactivity.Interaction
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.AddMemberName("Behaviors");
                 xamlType = userType;
                 break;
 
-            case 11:   //  Microsoft.Xaml.Interactivity.BehaviorCollection
+            case 12:   //  Microsoft.Xaml.Interactivity.BehaviorCollection
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObjectCollection"));
-                userType.CollectionAdd = VectorAdd_11_BehaviorCollection;
+                userType.CollectionAdd = VectorAdd_12_BehaviorCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 12:   //  Windows.UI.Xaml.DependencyObjectCollection
+            case 13:   //  Windows.UI.Xaml.DependencyObjectCollection
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 13:   //  Windows.UI.Xaml.DependencyObject
+            case 14:   //  Windows.UI.Xaml.DependencyObject
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  Microsoft.Xaml.Interactions.Core.EventTriggerBehavior
+            case 15:   //  Microsoft.Xaml.Interactions.Core.EventTriggerBehavior
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_14_EventTriggerBehavior;
+                userType.Activator = Activate_15_EventTriggerBehavior;
                 userType.SetContentPropertyName("Microsoft.Xaml.Interactions.Core.EventTriggerBehavior.Actions");
                 userType.AddMemberName("Actions");
                 userType.AddMemberName("EventName");
@@ -362,20 +372,20 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 15:   //  Microsoft.Xaml.Interactivity.ActionCollection
+            case 16:   //  Microsoft.Xaml.Interactivity.ActionCollection
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObjectCollection"));
-                userType.CollectionAdd = VectorAdd_15_ActionCollection;
+                userType.CollectionAdd = VectorAdd_16_ActionCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 16:   //  String
+            case 17:   //  String
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  Microsoft.Xaml.Interactions.Core.InvokeCommandAction
+            case 18:   //  Microsoft.Xaml.Interactions.Core.InvokeCommandAction
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_17_InvokeCommandAction;
+                userType.Activator = Activate_18_InvokeCommandAction;
                 userType.AddMemberName("Command");
                 userType.AddMemberName("CommandParameter");
                 userType.AddMemberName("InputConverter");
@@ -384,55 +394,55 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 18:   //  System.Windows.Input.ICommand
+            case 19:   //  System.Windows.Input.ICommand
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 19:   //  Windows.UI.Xaml.Data.IValueConverter
+            case 20:   //  Windows.UI.Xaml.Data.IValueConverter
                 xamlType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 20:   //  Flights.WP.Views.FlightsListView
+            case 21:   //  Flights.WP.Views.FlightsListView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
-                userType.Activator = Activate_20_FlightsListView;
+                userType.Activator = Activate_21_FlightsListView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 21:   //  Flights.WP.Views.HelpView
+            case 22:   //  Flights.WP.Views.HelpView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
-                userType.Activator = Activate_21_HelpView;
+                userType.Activator = Activate_22_HelpView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 22:   //  Flights.WP.Views.MainPageView
+            case 23:   //  Flights.WP.Views.MainPageView
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("MvvmCross.WindowsCommon.Views.MvxWindowsPage"));
-                userType.Activator = Activate_22_MainPageView;
+                userType.Activator = Activate_23_MainPageView;
                 userType.AddMemberName("FavoriteList");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 23:   //  System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>
+            case 24:   //  System.Collections.ObjectModel.ObservableCollection`1<Flights.Models.FavoriteModel>
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Flights.Models.FavoriteModel>"));
-                userType.CollectionAdd = VectorAdd_23_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_24_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 24:   //  System.Collections.ObjectModel.Collection`1<Flights.Models.FavoriteModel>
+            case 25:   //  System.Collections.ObjectModel.Collection`1<Flights.Models.FavoriteModel>
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_24_Collection;
-                userType.CollectionAdd = VectorAdd_24_Collection;
+                userType.Activator = Activate_25_Collection;
+                userType.CollectionAdd = VectorAdd_25_Collection;
                 xamlType = userType;
                 break;
 
-            case 25:   //  Flights.Models.FavoriteModel
+            case 26:   //  Flights.Models.FavoriteModel
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_25_FavoriteModel;
+                userType.Activator = Activate_26_FavoriteModel;
                 userType.AddMemberName("CitiesFrom");
                 userType.AddMemberName("CitiesTo");
                 userType.AddMemberName("CityFrom");
@@ -445,9 +455,9 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 26:   //  System.Collections.Generic.List`1<String>
+            case 27:   //  System.Collections.Generic.List`1<String>
                 userType = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.CollectionAdd = VectorAdd_26_List;
+                userType.CollectionAdd = VectorAdd_27_List;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;

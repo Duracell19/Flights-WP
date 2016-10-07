@@ -19,6 +19,7 @@ namespace Flights.Core.ViewModels
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
         private bool _isLoading;
+        private string _commentAboutFlights;
         private bool _isFlightAlreadyInFavorite;
 
         public ICommand ShowFlightDetailsCommand { get; set; }
@@ -33,6 +34,16 @@ namespace Flights.Core.ViewModels
             {
                 _isLoading = value;
                 RaisePropertyChanged(() => IsLoading);
+            }
+        }
+
+        public string CommentAboutFlights
+        {
+            get { return _commentAboutFlights; }
+            set
+            {
+                _commentAboutFlights = value;
+                RaisePropertyChanged(() => CommentAboutFlights);
             }
         }
 
@@ -135,6 +146,11 @@ namespace Flights.Core.ViewModels
                 IsFlightAlreadyInFavorite = _favoriteList.Any(IsFlightEqualOfFavoriteModel);
             }
 
+            if (FlightsList.Count == 0)
+            {
+                CommentAboutFlights = "There are no flights";
+            }
+
             IsLoading = false;
         }
 
@@ -153,7 +169,7 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        private FlyInfoShowModel CreateFlyInfoShowModel(FlyInfoModel infoModel, bool isReversedFlight)
+        private FlyInfoShowModel CreateFlyInfoShowModel(FlyInfoModel infoModel, bool isReversedFlight = false)
         {
             return new FlyInfoShowModel
             {

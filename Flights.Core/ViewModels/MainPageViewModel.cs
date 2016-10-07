@@ -128,7 +128,7 @@ namespace Flights.Core.ViewModels
             Properties[0].IsEnabledButtonFind = false;
             Properties[0].IsEnabledCityFrom = false;
             Properties[0].IsEnabledCityTo = false;
-            Properties[0].IsEnabledChange = false;
+            Properties[0].IsVisibleChange = false;
             Properties[0].PlaceholderTextCityFrom = "Choose city";
             Properties[0].PlaceholderTextCityTo = "Choose city";
             Properties[0].TextCountryFrom = null;
@@ -162,15 +162,15 @@ namespace Flights.Core.ViewModels
         {
             if (Properties[0].PivotNumber == 1 || Properties[0].PivotNumber == 2)
             {
-                Properties[0].IsEnabledRefresh = (Properties[0].PivotNumber == 1) ? true : false;
-                Properties[0].IsEnabledChange = false;
-                Properties[0].IsEnabledClear = false;
+                Properties[0].IsVisibleRefresh = (Properties[0].PivotNumber == 1) ? true : false;
+                Properties[0].IsVisibleChange = false;
+                Properties[0].IsVisibleClear = false;
             }
             else
             {
-                Properties[0].IsEnabledRefresh = false;
-                Properties[0].IsEnabledChange = _status;
-                Properties[0].IsEnabledClear = true;
+                Properties[0].IsVisibleRefresh = false;
+                Properties[0].IsVisibleChange = _status;
+                Properties[0].IsVisibleClear = true;
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -190,8 +190,8 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
             CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
             _dataOfFlightsModel.CitiesFrom = await citiesService.GetCities(_dataOfFlightsModel.CountryFrom);
-            Properties[0].IsEnabledChange = (Properties[0].IsEnabledCityTo) ? true : false;
-            _status = Properties[0].IsEnabledChange;
+            Properties[0].IsVisibleChange = (Properties[0].IsEnabledCityTo) ? true : false;
+            _status = Properties[0].IsVisibleChange;
             if (_dataOfFlightsModel.CitiesFrom != null)
             {
                 Properties[0].CitiesFrom = _dataOfFlightsModel.CitiesFrom;
@@ -214,8 +214,8 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
             CitiesService citiesService = new CitiesService(_httpService, _jsonConverter);
             _dataOfFlightsModel.CitiesTo = await citiesService.GetCities(_dataOfFlightsModel.CountryTo);
-            Properties[0].IsEnabledChange = (Properties[0].IsEnabledCityFrom) ? true : false;
-            _status = Properties[0].IsEnabledChange;
+            Properties[0].IsVisibleChange = (Properties[0].IsEnabledCityFrom) ? true : false;
+            _status = Properties[0].IsVisibleChange;
             if (_dataOfFlightsModel.CitiesTo != null)
             {
                 Properties[0].CitiesTo = _dataOfFlightsModel.CitiesTo;
@@ -281,7 +281,6 @@ namespace Flights.Core.ViewModels
                 _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
                 _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
                 _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
-                _dataOfFlightsModel.ReturnWay = false;
                 Properties[0].IsEnabledCityFrom = true;
                 Properties[0].IsEnabledCityTo = true;
                 Properties[0].IsEnabledButtonFind = true;
