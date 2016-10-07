@@ -29,60 +29,62 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
-                                <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                </i:Interaction.Behaviors>
-                            </ComboBox>
+                    <ScrollViewer>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
+                                <ComboBox SelectedItem="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
+                                    <i:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}"/>
+                                        </core:EventTriggerBehavior>
+                                    </i:Interaction.Behaviors>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
+                                <ComboBox SelectedItem="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom}" IsEnabled="{Binding Properties[0].IsEnabledCityFrom}">
+                                    <i:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}"/>
+                                        </core:EventTriggerBehavior>
+                                    </i:Interaction.Behaviors>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="To" Style="{StaticResource TextBlockEntryStyle}"/>
+                                <ComboBox SelectedItem="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
+                                    <i:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}"/>
+                                        </core:EventTriggerBehavior>
+                                    </i:Interaction.Behaviors>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
+                                <ComboBox SelectedItem="{Binding Properties[0].TextCityTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityTo}" IsEnabled="{Binding Properties[0].IsEnabledCityTo}">
+                                    <i:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}"/>
+                                        </core:EventTriggerBehavior>
+                                    </i:Interaction.Behaviors>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}" Width="210"/>
+                                <TextBlock Text="Choose data" Style="{StaticResource TextBlockEntryStyle}" Width="148"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding Properties[0].IsCheckedOneWay, Mode=TwoWay}" Command="{Binding Commands[0].SetOneWayCommand}" Content="One way" Style="{StaticResource RadioButtonStyle}"/>
+                                <DatePicker Date="{Binding Properties[0].DateOneWay, Mode=TwoWay}" IsEnabled="true" Style="{StaticResource DatePickerStyle}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding Properties[0].IsCheckedReturn, Mode=TwoWay}" Command="{Binding Commands[0].SetReturnWayCommand}" Content="Return" Style="{StaticResource RadioButtonStyle}"/>
+                                <DatePicker Date="{Binding Properties[0].DateReturn, Mode=TwoWay}" IsEnabled="{Binding Properties[0].IsEnabledDateReturn, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <ComboBox SelectedItem="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom}" IsEnabled="{Binding Properties[0].IsEnabledCityFrom}">
-                                <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                </i:Interaction.Behaviors>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="To" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
-                                <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                </i:Interaction.Behaviors>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                            <ComboBox SelectedItem="{Binding Properties[0].TextCityTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityTo}" IsEnabled="{Binding Properties[0].IsEnabledCityTo}">
-                                <i:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                </i:Interaction.Behaviors>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}" Width="210"/>
-                            <TextBlock Text="Choose data" Style="{StaticResource TextBlockEntryStyle}" Width="148"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding Properties[0].IsCheckedOneWay, Mode=TwoWay}" Command="{Binding Commands[0].SetOneWayCommand}" Content="One way" Style="{StaticResource RadioButtonStyle}"/>
-                            <DatePicker Date="{Binding Properties[0].DateOneWay, Mode=TwoWay}" IsEnabled="true" Style="{StaticResource DatePickerStyle}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding Properties[0].IsCheckedReturn, Mode=TwoWay}" Command="{Binding Commands[0].SetReturnWayCommand}" Content="Return" Style="{StaticResource RadioButtonStyle}"/>
-                            <DatePicker Date="{Binding Properties[0].DateReturn, Mode=TwoWay}" IsEnabled="{Binding Properties[0].IsEnabledDateReturn, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}"/>
-                        </StackPanel>
-                    </StackPanel>
+                    </ScrollViewer>
                 </Grid>
                 <Button Grid.Column="1" Grid.Row="1" IsEnabled="{Binding Properties[0].IsEnabledButtonFind, Mode=TwoWay}" Content="Find flights" Style="{StaticResource ButtonStyle}" Command="{Binding Commands[0].FindFlightsCommand}"/>
             </Grid>

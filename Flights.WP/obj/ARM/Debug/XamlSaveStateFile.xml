@@ -1,6 +1,6 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\myproject\wp\flights\flights project\flights.wp\obj\arm\debug\intermediatexaml\flights.wp.exe" HashGuid="25f7ae51-c59f-453b-b4cd-48d2a8cbab9f" />
+    <LocalAssembly PathName="d:\myproject\wp\flights\flights project\flights.wp\obj\arm\debug\intermediatexaml\flights.wp.exe" HashGuid="6c637d05-331c-7d44-e715-95f534ce8fb6" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactions.dll" HashGuid="95a94f94-3917-d473-4f7c-18c4bd437046" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactivity.dll" HashGuid="d25f59e6-dd81-900a-0dfc-55b39f6898ef" />
     <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.core\bin\debug\flights.core.dll" HashGuid="b54e977f-f71c-2d4a-7474-0f110cd143a3" />

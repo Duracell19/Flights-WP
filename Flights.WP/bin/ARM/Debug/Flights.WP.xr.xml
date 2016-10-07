@@ -227,6 +227,9 @@
       <RootProperty Name="Text" />
       <RootEvent Name="Click" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="Content" />
+    </RootType>
     <RootType FullName="Flights.WP.Views.MainPageView" />
   </Roots.RootTypes>
 </Roots>
