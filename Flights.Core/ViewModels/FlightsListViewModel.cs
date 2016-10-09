@@ -88,6 +88,7 @@ namespace Flights.Core.ViewModels
             IsFlightAlreadyInFavorite = true;
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
+            _favoriteList = _favoriteList ?? new ObservableCollection<FavoriteModel>();
             ShowFlightsAsync();
         }
 
@@ -141,10 +142,7 @@ namespace Flights.Core.ViewModels
                 _dataOfFlightsModel.ReturnWay);
             }
 
-            if (_favoriteList != null)
-            {
-                IsFlightAlreadyInFavorite = _favoriteList.Any(IsFlightEqualOfFavoriteModel);
-            }
+            IsFlightAlreadyInFavorite = _favoriteList.Any(IsFlightEqualOfFavoriteModel);
 
             if (FlightsList.Count == 0)
             {
@@ -157,7 +155,6 @@ namespace Flights.Core.ViewModels
         private async Task InitializeDataAsync(string date, List<string> from, List<string> to, bool isReversed = false)
         {
             var flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(date, from, to);
-
             AddToFlightsList(flyInfoOneWayModel, isReversed);
         }
 

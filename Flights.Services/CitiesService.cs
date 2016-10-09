@@ -19,12 +19,12 @@ namespace Flights.Services
 
         public async Task<List<string>> GetCities(string country)  
         {
-            string uri = "http://flybaseapi.azurewebsites.net/odata/country('" + country + "')";
-            string response = await _httpService.GetRequest(uri);
+            var uri = "http://flybaseapi.azurewebsites.net/odata/country('" + country + "')";
+            var response = await _httpService.GetRequest(uri);
             if (response != null)
             {
-                AirportInfoDataModel airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);
-                List<string> cities = new List<string>(); 
+                var airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);
+                var cities = new List<string>(); 
                 foreach (var item in airportInfo.value)
                 {
                     cities.Add(item.City); 
