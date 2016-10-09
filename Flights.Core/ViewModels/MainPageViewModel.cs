@@ -117,7 +117,7 @@ namespace Flights.Core.ViewModels
 
         private void ChangeFields()
         {
-            Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryTo;
+            Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryTo;  
             Properties[0].TextCountryTo = _dataOfFlightsModel.CountryFrom;
             Properties[0].TextCityFrom = _dataOfFlightsModel.CityTo;
             Properties[0].TextCityTo = _dataOfFlightsModel.CityFrom;
@@ -201,10 +201,11 @@ namespace Flights.Core.ViewModels
 
         private void SetFlight(object arg)
         {
+            ClearFields();
             var item = (FavoriteModel)arg;
             Properties[0].TextCountryFrom = item.CountryFrom;
-            Properties[0].TextCountryTo = item.CountryTo;
             Properties[0].TextCityFrom = item.CityFrom;
+            Properties[0].TextCountryTo = item.CountryTo;
             Properties[0].TextCityTo = item.CityTo;
             Properties[0].PivotNumber = 0;
             RaisePropertyChanged(() => Properties);
