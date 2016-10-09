@@ -105,18 +105,13 @@ namespace Flights.Core.ViewModels
 
         private void ClearFields()
         {
-            Properties[0].IsCheckedOneWay = true;
-            Properties[0].IsCheckedReturn = false;
-            Properties[0].IsEnabledDateReturn = false;
-            Properties[0].IsEnabledButtonFind = false;
-            Properties[0].IsEnabledCityFrom = false;
-            Properties[0].IsEnabledCityTo = false;
-            Properties[0].PlaceholderTextCityFrom = "Choose city";
-            Properties[0].PlaceholderTextCityTo = "Choose city";
             Properties[0].TextCountryFrom = null;
             Properties[0].TextCountryTo = null;
             Properties[0].TextCityFrom = null;
             Properties[0].TextCityTo = null;
+            Properties[0].IsCheckedOneWay = true;
+            Properties[0].IsCheckedReturn = false;
+            Properties[0].IsEnabledDateReturn = false;
             RaisePropertyChanged(() => Properties);
         }
 
@@ -126,33 +121,22 @@ namespace Flights.Core.ViewModels
             Properties[0].TextCountryTo = _dataOfFlightsModel.CountryFrom;
             Properties[0].TextCityFrom = _dataOfFlightsModel.CityTo;
             Properties[0].TextCityTo = _dataOfFlightsModel.CityFrom;
-            List<string> cities = _dataOfFlightsModel.CitiesFrom;
-            _dataOfFlightsModel.CitiesFrom = _dataOfFlightsModel.CitiesTo;
-            _dataOfFlightsModel.CitiesTo = cities;
-            RaisePropertyChanged(() => Properties);
-            List<string> iata = _dataOfFlightsModel.IatasFrom;
-            _dataOfFlightsModel.IatasFrom = _dataOfFlightsModel.IatasTo;
-            _dataOfFlightsModel.IatasTo = iata;
-            _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
-            _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
-            _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
-            _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
             RaisePropertyChanged(() => Properties);
         }
 
         private void SetTheVisibilityIcon()
         {
-            if (Properties[0].PivotNumber == 1 || Properties[0].PivotNumber == 2)
-            {
-                Properties[0].IsVisibleRefresh = (Properties[0].PivotNumber == 1) ? true : false;
-                Properties[0].IsVisibleChange = false;
-                Properties[0].IsVisibleClear = false;
-            }
-            else
+            if (Properties[0].PivotNumber == 0)
             {
                 Properties[0].IsVisibleRefresh = false;
                 Properties[0].IsVisibleChange = true;
                 Properties[0].IsVisibleClear = true;
+            }
+            else
+            {
+                Properties[0].IsVisibleRefresh = (Properties[0].PivotNumber == 1) ? true : false;
+                Properties[0].IsVisibleChange = false;
+                Properties[0].IsVisibleClear = false;
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -176,6 +160,7 @@ namespace Flights.Core.ViewModels
             else
             {
                 Properties[0].PlaceholderTextCityFrom = "No available airports";
+                Properties[0].IsEnabledCityFrom = false;
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -193,6 +178,7 @@ namespace Flights.Core.ViewModels
             else
             {
                 Properties[0].PlaceholderTextCityTo = "No available airports";
+                Properties[0].IsEnabledCityTo = false;
             }
             RaisePropertyChanged(() => Properties);
         }
@@ -215,30 +201,14 @@ namespace Flights.Core.ViewModels
 
         private void SetFlight(object arg)
         {
-            if (arg is FavoriteModel)
-            {
-                FavoriteModel item = (FavoriteModel)arg;
-                Properties[0].TextCountryFrom = item.CountryFrom;
-                Properties[0].TextCountryTo = item.CountryTo;
-                Properties[0].TextCityFrom = item.CityFrom;
-                Properties[0].TextCityTo = item.CityTo;
-                Properties[0].CitiesFrom = item.CitiesFrom;
-                Properties[0].CitiesTo = item.CitiesTo;
-                Properties[0].IsEnabledCityFrom = true;
-                Properties[0].IsEnabledCityTo = true;
-                Properties[0].IsEnabledButtonFind = true;
-                Properties[0].PivotNumber = 0;
-                _dataOfFlightsModel.IatasFrom = item.IataFrom;
-                _dataOfFlightsModel.IatasTo = item.IataTo;
-                _dataOfFlightsModel.CitiesFrom = item.CitiesFrom;
-                _dataOfFlightsModel.CitiesTo = item.CitiesTo;
-                _dataOfFlightsModel.CountryFrom = Properties[0].TextCountryFrom;
-                _dataOfFlightsModel.CountryTo = Properties[0].TextCountryTo;
-                _dataOfFlightsModel.CityFrom = Properties[0].TextCityFrom;
-                _dataOfFlightsModel.CityTo = Properties[0].TextCityTo;
-                RaisePropertyChanged(() => Properties);
-            }
-        }        
+            var item = (FavoriteModel)arg;
+            Properties[0].TextCountryFrom = item.CountryFrom;
+            Properties[0].TextCountryTo = item.CountryTo;
+            Properties[0].TextCityFrom = item.CityFrom;
+            Properties[0].TextCityTo = item.CityTo;
+            Properties[0].PivotNumber = 0;
+            RaisePropertyChanged(() => Properties);
+        }       
 
         private MainPagePropetiesModel SetMainPageProperties()
         {

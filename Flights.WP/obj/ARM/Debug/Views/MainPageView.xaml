@@ -94,7 +94,7 @@
             <Grid>
                 <ListView Name="favoriteList" ItemsSource="{Binding Properties[0].FavoriteList}">
                     <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding  Commands[0].SetFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
