@@ -11,7 +11,6 @@ namespace Flights.Models
         public ICommand SetOneWayCommand { get; set; }
         public ICommand SetReturnWayCommand { get; set; }
         public ICommand FindFlightsCommand { get; set; }
-        public ICommand ChangeFieldsCommand { get; set; }
         public ICommand ClearFieldsCommand { get; set; }
         public ICommand SetTheVisibilityIconCommand { get; set; }
         public ICommand ShowHelpInformationCommand { get; set; }

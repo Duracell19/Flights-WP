@@ -40,8 +40,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Column="1"  Grid.Row="1">
-            <Image  Source="ms-appx:///Assets/plane.png" Width="350" Height="140"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Back" Command="{Binding BackCommand}"/>
+            <Image  Source="ms-appx:///Assets/plane.png" Width="350" Height="280"/>
         </StackPanel>
     </Grid>
 

@@ -34,7 +34,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="1" Content="Return to flight list" Command="{Binding BackCommand}"/>
     </Grid>
 
 </views:MvxWindowsPage>

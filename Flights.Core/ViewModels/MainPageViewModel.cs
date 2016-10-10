@@ -55,7 +55,6 @@ namespace Flights.Core.ViewModels
             Commands[0].SetOneWayCommand = new MvxCommand(SetOneWay);
             Commands[0].SetReturnWayCommand = new MvxCommand(SetReturnWay);
             Commands[0].FindFlightsCommand = new MvxCommand(FindFlights);
-            Commands[0].ChangeFieldsCommand = new MvxCommand(ChangeFields);
             Commands[0].ClearFieldsCommand = new MvxCommand(ClearFields);
             Commands[0].UpdateFavoriteListCommand = new MvxCommand(UpdateFavoriteList);
             Commands[0].SetTheVisibilityIconCommand = new MvxCommand(SetTheVisibilityIcon);
@@ -114,28 +113,17 @@ namespace Flights.Core.ViewModels
             Properties[0].IsEnabledDateReturn = false;
             RaisePropertyChanged(() => Properties);
         }
-
-        private void ChangeFields()
-        {
-            Properties[0].TextCountryFrom = _dataOfFlightsModel.CountryTo;  
-            Properties[0].TextCountryTo = _dataOfFlightsModel.CountryFrom;
-            Properties[0].TextCityFrom = _dataOfFlightsModel.CityTo;
-            Properties[0].TextCityTo = _dataOfFlightsModel.CityFrom;
-            RaisePropertyChanged(() => Properties);
-        }
-
+        
         private void SetTheVisibilityIcon()
         {
             if (Properties[0].PivotNumber == 0)
             {
                 Properties[0].IsVisibleRefresh = false;
-                Properties[0].IsVisibleChange = true;
                 Properties[0].IsVisibleClear = true;
             }
             else
             {
                 Properties[0].IsVisibleRefresh = (Properties[0].PivotNumber == 1) ? true : false;
-                Properties[0].IsVisibleChange = false;
                 Properties[0].IsVisibleClear = false;
             }
             RaisePropertyChanged(() => Properties);
@@ -201,14 +189,17 @@ namespace Flights.Core.ViewModels
 
         private void SetFlight(object arg)
         {
-            ClearFields();
-            var item = (FavoriteModel)arg;
-            Properties[0].TextCountryFrom = item.CountryFrom;
-            Properties[0].TextCityFrom = item.CityFrom;
-            Properties[0].TextCountryTo = item.CountryTo;
-            Properties[0].TextCityTo = item.CityTo;
-            Properties[0].PivotNumber = 0;
-            RaisePropertyChanged(() => Properties);
+            if (arg is FavoriteModel)
+            {
+                ClearFields();
+                var item = (FavoriteModel)arg;
+                Properties[0].TextCountryFrom = item.CountryFrom;
+                Properties[0].TextCountryTo = item.CountryTo;
+                Properties[0].TextCityFrom = item.CityFrom;
+                Properties[0].TextCityTo = item.CityTo;
+                Properties[0].PivotNumber = 0;
+                RaisePropertyChanged(() => Properties);
+            }
         }       
 
         private MainPagePropetiesModel SetMainPageProperties()

@@ -31,7 +31,6 @@
                         <LineBreak/>
                         <Run Text="Url: http://rasp.yandex.ru/"/>
         </TextBlock>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="1" Content="Back" Command="{Binding BackCommand}"/>
     </Grid>
 
 </views:MvxWindowsPage>

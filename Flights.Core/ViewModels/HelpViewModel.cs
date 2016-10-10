@@ -1,5 +1,4 @@
 ﻿using MvvmCross.Core.ViewModels;
-using System.Windows.Input;
 
 namespace Flights.Core.ViewModels
 {
@@ -23,14 +22,6 @@ namespace Flights.Core.ViewModels
         public string RefreshHelpFlyinformation
         {
             get { return "Refresh favorite list"; }
-        }
-
-        public ICommand BackCommand
-        {
-            get
-            {
-                return new MvxCommand(() => Close(this));
-            }
         }
     }
 }
