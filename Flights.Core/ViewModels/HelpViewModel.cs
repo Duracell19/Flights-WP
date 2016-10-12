@@ -9,11 +9,6 @@ namespace Flights.Core.ViewModels
             get { return "Clear fields"; }
         }
 
-        public string ChangeHelpFlyInformation
-        {
-            get { return " Сhange fields"; }
-        }
-
         public string FavoriteHelpFlyInformation
         {
             get { return "Add to favorites"; }

@@ -20,6 +20,7 @@ namespace Flights.Models
         public string TextCountryTo { get; set; } 
         public string TextCityFrom { get; set; } 
         public string TextCityTo { get; set; } 
+        public string TextAbout { get; set; }
         public DateTimeOffset DateOneWay { get; set; } 
         public DateTimeOffset DateReturn { get; set; } 
         public int PivotNumber { get; set; }

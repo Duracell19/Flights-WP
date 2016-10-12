@@ -4,6 +4,7 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="TextAbout" />
     <RootPropertyPathName Name="InfoFlyList" />
     <RootPropertyPathName Name="Information" />
     <RootPropertyPathName Name="StaticInformation" />
@@ -23,7 +24,6 @@
     <RootPropertyPathName Name="ShowAboutInforamtionCommand" />
     <RootPropertyPathName Name="RefreshHelpFlyinformation" />
     <RootPropertyPathName Name="FavoriteHelpFlyInformation" />
-    <RootPropertyPathName Name="ChangeHelpFlyInformation" />
     <RootPropertyPathName Name="ClearHelpFlyInformation" />
     <RootPropertyPathName Name="Properties" />
     <RootPropertyPathName Name="PivotNumber" />
@@ -92,9 +92,8 @@
       <RootProperty Name="Foreground" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Inlines" />
       <RootProperty Name="Text" />
+      <RootProperty Name="Style" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
     </RootType>
@@ -132,6 +131,9 @@
       <RootProperty Name="BottomAppBar" />
       <RootProperty Name="NavigationCacheMode" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="Content" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="RowDefinitions" />
       <RootProperty Name="ColumnDefinitions" />
@@ -149,22 +151,18 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
-    <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
-    <RootType FullName="Windows.UI.Xaml.Documents.Run">
-      <RootProperty Name="Text" />
-    </RootType>
-    <RootType FullName="Flights.WP.Views.AboutView" />
-    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="Name" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="ElementName" />
       <RootProperty Name="Path" />
       <RootProperty Name="Converter" />
       <RootProperty Name="Mode" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Flights.WP.Views.AboutView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
@@ -223,9 +221,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
       <RootProperty Name="Text" />
       <RootEvent Name="Click" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
-      <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Flights.WP.Views.MainPageView" />
   </Roots.RootTypes>

@@ -130,20 +130,11 @@
 
         <PivotItem Header="About">
             <Grid>
-                <TextBlock Style="{StaticResource TextBlockAboutStyle}">
-                    <LineBreak/>
-                <Run Text="The application is designed"/>
-                        <LineBreak/>
-                        <Run Text="for viewing the list of flights."/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run Text="Data provided by the service"/>
-                        <LineBreak/>
-                        <Run Text="Yandex.Schedules."/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run Text="Url: http://rasp.yandex.ru/"/>
-                </TextBlock>
+                <ScrollViewer>
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+                        <TextBlock Text="{Binding Properties[0].TextAbout}" Style="{StaticResource TextBlockAboutStyle}"/>
+                    </Grid>
+                </ScrollViewer>
             </Grid>
         </PivotItem>
     </Pivot>

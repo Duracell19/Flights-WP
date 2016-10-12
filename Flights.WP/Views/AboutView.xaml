@@ -7,30 +7,20 @@
     xmlns:views="using:MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Style="{StaticResource TextBlockAboutStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                <LineBreak/>
-                <Run Text="The application is designed"/>
-                        <LineBreak/>
-                        <Run Text="for viewing the list of flights."/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run Text="Data provided by the service"/>
-                        <LineBreak/>
-                        <Run Text="Yandex.Schedules."/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run Text="Url: http://rasp.yandex.ru/"/>
-        </TextBlock>
-    </Grid>
-
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+                <TextBlock Text="{Binding TextAbout}" Style="{StaticResource TextBlockAboutStyle}"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </views:MvxWindowsPage>

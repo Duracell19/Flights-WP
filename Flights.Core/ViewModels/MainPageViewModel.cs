@@ -206,6 +206,7 @@ namespace Flights.Core.ViewModels
         {
             return new MainPagePropetiesModel
             {
+                TextAbout = AboutInformation.ABOUT_INFORMATION,
                 PlaceholderTextCityFrom = "Choose city",
                 PlaceholderTextCityTo = "Choose city",
                 DateOneWay = DateTime.Now,

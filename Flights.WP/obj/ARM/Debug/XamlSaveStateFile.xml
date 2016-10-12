@@ -1,11 +1,11 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\myproject\wp\flights\flights project\flights.wp\obj\arm\debug\intermediatexaml\flights.wp.exe" HashGuid="913ae4e2-3638-7b79-ff1d-3e96c43617c4" />
+    <LocalAssembly PathName="d:\myproject\wp\flights\flights project\flights.wp\obj\arm\debug\intermediatexaml\flights.wp.exe" HashGuid="e87209a8-9bc8-8e28-1753-af6297d5157b" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactions.dll" HashGuid="95a94f94-3917-d473-4f7c-18c4bd437046" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactivity.dll" HashGuid="d25f59e6-dd81-900a-0dfc-55b39f6898ef" />
-    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.core\bin\debug\flights.core.dll" HashGuid="a7c5b5cf-46a5-65ba-8fd5-74871be908fe" />
-    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.infrastructure\bin\debug\flights.infrastructure.dll" HashGuid="baa0f6c4-d02b-92a0-2525-1c887c509746" />
-    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.models\bin\debug\flights.models.dll" HashGuid="68ce289a-5951-c96c-12b8-e1b9e15a6a1e" />
+    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.core\bin\debug\flights.core.dll" HashGuid="0bc1a833-79eb-83b7-4c64-c28424a5abbc" />
+    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.infrastructure\bin\debug\flights.infrastructure.dll" HashGuid="4303a363-edcc-09bf-06b2-0a126b45562f" />
+    <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\flights.models\bin\debug\flights.models.dll" HashGuid="cc278536-d303-6d2c-4d2a-5cb411eb21b3" />
     <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\packages\mvvmcross.binding.4.2.3\lib\wpa81\mvvmcross.binding.dll" HashGuid="add6f491-ab4c-dc41-7d83-cb1dc7fc5be4" />
     <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\packages\mvvmcross.core.4.2.3\lib\wpa81\mvvmcross.core.dll" HashGuid="6672459c-8d99-42b4-90a6-77f71852c547" />
     <ReferenceAssembly PathName="d:\myproject\wp\flights\flights project\packages\mvvmcross.binding.4.2.3\lib\wpa81\mvvmcross.localization.dll" HashGuid="45b8d9a9-1ce4-d2c5-b08f-ddebc76f754f" />
