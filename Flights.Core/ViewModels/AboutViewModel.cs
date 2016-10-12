@@ -7,7 +7,7 @@ namespace Flights.Core.ViewModels
     {
         public string TextAbout
         {
-            get { return AboutInformation.ABOUT_INFORMATION; }
+            get { return Decription.ABOUT_INFORMATION; }
         }
     }
 }

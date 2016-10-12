@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Flights.Infrastructure;
+using MvvmCross.Core.ViewModels;
 
 namespace Flights.Core.ViewModels
 {
@@ -6,17 +7,17 @@ namespace Flights.Core.ViewModels
     {
         public string ClearHelpFlyInformation
         {
-            get { return "Clear fields"; }
+            get { return Decription.CLEAR_HELP_INFORMATION; }
         }
 
         public string FavoriteHelpFlyInformation
         {
-            get { return "Add to favorites"; }
+            get { return Decription.FAVORITE_HELP_INFORMATION; }
         }
 
         public string RefreshHelpFlyinformation
         {
-            get { return "Refresh favorite list"; }
+            get { return Decription.REFRESH_HELP_INFORMATION; }
         }
     }
 }
