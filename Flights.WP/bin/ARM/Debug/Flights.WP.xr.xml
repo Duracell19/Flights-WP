@@ -35,7 +35,6 @@
     <RootPropertyPathName Name="CityFrom" />
     <RootPropertyPathName Name="CountryTo" />
     <RootPropertyPathName Name="CountryFrom" />
-    <RootPropertyPathName Name="Image1" />
     <RootPropertyPathName Name="IsEnabledButtonFind" />
     <RootPropertyPathName Name="FindFlightsCommand" />
     <RootPropertyPathName Name="DateReturn" />

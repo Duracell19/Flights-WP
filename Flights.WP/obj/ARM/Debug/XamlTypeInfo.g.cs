@@ -451,7 +451,6 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 userType.AddMemberName("CountryTo");
                 userType.AddMemberName("IataFrom");
                 userType.AddMemberName("IataTo");
-                userType.AddMemberName("Image1");
                 xamlType = userType;
                 break;
 
@@ -659,16 +658,6 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
             var that = (global::Flights.Models.FavoriteModel)instance;
             that.IataTo = (global::System.Collections.Generic.List<global::System.String>)Value;
         }
-        private object get_21_FavoriteModel_Image1(object instance)
-        {
-            var that = (global::Flights.Models.FavoriteModel)instance;
-            return that.Image1;
-        }
-        private void set_21_FavoriteModel_Image1(object instance, object Value)
-        {
-            var that = (global::Flights.Models.FavoriteModel)instance;
-            that.Image1 = (global::System.String)Value;
-        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -812,12 +801,6 @@ namespace Flights.WP.Flights_WP_XamlTypeInfo
                 xamlMember = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlMember(this, "IataTo", "System.Collections.Generic.List`1<String>");
                 xamlMember.Getter = get_20_FavoriteModel_IataTo;
                 xamlMember.Setter = set_20_FavoriteModel_IataTo;
-                break;
-            case "Flights.Models.FavoriteModel.Image1":
-                userType = (global::Flights.WP.Flights_WP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Flights.Models.FavoriteModel");
-                xamlMember = new global::Flights.WP.Flights_WP_XamlTypeInfo.XamlMember(this, "Image1", "String");
-                xamlMember.Getter = get_21_FavoriteModel_Image1;
-                xamlMember.Setter = set_21_FavoriteModel_Image1;
                 break;
             }
             return xamlMember;

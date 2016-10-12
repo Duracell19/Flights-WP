@@ -119,8 +119,7 @@ namespace Flights.Core.ViewModels
                 CountryFrom = _dataOfFlightsModel.CountryFrom,
                 CountryTo = _dataOfFlightsModel.CountryTo,
                 IataFrom = _dataOfFlightsModel.IatasFrom,
-                IataTo = _dataOfFlightsModel.IatasTo,
-                Image1 = "ms-appx:///Assets/favorite.png"
+                IataTo = _dataOfFlightsModel.IatasTo
             });
         }
 

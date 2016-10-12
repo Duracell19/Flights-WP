@@ -12,6 +12,5 @@ namespace Flights.Models
         public string CountryTo { get; set; }
         public List<string> IataFrom { get; set; }
         public List<string> IataTo { get; set; }
-        public string Image1 { get; set; }
     }
 }
