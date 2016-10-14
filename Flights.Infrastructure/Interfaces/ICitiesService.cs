@@ -5,6 +5,6 @@ namespace Flights.Infrastructure.Interfaces
 {
     public interface ICitiesService
     {
-        Task<List<string>> GetCities(string country);
+        Task<List<string>> GetCitiesAsync(string country);
     }
 }

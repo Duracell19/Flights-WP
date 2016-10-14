@@ -87,6 +87,7 @@
     <Compile Include="Converters\OppositeBoolConverter.cs" />
     <Compile Include="Converters\BoolToPictureConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToNotNullStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

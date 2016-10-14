@@ -7,7 +7,7 @@ namespace Flights.Services
 {
     public class HttpService : IHttpService
     {
-        public async Task<string> GetRequest(string url)
+        public async Task<string> GetRequestAsync(string url)
         {
             try
             {

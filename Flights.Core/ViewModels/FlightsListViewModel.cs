@@ -72,7 +72,7 @@ namespace Flights.Core.ViewModels
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public async void Init(string param)
+        public async Task Init(string param)
         {
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
@@ -138,7 +138,7 @@ namespace Flights.Core.ViewModels
 
         private async Task InitializeDataAsync(string date, List<string> from, List<string> to, bool isReversed = false)
         {
-            var flyInfoOneWayModel = await _flightsService.ConfigurationOfFlights(date, from, to);
+            var flyInfoOneWayModel = await _flightsService.ConfigurationOfFlightsAsync(date, from, to);
             AddToFlightsList(flyInfoOneWayModel, isReversed);
         }
 

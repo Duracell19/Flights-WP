@@ -76,6 +76,7 @@
         <local:BoolToVisibilityConverter x:Key="SetVisibilityIcon"/>
         <local:BoolToVisibilityFavoriteIconConverter x:Key="SetVisibilityFavoriteIcon"/>
         <local:TextToVisibilityConverter x:Key="SetVisibilityText"/>
+        <local:StringToNotNullStringConverter x:Key="SetString"/>
 
     </Application.Resources>
 </Application>

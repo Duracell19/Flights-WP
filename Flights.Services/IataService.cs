@@ -16,10 +16,10 @@ namespace Flights.Services
             _jsonConverter = jsonConverter;
         }
 
-        public async Task<List<string>> GetIata(string city) 
+        public async Task<List<string>> GetIataAsync(string city) 
         {
             var uri = "http://flybaseapi.azurewebsites.net/odata/code_iata('" + city + "')";
-            var response = await _httpService.GetRequest(uri);
+            var response = await _httpService.GetRequestAsync(uri);
             if (response != null)
             {
                 var airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);

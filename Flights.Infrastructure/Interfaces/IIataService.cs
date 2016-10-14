@@ -5,6 +5,6 @@ namespace Flights.Infrastructure.Interfaces
 {
     public interface IIataService
     {
-        Task<List<string>> GetIata(string city);
+        Task<List<string>> GetIataAsync(string city);
     }
 }

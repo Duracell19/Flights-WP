@@ -6,16 +6,19 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="TextAbout" />
     <RootPropertyPathName Name="InfoFlyList" />
-    <RootPropertyPathName Name="Information" />
-    <RootPropertyPathName Name="StaticInformation" />
+    <RootPropertyPathName Name="To" />
+    <RootPropertyPathName Name="From" />
+    <RootPropertyPathName Name="Arrival" />
+    <RootPropertyPathName Name="Departure" />
+    <RootPropertyPathName Name="Duration" />
+    <RootPropertyPathName Name="ThreadNumber" />
+    <RootPropertyPathName Name="ThreadVehicle" />
+    <RootPropertyPathName Name="ThreadCarrierTitle" />
+    <RootPropertyPathName Name="ArrivalTerminal" />
     <RootPropertyPathName Name="IsLoading" />
     <RootPropertyPathName Name="FlightsList" />
     <RootPropertyPathName Name="ShowFlightDetailsCommand" />
     <RootPropertyPathName Name="SelectedItem" />
-    <RootPropertyPathName Name="Arrival" />
-    <RootPropertyPathName Name="Departure" />
-    <RootPropertyPathName Name="To" />
-    <RootPropertyPathName Name="From" />
     <RootPropertyPathName Name="IsReservedFlight" />
     <RootPropertyPathName Name="IsFlightAlreadyInFavorite" />
     <RootPropertyPathName Name="AddToFavoritesCommand" />
@@ -120,6 +123,7 @@
     <RootType FullName="Flights.WP.Converters.BoolToVisibilityConverter" />
     <RootType FullName="Flights.WP.Converters.BoolToVisibilityFavoriteIconConverter" />
     <RootType FullName="Flights.WP.Converters.TextToVisibilityConverter" />
+    <RootType FullName="Flights.WP.Converters.StringToNotNullStringConverter" />
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
       <RootProperty Name="Value" />
@@ -145,14 +149,6 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Flights.WP.Views.AboutView" />
-    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="Name" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.DataTemplate">
-      <RootProperty Name="Template" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
       <RootProperty Name="Orientation" />
@@ -164,6 +160,11 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="Flights.WP.Views.FlightsInfoView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Name" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
     <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
       <RootMethod Name="GetBehaviors" />
       <RootMethod Name="SetBehaviors" />
@@ -175,6 +176,9 @@
     <RootType FullName="Microsoft.Xaml.Interactions.Core.InvokeCommandAction">
       <RootProperty Name="Command" />
       <RootProperty Name="CommandParameter" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
       <RootProperty Name="PrimaryCommands" />

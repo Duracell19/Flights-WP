@@ -37,7 +37,6 @@
     <Compile Include="FavoriteModel.cs" />
     <Compile Include="FlyInfoModel.cs" />
     <Compile Include="FlyInfoShowModel.cs" />
-    <Compile Include="InfoAboutFlyModel.cs" />
     <Compile Include="DataOfFlightsModel.cs" />
     <Compile Include="MainPageCommandsModel.cs" />
     <Compile Include="MainPagePropetiesModel.cs" />

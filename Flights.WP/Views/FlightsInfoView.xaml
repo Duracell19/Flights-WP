@@ -7,25 +7,100 @@
     xmlns:views="using:MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center">
-        <ListView ItemsSource="{Binding InfoFlyList}" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text=""/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
-                                       Text="{Binding StaticInformation}"/>
-                            <Image Source="ms-appx:///Assets/direction.png" 
-                                   Width="30"/>
-                            <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
-                                       Text="{Binding Information}"/>
-                        </StackPanel>
-                        <TextBlock Text=""/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
-    
+    <ScrollViewer>
+        <Grid HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text=""/>
+                <TextBlock Text=""/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Arrival terminal"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.ArrivalTerminal, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Carrier title"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}"
+                               Text="{Binding InfoFlyList.ThreadCarrierTitle, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}"
+                               Text="Vehicle"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.ThreadVehicle, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Number"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.ThreadNumber, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Duration"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.Duration, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Departure"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.Departure, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="Arrival"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.Arrival, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="From"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.From, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+                <TextBlock/>
+                <TextBlock/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="To"/>
+                    <Image Source="ms-appx:///Assets/direction.png" 
+                           Width="30"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                               Text="{Binding InfoFlyList.To, Converter={StaticResource SetString}}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </views:MvxWindowsPage>

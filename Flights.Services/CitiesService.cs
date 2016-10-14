@@ -17,10 +17,10 @@ namespace Flights.Services
             _jsonConverter = jsonConverter;
         }
 
-        public async Task<List<string>> GetCities(string country)  
+        public async Task<List<string>> GetCitiesAsync(string country)  
         {
             var uri = "http://flybaseapi.azurewebsites.net/odata/country('" + country + "')";
-            var response = await _httpService.GetRequest(uri);
+            var response = await _httpService.GetRequestAsync(uri);
             if (response != null)
             {
                 var airportInfo = _jsonConverter.Deserialize<AirportInfoDataModel>(response);

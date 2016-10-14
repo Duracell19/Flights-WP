@@ -4,6 +4,6 @@ namespace Flights.Infrastructure.Interfaces
 {
     public interface IHttpService
     {
-        Task<string> GetRequest(string url);
+        Task<string> GetRequestAsync(string url);
     }
 }

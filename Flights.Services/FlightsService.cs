@@ -21,7 +21,7 @@ namespace Flights.Services
         public async Task<List<FlyInfoModel>> GetFlightAsync(string date, string from, string to)
         {
             var uri = "https://api.rasp.yandex.net/v1.0/search/?apikey=e07ef310-dbe4-49cf-985f-1d5738c1ebc7&format=json&transport_types=plane&system=iata&from=" + from + "&to=" + to + "&lang=en&page=1&date=" + date;
-            var response = await _httpService.GetRequest(uri);
+            var response = await _httpService.GetRequestAsync(uri);
             if (response == null)
             {
                 return null;
@@ -48,7 +48,7 @@ namespace Flights.Services
             };
         }
 
-        public async Task<List<FlyInfoModel>> ConfigurationOfFlights(string date, List<string> iatasFrom, List<string> iatasTo)
+        public async Task<List<FlyInfoModel>> ConfigurationOfFlightsAsync(string date, List<string> iatasFrom, List<string> iatasTo)
         {
             var flyInfoModel = new List<FlyInfoModel>();
             foreach (var iataFrom in iatasFrom)
