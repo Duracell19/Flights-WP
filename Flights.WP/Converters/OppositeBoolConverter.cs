@@ -3,16 +3,13 @@ using Windows.UI.Xaml.Data;
 
 namespace Flights.WP.Converters
 {
-    public class VisibilityAppBarIconConverter : IValueConverter
+    public class OppositeBoolConverter : IValueConverter
     {
-        #region IValueConverter implementation
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is bool)
             {
-                string picture = ((bool)value) ? "Visible" : "Collapsed";
-                return picture;
+                return !(bool)value;
             }
             return value;
         }
@@ -21,7 +18,5 @@ namespace Flights.WP.Converters
         {
             throw new NotImplementedException();
         }
-
-        #endregion
     }
 }

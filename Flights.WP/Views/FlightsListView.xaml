@@ -9,40 +9,49 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-            <TextBlock Text="{Binding CommentAboutFlights}" Style="{StaticResource CommentAboutFlightsStyle}"/>
-            <ProgressRing Grid.Column="1" Grid.Row="0" Style="{StaticResource ProgressRingStyle}" IsActive="{Binding IsLoading}"/>
-            <ListView Name="flyList" ItemsSource="{Binding FlightsList}" Grid.ColumnSpan="3">
+    <Grid HorizontalAlignment="Center">
+        <Grid Visibility="{Binding IsLoading, Converter={StaticResource SetVisibilityFavoriteIcon}}">
+            <ListView Name="flyList" 
+                      ItemsSource="{Binding FlightsList}">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding ShowFlightDetailsCommand}" CommandParameter="{Binding ElementName=flyList, Path=SelectedItem}"/>
+                        <core:InvokeCommandAction Command="{Binding ShowFlightDetailsCommand}" 
+                                                  CommandParameter="{Binding ElementName=flyList, Path=SelectedItem}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                        <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding IsReservedFlight, Converter={StaticResource ChangePicture}}" Height="35" Width="35"/>
-                                <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding IsReservedFlight, Converter={StaticResource ChangePicture}}" 
+                                       Height="35" 
+                                       Width="35"/>
+                                <StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding From}" FontSize="18" Padding="10" Foreground="#FF959595"/>
-                                        <Image Source="ms-appx:///Assets/direction.png" Height="13" Width="13"/>
-                                        <TextBlock Text="{Binding To}" FontSize="18" Padding="10" Foreground="#FF959595"/>
+                                        <TextBlock Text="{Binding From}" 
+                                                   FontSize="18" 
+                                                   Padding="10"
+                                                   Foreground="#FF959595"/>
+                                        <Image Source="ms-appx:///Assets/direction.png" 
+                                               Height="13"
+                                               Width="13"/>
+                                        <TextBlock Text="{Binding To}" 
+                                                   FontSize="18" 
+                                                   Padding="10" 
+                                                   Foreground="#FF959595"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Departure}" FontSize="15" Padding="10" Foreground="#FF959595"/>
-                                        <Image Source="ms-appx:///Assets/direction.png"  Height="13" Width="13"/>
-                                        <TextBlock Text="{Binding Arrival}" FontSize="15" Padding="10" Foreground="#FF959595"/>
+                                        <TextBlock Text="{Binding Departure}" 
+                                                   FontSize="15" 
+                                                   Padding="10" 
+                                                   Foreground="#FF959595"/>
+                                        <Image Source="ms-appx:///Assets/direction.png"  
+                                               Height="13" 
+                                               Width="13"/>
+                                        <TextBlock Text="{Binding Arrival}" 
+                                                   FontSize="15" 
+                                                   Padding="10" 
+                                                   Foreground="#FF959595"/>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
@@ -50,15 +59,25 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <TextBlock Text="There are no flights"
+                   Visibility="{Binding FlightsList, Converter={StaticResource SetVisibilityText}}"
+                   Style="{StaticResource CommentAboutFlightsStyle}"/>
         </Grid>
+        <ProgressRing Style="{StaticResource ProgressRingStyle}" 
+                      IsActive="{Binding IsLoading}"/>
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar>
-            <AppBarButton Label="help" Icon="Help" Command="{Binding ShowHelpInformationCommand}"/>
-            <AppBarButton Label="favorite" Icon="Favorite" IsEnabled="{Binding IsFlightAlreadyInFavorite, Converter={StaticResource Inversion}}" Command="{Binding AddToFavoritesCommand}"/>
+        <CommandBar> 
+            <AppBarButton Label="help" Icon="Help" 
+                          Command="{Binding ShowHelpInformationCommand}"/>
+            <AppBarButton Visibility="{Binding IsLoading, Converter={StaticResource SetVisibilityFavoriteIcon}}" 
+                          Label="favorite" Icon="Favorite" 
+                          IsEnabled="{Binding IsFlightAlreadyInFavorite, Converter={StaticResource Inversion}}" 
+                          Command="{Binding AddToFavoritesCommand}"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" Command="{Binding ShowAboutInforamtionCommand}"/>
+                <AppBarButton Label="About" 
+                              Command="{Binding ShowAboutInforamtionCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

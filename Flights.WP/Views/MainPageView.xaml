@@ -9,7 +9,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     NavigationCacheMode="Required">
-    
+
     <Pivot SelectedIndex="{Binding Properties[0].PivotNumber, Mode=TwoWay}">
         <i:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -18,106 +18,146 @@
         </i:Interaction.Behaviors>
 
         <PivotItem Header="Entry">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                    <ScrollViewer>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="From" Style="{StaticResource TextBlockEntryStyle}"/>
-                                <ComboBox SelectedItem="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
-                                    <i:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}"/>
-                                        </core:EventTriggerBehavior>
-                                    </i:Interaction.Behaviors>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                                <ComboBox SelectedItem="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesFrom}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom}" IsEnabled="{Binding Properties[0].IsEnabledCityFrom}">
-                                    <i:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}"/>
-                                        </core:EventTriggerBehavior>
-                                    </i:Interaction.Behaviors>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="To" Style="{StaticResource TextBlockEntryStyle}"/>
-                                <ComboBox SelectedItem="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CountriesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="Choose country">
-                                    <i:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}"/>
-                                        </core:EventTriggerBehavior>
-                                    </i:Interaction.Behaviors>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}"/>
-                                <ComboBox SelectedItem="{Binding Properties[0].TextCityTo, Mode=TwoWay}" ItemsSource="{Binding Properties[0].CitiesTo}" Style="{StaticResource ComboBoxStyle}" PlaceholderText="{Binding  Properties[0].PlaceholderTextCityTo}" IsEnabled="{Binding Properties[0].IsEnabledCityTo}">
-                                    <i:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                                            <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}"/>
-                                        </core:EventTriggerBehavior>
-                                    </i:Interaction.Behaviors>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="" Style="{StaticResource TextBlockEntryStyle}" Width="210"/>
-                                <TextBlock Text="Choose data" Style="{StaticResource TextBlockEntryStyle}" Width="148"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton IsChecked="{Binding Properties[0].IsCheckedOneWay, Mode=TwoWay}" Command="{Binding Commands[0].SetOneWayCommand}" Content="One way" Style="{StaticResource RadioButtonStyle}"/>
-                                <DatePicker Date="{Binding Properties[0].DateOneWay, Mode=TwoWay}" IsEnabled="true" Style="{StaticResource DatePickerStyle}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton IsChecked="{Binding Properties[0].IsCheckedReturn, Mode=TwoWay}" Command="{Binding Commands[0].SetReturnWayCommand}" Content="Return" Style="{StaticResource RadioButtonStyle}"/>
-                                <DatePicker Date="{Binding Properties[0].DateReturn, Mode=TwoWay}" IsEnabled="{Binding Properties[0].IsEnabledDateReturn, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}"/>
-                            </StackPanel>
+            <Grid HorizontalAlignment="Center">
+                <ScrollViewer>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="From" 
+                                       Style="{StaticResource TextBlockEntryStyle}"/>
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryFrom, Mode=TwoWay}" 
+                                      ItemsSource="{Binding Properties[0].CountriesFrom}" 
+                                      Style="{StaticResource ComboBoxStyle}"
+                                      PlaceholderText="Choose country">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryFromCommand}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </ComboBox>
                         </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-                <Button Grid.Column="1" Grid.Row="1" IsEnabled="{Binding Properties[0].IsEnabledButtonFind, Mode=TwoWay}" Content="Find flights" Style="{StaticResource ButtonStyle}" Command="{Binding Commands[0].FindFlightsCommand}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TextBlockEntryStyle}"/>
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCityFrom, Mode=TwoWay}" 
+                                      ItemsSource="{Binding Properties[0].CitiesFrom}" 
+                                      Style="{StaticResource ComboBoxStyle}"
+                                      PlaceholderText="{Binding  Properties[0].PlaceholderTextCityFrom}" 
+                                      IsEnabled="{Binding Properties[0].IsEnabledCityFrom}">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityFromCommand}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="To" 
+                                       Style="{StaticResource TextBlockEntryStyle}"/>
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCountryTo, Mode=TwoWay}" 
+                                      ItemsSource="{Binding Properties[0].CountriesTo}" 
+                                      Style="{StaticResource ComboBoxStyle}" 
+                                      PlaceholderText="Choose country">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCountryToCommand}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TextBlockEntryStyle}"/>
+                            <ComboBox SelectedItem="{Binding Properties[0].TextCityTo, Mode=TwoWay}" 
+                                      ItemsSource="{Binding Properties[0].CitiesTo}" 
+                                      Style="{StaticResource ComboBoxStyle}" 
+                                      PlaceholderText="{Binding Properties[0].PlaceholderTextCityTo}" 
+                                      IsEnabled="{Binding Properties[0].IsEnabledCityTo}">
+                                <i:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <core:InvokeCommandAction Command="{Binding Commands[0].SelectCityToCommand}"/>
+                                    </core:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TextBlockEntryStyle}" 
+                                       Width="210"/>
+                            <TextBlock Text="Choose data" 
+                                       Style="{StaticResource TextBlockEntryStyle}" 
+                                       Width="148"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding Properties[0].IsCheckedOneWay, Mode=TwoWay}" 
+                                         Command="{Binding Commands[0].SetOneWayCommand}" 
+                                         Content="One way" 
+                                         Style="{StaticResource RadioButtonStyle}"/>
+                            <DatePicker Date="{Binding Properties[0].DateOneWay, Mode=TwoWay}" 
+                                        IsEnabled="true" 
+                                        Style="{StaticResource DatePickerStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding Properties[0].IsCheckedReturn, Mode=TwoWay}" 
+                                         Command="{Binding Commands[0].SetReturnWayCommand}" 
+                                         Content="Return" Style="{StaticResource RadioButtonStyle}"/>
+                            <DatePicker Date="{Binding Properties[0].DateReturn, Mode=TwoWay}" 
+                                        IsEnabled="{Binding Properties[0].IsEnabledDateReturn, Mode=TwoWay}" 
+                                        Style="{StaticResource DatePickerStyle}"/>
+                        </StackPanel>
+                        <Button IsEnabled="{Binding Properties[0].IsEnabledButtonFind, Mode=TwoWay}" 
+                                Content="Find flights" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding Commands[0].FindFlightsCommand}"/>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </PivotItem>
 
         <PivotItem Header="Favorites">
-            <Grid>
-                <ListView Name="favoriteList" ItemsSource="{Binding Properties[0].FavoriteList}">
+            <Grid HorizontalAlignment="Center">
+                <ListView Name="favoriteList" 
+                          ItemsSource="{Binding Properties[0].FavoriteList}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding  Commands[0].SetFlightCommand}" CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
+                            <core:InvokeCommandAction Command="{Binding  Commands[0].SetFlightCommand}" 
+                                                      CommandParameter="{Binding ElementName=favoriteList, Path=SelectedItem}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Holding="ShowMenuOfFlight">
+                            <StackPanel Holding="ShowMenuOfFlight">
                                 <FlyoutBase.AttachedFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Delete" Click="DeleteCommand"/>
+                                        <MenuFlyoutItem Text="Delete" 
+                                                        Click="DeleteCommand"/>
                                     </MenuFlyout>
                                 </FlyoutBase.AttachedFlyout>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="ms-appx:///Assets/favorite.png" Height="35" Width="35"/>
-                                    <StackPanel Orientation="Vertical">
+                                    <Image Source="ms-appx:///Assets/favorite.png" 
+                                           Height="35" 
+                                           Width="35"/>
+                                    <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding CountryFrom}" FontSize="18" Padding="10" Foreground="#FF959595"/>
-                                            <Image Source="ms-appx:///Assets/direction.png"  Height="13" Width="13"/>
-                                            <TextBlock Text="{Binding CountryTo}" FontSize="18" Padding="10" Foreground="#FF959595"/>
+                                            <TextBlock Text="{Binding CountryFrom}" 
+                                                       FontSize="18" 
+                                                       Padding="10" 
+                                                       Foreground="#FF959595"/>
+                                            <Image Source="ms-appx:///Assets/direction.png"  
+                                                   Height="13" 
+                                                   Width="13"/>
+                                            <TextBlock Text="{Binding CountryTo}"
+                                                       FontSize="18" 
+                                                       Padding="10"
+                                                       Foreground="#FF959595"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding CityFrom}" FontSize="15" Padding="10" Foreground="#FF959595"/>
-                                            <Image Source="ms-appx:///Assets/direction.png"  Height="13" Width="13"/>
-                                            <TextBlock Text="{Binding CityTo}" FontSize="15" Padding="10" Foreground="#FF959595"/>
+                                            <TextBlock Text="{Binding CityFrom}"
+                                                       FontSize="15" 
+                                                       Padding="10" 
+                                                       Foreground="#FF959595"/>
+                                            <Image Source="ms-appx:///Assets/direction.png"  
+                                                   Height="13"
+                                                   Width="13"/>
+                                            <TextBlock Text="{Binding CityTo}" 
+                                                       FontSize="15" 
+                                                       Padding="10" 
+                                                       Foreground="#FF959595"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -129,22 +169,32 @@
         </PivotItem>
 
         <PivotItem Header="About">
-            <Grid>
+            <Grid HorizontalAlignment="Center">
                 <ScrollViewer>
-                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                        <TextBlock Text="{Binding Properties[0].TextAbout}" Style="{StaticResource TextBlockAboutStyle}"/>
+                    <Grid>
+                        <TextBlock Text="{Binding Properties[0].TextAbout}" 
+                                   Style="{StaticResource TextBlockAboutStyle}"/>
                     </Grid>
                 </ScrollViewer>
             </Grid>
         </PivotItem>
+
     </Pivot>
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Visibility="{Binding Properties[0].IsVisibleClear, Converter={StaticResource SetVisibleIcon}}"  Label="Clear" Icon="Clear" Command="{Binding Commands[0].ClearFieldsCommand}"/>
-            <AppBarButton Visibility="{Binding Properties[0].IsVisibleRefresh, Converter={StaticResource SetVisibleIcon}}" Label="Refresh" Icon="Refresh" Command="{Binding Commands[0].UpdateFavoriteListCommand}"/>
-            <AppBarButton Label="Help" Icon="Help" Command="{Binding Commands[0].ShowHelpInformationCommand}"/>
+            <AppBarButton Visibility="{Binding Properties[0].VisibilityClear, Converter={StaticResource SetVisibilityIcon}}"  
+                          Label="Clear" 
+                          Icon="Clear" 
+                          Command="{Binding Commands[0].ClearFieldsCommand}"/>
+            <AppBarButton Visibility="{Binding Properties[0].VisibilityRefresh, Converter={StaticResource SetVisibilityIcon}}" 
+                          Label="Refresh"
+                          Icon="Refresh" 
+                          Command="{Binding Commands[0].UpdateFavoriteListCommand}"/>
+            <AppBarButton Label="Help" 
+                          Icon="Help" 
+                          Command="{Binding Commands[0].ShowHelpInformationCommand}"/>
         </CommandBar>
     </Page.BottomAppBar>
-
+    
 </views:MvxWindowsPage>

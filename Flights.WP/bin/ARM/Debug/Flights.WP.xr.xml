@@ -8,6 +8,7 @@
     <RootPropertyPathName Name="InfoFlyList" />
     <RootPropertyPathName Name="Information" />
     <RootPropertyPathName Name="StaticInformation" />
+    <RootPropertyPathName Name="IsLoading" />
     <RootPropertyPathName Name="FlightsList" />
     <RootPropertyPathName Name="ShowFlightDetailsCommand" />
     <RootPropertyPathName Name="SelectedItem" />
@@ -16,15 +17,10 @@
     <RootPropertyPathName Name="To" />
     <RootPropertyPathName Name="From" />
     <RootPropertyPathName Name="IsReservedFlight" />
-    <RootPropertyPathName Name="IsLoading" />
-    <RootPropertyPathName Name="CommentAboutFlights" />
     <RootPropertyPathName Name="IsFlightAlreadyInFavorite" />
     <RootPropertyPathName Name="AddToFavoritesCommand" />
     <RootPropertyPathName Name="ShowHelpInformationCommand" />
     <RootPropertyPathName Name="ShowAboutInforamtionCommand" />
-    <RootPropertyPathName Name="RefreshHelpFlyinformation" />
-    <RootPropertyPathName Name="FavoriteHelpFlyInformation" />
-    <RootPropertyPathName Name="ClearHelpFlyInformation" />
     <RootPropertyPathName Name="Properties" />
     <RootPropertyPathName Name="PivotNumber" />
     <RootPropertyPathName Name="Commands" />
@@ -60,9 +56,9 @@
     <RootPropertyPathName Name="TextCountryFrom" />
     <RootPropertyPathName Name="CountriesFrom" />
     <RootPropertyPathName Name="SelectCountryFromCommand" />
-    <RootPropertyPathName Name="IsVisibleRefresh" />
+    <RootPropertyPathName Name="VisibilityRefresh" />
     <RootPropertyPathName Name="UpdateFavoriteListCommand" />
-    <RootPropertyPathName Name="IsVisibleClear" />
+    <RootPropertyPathName Name="VisibilityClear" />
     <RootPropertyPathName Name="ClearFieldsCommand" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -75,11 +71,6 @@
       <RootProperty Name="Style" />
       <RootProperty Name="Command" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />
       <RootProperty Name="BorderBrush" />
@@ -87,12 +78,18 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Foreground" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Text" />
       <RootProperty Name="Style" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
     </RootType>
@@ -118,9 +115,11 @@
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Style" />
     </RootType>
-    <RootType FullName="Flights.WP.Converters.InvertBoolenConverter" />
-    <RootType FullName="Flights.WP.Converters.PictureConverter" />
-    <RootType FullName="Flights.WP.Converters.VisibilityAppBarIconConverter" />
+    <RootType FullName="Flights.WP.Converters.OppositeBoolConverter" />
+    <RootType FullName="Flights.WP.Converters.BoolToPictureConverter" />
+    <RootType FullName="Flights.WP.Converters.BoolToVisibilityConverter" />
+    <RootType FullName="Flights.WP.Converters.BoolToVisibilityFavoriteIconConverter" />
+    <RootType FullName="Flights.WP.Converters.TextToVisibilityConverter" />
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
       <RootProperty Name="Value" />
@@ -134,26 +133,14 @@
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
-      <RootProperty Name="RowDefinitions" />
-      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Children" />
-      <RootMethod Name="GetColumn" />
-      <RootMethod Name="SetColumn" />
-      <RootMethod Name="GetRow" />
-      <RootMethod Name="SetRow" />
-      <RootMethod Name="GetColumnSpan" />
-      <RootMethod Name="SetColumnSpan" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
-      <RootProperty Name="Height" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
-      <RootProperty Name="Width" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Converter" />
       <RootProperty Name="ElementName" />
       <RootProperty Name="Path" />
-      <RootProperty Name="Converter" />
       <RootProperty Name="Mode" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
@@ -167,8 +154,8 @@
       <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
-      <RootProperty Name="Orientation" />
       <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
       <RootEvent Name="Holding" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
@@ -197,8 +184,8 @@
       <RootProperty Name="Label" />
       <RootProperty Name="Icon" />
       <RootProperty Name="Command" />
-      <RootProperty Name="IsEnabled" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="IsEnabled" />
     </RootType>
     <RootType FullName="Flights.WP.Views.FlightsListView" />
     <RootType FullName="Flights.WP.Views.HelpView" />

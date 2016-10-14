@@ -8,36 +8,29 @@
     mc:Ignorable="d">
 
     <ScrollViewer>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text=""/>
-                    <TextBlock Text=""/>
-                    <StackPanel Orientation="Horizontal">
-                        <AppBarButton Label="clear" Icon="clear"/>
-                        <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding ClearHelpFlyInformation}"/>
+        <Grid HorizontalAlignment="Center">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                        <AppBarButton Label="clear" 
+                                      Icon="clear"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" 
+                               Text="Clear fields"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <AppBarButton Label="favorite" Icon="Favorite"/>
-                        <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding FavoriteHelpFlyInformation}"/>
+                        <AppBarButton Label="favorite" 
+                                      Icon="Favorite"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" 
+                               Text="Add to favorites"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <AppBarButton Label="refresh" Icon="Refresh"/>
-                        <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" Text="{Binding RefreshHelpFlyinformation}"/>
+                        <AppBarButton Label="refresh" 
+                                      Icon="Refresh"/>
+                    <TextBlock Style="{StaticResource TextBlockHelpFlyStyle}" 
+                               Text="Refresh favorite list"/>
                     </StackPanel>
-                </StackPanel>
-            </Grid>
-            <StackPanel Orientation="Vertical" Grid.Column="1"  Grid.Row="1">
-                <Image  Source="ms-appx:///Assets/plane.png" Width="350" Height="280"/>
+                    <Image Source="ms-appx:///Assets/plane.png" 
+                           Width="350" 
+                           Height="280"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -6,7 +6,6 @@
     <Application.Resources>
 
         <Style TargetType="Button" x:Key="ButtonStyle">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Background" Value="#FF23437C"/>
             <Setter Property="BorderBrush" Value="#FF360638"/>
             <Setter Property="Foreground" Value="#FF959595"/>
@@ -31,7 +30,6 @@
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockAboutStyle">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="#FF0E59DE"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="25"/>
@@ -73,9 +71,11 @@
             <Setter Property="Foreground" Value="#FF8D9797"/>
         </Style>
         
-        <local:InvertBoolenConverter x:Key="Inversion"/>
-        <local:PictureConverter x:Key="ChangePicture"/>
-        <local:VisibilityAppBarIconConverter x:Key="SetVisibleIcon"/>
+        <local:OppositeBoolConverter x:Key="Inversion"/>
+        <local:BoolToPictureConverter x:Key="ChangePicture"/>
+        <local:BoolToVisibilityConverter x:Key="SetVisibilityIcon"/>
+        <local:BoolToVisibilityFavoriteIconConverter x:Key="SetVisibilityFavoriteIcon"/>
+        <local:TextToVisibilityConverter x:Key="SetVisibilityText"/>
 
     </Application.Resources>
 </Application>

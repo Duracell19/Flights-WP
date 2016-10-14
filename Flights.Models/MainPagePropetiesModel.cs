@@ -12,8 +12,8 @@ namespace Flights.Models
         public bool IsCheckedReturn { get; set; } 
         public bool IsEnabledDateReturn { get; set; } 
         public bool IsEnabledButtonFind { get; set; } 
-        public bool IsVisibleClear { get; set; } 
-        public bool IsVisibleRefresh { get; set; }
+        public bool VisibilityClear { get; set; } 
+        public bool VisibilityRefresh { get; set; }
         public string PlaceholderTextCityFrom { get; set; } 
         public string PlaceholderTextCityTo { get; set; } 
         public string TextCountryFrom { get; set; } 

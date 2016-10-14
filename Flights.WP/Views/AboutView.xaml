@@ -8,19 +8,10 @@
     mc:Ignorable="d">
 
     <ScrollViewer>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-                <TextBlock Text="{Binding TextAbout}" Style="{StaticResource TextBlockAboutStyle}"/>
-            </Grid>
+        <Grid HorizontalAlignment="Center">
+            <TextBlock 
+                Text="{Binding TextAbout}" 
+                Style="{StaticResource TextBlockAboutStyle}"/>
         </Grid>
     </ScrollViewer>
 </views:MvxWindowsPage>

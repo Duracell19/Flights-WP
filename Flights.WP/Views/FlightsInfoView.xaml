@@ -7,33 +7,25 @@
     xmlns:views="using:MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
-            <ListView ItemsSource="{Binding InfoFlyList}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text=""/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" Text="{Binding StaticInformation}"/>
-                                <Image Source="ms-appx:///Assets/direction.png" Width="30"/>
-                                <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" Text="{Binding Information}"/>
-                            </StackPanel>
-                            <TextBlock Text=""/>
+    <Grid HorizontalAlignment="Center">
+        <ListView ItemsSource="{Binding InfoFlyList}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text=""/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                                       Text="{Binding StaticInformation}"/>
+                            <Image Source="ms-appx:///Assets/direction.png" 
+                                   Width="30"/>
+                            <TextBlock Style="{StaticResource TextBlockInfoFlyStyle}" 
+                                       Text="{Binding Information}"/>
                         </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                        <TextBlock Text=""/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
-
+    
 </views:MvxWindowsPage>

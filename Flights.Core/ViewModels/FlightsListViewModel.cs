@@ -19,7 +19,6 @@ namespace Flights.Core.ViewModels
         private ObservableCollection<FavoriteModel> _favoriteList;
         private ObservableCollection<FlyInfoShowModel> _flightsList;
         private bool _isLoading;
-        private string _commentAboutFlights;
         private bool _isFlightAlreadyInFavorite;
 
         public ICommand ShowFlightDetailsCommand { get; set; }
@@ -37,16 +36,6 @@ namespace Flights.Core.ViewModels
             }
         }
 
-        public string CommentAboutFlights
-        {
-            get { return _commentAboutFlights; }
-            set
-            {
-                _commentAboutFlights = value;
-                RaisePropertyChanged(() => CommentAboutFlights);
-            }
-        }
-
         public bool IsFlightAlreadyInFavorite
         {
             get { return _isFlightAlreadyInFavorite; }
@@ -56,7 +45,7 @@ namespace Flights.Core.ViewModels
                 RaisePropertyChanged(() => IsFlightAlreadyInFavorite);
             }
         }
-
+        
         public ObservableCollection<FlyInfoShowModel> FlightsList
         {
             get { return _flightsList; }
@@ -83,13 +72,12 @@ namespace Flights.Core.ViewModels
             AddToFavoritesCommand = new MvxCommand(AddToFavorites);
         }
 
-        public void Init(string param)
+        public async void Init(string param)
         {
-            IsFlightAlreadyInFavorite = true;
             _dataOfFlightsModel = _jsonConverter.Deserialize<DataOfFlightsModel>(param);
             _favoriteList = _fileStore.Load<ObservableCollection<FavoriteModel>>(Defines.FAVORITE_LIST_FILE_NAME);
             _favoriteList = _favoriteList ?? new ObservableCollection<FavoriteModel>();
-            ShowFlightsAsync();
+            await ShowFlightsAsync();
         }
 
         private void AddToFavorites()
@@ -123,7 +111,7 @@ namespace Flights.Core.ViewModels
             });
         }
 
-        private async void ShowFlightsAsync()
+        private async Task ShowFlightsAsync()
         {
             IsLoading = true;
 
@@ -143,10 +131,7 @@ namespace Flights.Core.ViewModels
 
             IsFlightAlreadyInFavorite = _favoriteList.Any(IsFlightEqualOfFavoriteModel);
 
-            if (FlightsList.Count == 0)
-            {
-                CommentAboutFlights = "There are no flights";
-            }
+            RaisePropertyChanged(() => FlightsList);
 
             IsLoading = false;
         }

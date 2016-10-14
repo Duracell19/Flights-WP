@@ -118,13 +118,13 @@ namespace Flights.Core.ViewModels
         {
             if (Properties[0].PivotNumber == 0)
             {
-                Properties[0].IsVisibleRefresh = false;
-                Properties[0].IsVisibleClear = true;
+                Properties[0].VisibilityRefresh = false;
+                Properties[0].VisibilityClear = true;
             }
             else
             {
-                Properties[0].IsVisibleRefresh = (Properties[0].PivotNumber == 1) ? true : false;
-                Properties[0].IsVisibleClear = false;
+                Properties[0].VisibilityRefresh = (Properties[0].PivotNumber == 1) ? true : false;
+                Properties[0].VisibilityClear = false;
             }
             RaisePropertyChanged(() => Properties);
         }
