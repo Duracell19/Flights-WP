@@ -46,7 +46,7 @@ namespace Flights.Core.ViewModels
             _dataOfFlightsModel = new DataOfFlightsModel();
             _commands = new MainPageCommandsModel();
             _properties = new MainPagePropetiesModel();
-            
+
             _commands.ShowHelpInformationCommand = new MvxCommand(() => ShowViewModel<HelpViewModel>());
             _commands.SetOneWayCommand = new MvxCommand(SetOneWay);
             _commands.SetReturnWayCommand = new MvxCommand(SetReturnWay);
@@ -71,7 +71,7 @@ namespace Flights.Core.ViewModels
         {
             base.Start();
         }
-        
+
         private void SetOneWay()
         {
             _properties.IsCheckedOneWay = true;
@@ -109,7 +109,7 @@ namespace Flights.Core.ViewModels
             _properties.IsEnabledDateReturn = false;
             RaisePropertyChanged(() => Properties);
         }
-        
+
         private void SetTheVisibilityIcon()
         {
             if (_properties.PivotNumber == 0)
@@ -196,7 +196,7 @@ namespace Flights.Core.ViewModels
                 _properties.PivotNumber = 0;
                 RaisePropertyChanged(() => Properties);
             }
-        }       
+        }
 
         private MainPagePropetiesModel SetMainPageProperties()
         {
