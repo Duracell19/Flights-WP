@@ -60,8 +60,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <TextBlock Text="There are no flights"
-                   Visibility="{Binding FlightsList, Converter={StaticResource SetVisibilityText}}"
-                   Style="{StaticResource CommentAboutFlightsStyle}"/>
+                       Visibility="{Binding FlightsList, Converter={StaticResource SetVisibilityText}}"
+                       Style="{StaticResource CommentAboutFlightsStyle}"/>
         </Grid>
         <ProgressRing Style="{StaticResource ProgressRingStyle}" 
                       IsActive="{Binding IsLoading}"/>

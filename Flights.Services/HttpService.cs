@@ -12,8 +12,8 @@ namespace Flights.Services
             try
             {
                 var client = new HttpClient();
-                Uri uri = new Uri(url);
-                string response = await client.GetStringAsync(uri);
+                var uri = new Uri(url);
+                var response = await client.GetStringAsync(uri);
                 client.Dispose();
                 return response;
             }
