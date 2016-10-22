@@ -1,8 +1,0 @@
-D:\MyProject\WP\Flights\Flights Project\Flights.Core\Flights.Core.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\Flights.Infrastructure.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Infrastructure\Flights.Infrastructure.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Models\Flights.Models.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Models\Flights.Models.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Models\Flights.Models.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.Services\Flights.Services.csproj;neutral
-D:\MyProject\WP\Flights\Flights Project\Flights.WP\Flights.WP.csproj;arm
